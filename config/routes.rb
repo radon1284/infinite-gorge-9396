@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :clients
   resources :staffs
   resources :task_logs
-  devise_for :users, :path_prefix => 'profiles', controllers: {registrations: 'registrations'}
+  devise_for :users, :path_prefix => 'profiles'
   resources :users
   root 'page#home'
 

@@ -18,6 +18,7 @@
       <%= ff.select(:role, User.roles.keys.map {|role| [role.titleize,role]}) %>
   </div>
   <% end %>
+
   <div class="field">
     <%= f.label :full_name %><br>
     <%= f.text_field :full_name %>
@@ -26,6 +27,12 @@
     <%= f.label :position %><br>
     <%= f.text_field :position %>
   </div>
+<%= hidden_field_tag "staff[client_ids][]", nil %>
+<% Client.all.each do |client| %>
+<%= check_box_tag "staff[client_ids][]", client.id, @staff.client_ids.include?(client.id), id: dom_id(client) %>
+<%= label_tag dom_id(client), client.full_name %><br>
+<% end %>
+<br>
   <div class="actions">
     <%= f.submit 'Edit Staff' %>
   </div>
