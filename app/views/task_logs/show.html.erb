@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Task title:</strong>
+  <%= @task_log.task_title %>
+</p>
+
+<p>
+  <strong>Starting time:</strong>
+  <%= @task_log.starting_time %>
+</p>
+
+<p>
+  <strong>Ending time:</strong>
+  <%= @task_log.ending_time %>
+</p>
+
+<%= link_to 'Edit', edit_task_log_path(@task_log) %> |
+<%= link_to 'Back', task_logs_path %>

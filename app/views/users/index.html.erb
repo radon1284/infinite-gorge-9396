@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<h1>All User</h1>
+
+<div id="no-more-tables">
+<table class="col-md-12 table-bordered table-striped table-condensed cf">
+  <thead class="cf">
+    <tr>
+      <th>Full name</th>
+      <th>Email</th>
+      <th>Role</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td data-title="Name"><%= user.meta.full_name %></td>
+        <td data-title="Email"><%= user.email %></td>
+        <td data-title="Role"><%= user.role.titleize %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+<br>
+
+

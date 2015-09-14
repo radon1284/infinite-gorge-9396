@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  task_title: MyString
+  starting_time: MyString
+  ending_time: MyString
+
+two:
+  task_title: MyString
+  starting_time: MyString
+  ending_time: MyString

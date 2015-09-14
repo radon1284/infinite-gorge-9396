@@ -1,0 +1,43 @@
+<%= form_for(@user) do |f| %>
+<% if @user.errors.any? %>
+
+<div id="error_explanation">
+  <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+  <ul>
+    <% @user.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+    <div class="field">
+      <%= f.label :role %><br />
+      <%= f.select(:role, User.roles.keys.map {|role| [role.titleize,role]}) %>
+  </div>
+    <div class="field">
+      <%= f.label :meta_type %><br />
+      <%= f.select(:meta_type, User.meta_types.keys.map {|meta_type| [mmeta_type.titleize,meta_type]}) %>
+  </div>
+<div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Sign up" %>
+  </div>
+<% end %>
+
