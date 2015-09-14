@@ -12,6 +12,12 @@
       </ul>
     </div>
   <% end %>
+  <%= f.fields_for :user_attributes, @client.user do |ff| %>
+  <div class="field">
+      <%= ff.label :role %><br />
+      <%= ff.select(:role, User.roles.keys.map {|role| [role.titleize,role]}) %>
+  </div>
+  <% end %>
   <div class="field">
     <%= f.label :full_name %><br>
     <%= f.text_field :full_name %>
