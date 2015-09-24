@@ -1,31 +1,30 @@
+
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Task Logs</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Task title</th>
-      <th>Starting time</th>
-      <th>Ending time</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @task_logs.each do |task_log| %>
-      <tr>
-        <td><%= task_log.task_title %></td>
-        <td><%= task_log.starting_time %></td>
-        <td><%= task_log.ending_time %></td>
-        <td><%= link_to 'Show', task_log %></td>
-        <td><%= link_to 'Edit', edit_task_log_path(task_log) %></td>
-        <td><%= link_to 'Destroy', task_log, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<div id="tasks_logs">
+  <h2 id="month">
+    <%= link_to "<", date: @date.prev_month %>
+    <%= @date.strftime("%B %Y") %>
+    <%= link_to ">", date: @date.next_month %>
+  </h2>
+  <%= calendar @date do |date| %>
+    <%= date.day %>
+    
+      <% if @task_logs_by_date[date] %>
+        <ul class="list-group">
+          <% @task_logs_by_date[date].each do |task_log| %>
+            <% if task_log.user == current_user %>
+              <li class="list-group-item">
+              <span class="badge"><%= hr_min_value = task_log.total_hrs.to_s.split(".").map { |s| s.to_i }
+              result_hr = hr_min_value[0].to_s + ":"
+              result_min = ((hr_min_value[1]*60)/100).to_s + " Hrs."
+              hr_min = result_hr + result_min
+              %></span>
+                <%= link_to task_log.task_title, task_log %>
+              </li>
+            <% end %>
+          <% end %>
+        </ul>
+      <% end %>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Task log', new_task_log_path %>
+</div>

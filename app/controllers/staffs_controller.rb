@@ -5,6 +5,9 @@ class StaffsController < ApplicationController
   # GET /staffs.json
   def index
     @staffs = Staff.all
+    @task_logs = TaskLog.all
+
+    @task_logs_by_date = @task_logs.group_by { |c| c.created_at.to_date }
   end
 
   # GET /staffs/1
@@ -72,6 +75,6 @@ class StaffsController < ApplicationController
       params.require(:staff).permit(:full_name, :position, user_attributes: [ :id, :email, :password , :role])
     end
     def update_staff_params
-      params.require(:staff).permit(:full_name, :position, user_attributes: [ :id , :role])
+      params.require(:staff).permit(:full_name, :position, user_attributes: [ :id , :role], client_ids:[])
     end
 end

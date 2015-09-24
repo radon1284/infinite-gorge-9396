@@ -17,11 +17,15 @@
   </div>
   <div class="field">
     <%= f.label :starting_time %><br>
-    <%= f.text_field :starting_time %>
+    <%= f.time_select :starting_time,  {ampm: true} %>
   </div>
   <div class="field">
     <%= f.label :ending_time %><br>
-    <%= f.text_field :ending_time %>
+    <%= f.time_select :ending_time,  {ampm: true}%>
+  </div>
+    <div class="field">
+    <%= f.label :total_hrs %><br>
+    <%= f.text_field :total_hrs, :readonly => true %>
   </div>
   <div class="actions">
     <%= f.submit %>

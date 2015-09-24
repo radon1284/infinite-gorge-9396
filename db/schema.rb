@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150914122450) do
+ActiveRecord::Schema.define(version: 20150922085948) do
 
   create_table "clients", force: :cascade do |t|
     t.string   "full_name"
@@ -27,19 +27,29 @@ ActiveRecord::Schema.define(version: 20150914122450) do
     t.datetime "updated_at", null: false
   end
 
+  add_index "employments", ["client_id"], name: "index_employments_on_client_id"
+  add_index "employments", ["staff_id", "client_id"], name: "index_employments_on_staff_id_and_client_id", unique: true
+  add_index "employments", ["staff_id"], name: "index_employments_on_staff_id"
+
   create_table "staffs", force: :cascade do |t|
     t.string   "full_name"
     t.string   "position"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "employment_id"
   end
+
+  add_index "staffs", ["employment_id"], name: "index_staffs_on_employment_id"
 
   create_table "task_logs", force: :cascade do |t|
     t.string   "task_title"
-    t.string   "starting_time"
-    t.string   "ending_time"
+    t.time     "starting_time"
+    t.time     "ending_time"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.string   "total_hrs"
+    t.integer  "user_id"
+    t.integer  "staff_id"
   end
 
   create_table "users", force: :cascade do |t|

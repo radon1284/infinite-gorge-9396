@@ -6,6 +6,20 @@ class TaskLogsController < ApplicationController
   # GET /task_logs.json
   def index
     @task_logs = TaskLog.all
+    @staffs = Staff.all
+
+    @task_logs_by_date = @task_logs.group_by { |c| c.created_at.to_date }
+
+    @date = params[:date] ? Date.parse(params[:date]) : Date.today
+
+    # @total_hrs = current_user.task_logs.sum(:total_hrs)
+    # @hr_min_value = @total_hrs.to_s.split(".").map { |s| s.to_i }
+    # @result_hr = @hr_min_value[0].to_s + ":"
+    # @result_min = ((@hr_min_value[1]*60)/100).to_s + " Hrs."
+    # @hr_min = @result_hr + @result_min
+
+
+
   end
 
   # GET /task_logs/1
@@ -15,7 +29,7 @@ class TaskLogsController < ApplicationController
 
   # GET /task_logs/new
   def new
-    @task_log = TaskLog.new
+    @task_log = current_user.task_logs.build
   end
 
   # GET /task_logs/1/edit
@@ -25,7 +39,7 @@ class TaskLogsController < ApplicationController
   # POST /task_logs
   # POST /task_logs.json
   def create
-    @task_log = TaskLog.new(task_log_params)
+    @task_log = current_user.task_logs.build(task_log_params)
 
     respond_to do |format|
       if @task_log.save
@@ -70,6 +84,7 @@ class TaskLogsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_log_params
-      params.require(:task_log).permit(:task_title, :starting_time, :ending_time)
+      params.require(:task_log).permit(:task_title, :starting_time, :ending_time, :total_hrs )
     end
+
 end

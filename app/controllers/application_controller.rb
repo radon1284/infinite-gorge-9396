@@ -7,4 +7,10 @@ class ApplicationController < ActionController::Base
     flash[:error] = exception.message 
     redirect_to root_url
   end 
+
+	before_filter :set_timezone
+
+	def set_timezone
+	   	Time.zone = 'GMT'
+	end
 end

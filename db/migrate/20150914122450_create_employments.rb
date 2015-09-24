@@ -6,5 +6,8 @@ class CreateEmployments < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+    add_index :employments, :staff_id
+    add_index :employments, :client_id
+    add_index :employments, [:staff_id, :client_id], unique: true
   end
 end
