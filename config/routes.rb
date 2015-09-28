@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
 
+  get 'dashboard' => 'dashboard#index'
+
   resources :clients
   resources :staffs
   resources :task_logs
   devise_for :users, :path_prefix => 'profiles'
   resources :users
-  root 'page#home'
+  root 'pages#home'
 
   # get 'user/index'
 

@@ -9,6 +9,12 @@
   <strong>Postion:</strong>
   <%= @client.business_name %>
 </p>
+<b>Staff:</b>
+<ul>
+  <% @client.staffs.each do |staff| %>
+    <li><%= staff.full_name %></li>
+  <% end %>
+</ul>
 
 <%= link_to 'Edit', edit_client_path(@client) %> |
 <%= link_to 'Back', clients_path %>

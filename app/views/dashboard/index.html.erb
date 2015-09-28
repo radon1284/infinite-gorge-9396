@@ -1,0 +1,12 @@
+<% provide(:title, 'Dashboard') %>
+<% if current_user.role == 'client' %>
+<%= current_user.meta.full_name %>
+
+<b>My Staff:</b>
+<ul>
+  <% current_user.meta.full_name.each do |staff| %>
+    <li><%= staff.full_name %></li>
+  <% end %>
+</ul>
+
+<% end %>

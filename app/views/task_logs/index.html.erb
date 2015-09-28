@@ -11,8 +11,10 @@
     <%= date.day %>
     
       <% if @task_logs_by_date[date] %>
+
         <ul class="list-group">
           <% @task_logs_by_date[date].each do |task_log| %>
+            <%= @hrs_by_day %>
             <% if task_log.user == current_user %>
               <li class="list-group-item">
               <span class="badge"><%= hr_min_value = task_log.total_hrs.to_s.split(".").map { |s| s.to_i }
@@ -22,6 +24,7 @@
               %></span>
                 <%= link_to task_log.task_title, task_log %>
               </li>
+
             <% end %>
           <% end %>
         </ul>
