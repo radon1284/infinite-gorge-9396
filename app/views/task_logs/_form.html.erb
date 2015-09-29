@@ -11,6 +11,13 @@
     </div>
   <% end %>
 
+<b>Client:</b>
+<ul>
+  <% @staff.clients.each do |client| %>
+    <li><%= client.full_name %></li>
+  <% end %>
+</ul>
+
   <div class="field">
     <%= f.label :task_title %><br>
     <%= f.text_field :task_title %>

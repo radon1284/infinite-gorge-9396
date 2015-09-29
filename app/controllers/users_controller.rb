@@ -27,7 +27,11 @@ class UsersController < ApplicationController
   end
 
   def new
-  	@user = User.new
+  	if user_signed_in?
+      redirect_to dashboard_path
+    else
+      redirect_to url_path
+    end
   end
 
 

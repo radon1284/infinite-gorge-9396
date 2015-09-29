@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   get 'dashboard' => 'dashboard#index'
+  get 'myprofile' => 'dashboard#edit_profile'
 
   resources :clients
   resources :staffs

@@ -1,12 +1,62 @@
 <% provide(:title, 'Dashboard') %>
-<% if current_user.role == 'client' %>
+<% if current_user.role == 'admin' %>
 <%= current_user.meta.full_name %>
+<br>
+<%= current_user.meta.id %>
+<br/>
+<%= current_user.email %><%= current_user.id %>
+<% elsif current_user.role == 'manager' %>
+<% elsif current_user.role == 'team_leader' %>
+<% elsif current_user.role == 'client' %>
+	<h3>My Staff:</h3>
+	<div id="no-more-tables">
+	<table class="col-md-12 table-bordered table-striped table-condensed cf">
+	  <thead class="cf">
+	    <tr>
+	      <th rowspan="2">Full name</th>
+	      <th rowspan="2">Postion</th>
+	      <th colspan="3">Time</th>
+	    </tr>
+	    <tr>
+	      <th>Today</th>
+	      <th>Week</th>
+	      <th>Month</th>
+	    </tr>
+	  </thead>
 
-<b>My Staff:</b>
-<ul>
-  <% current_user.meta.full_name.each do |staff| %>
-    <li><%= staff.full_name %></li>
-  <% end %>
-</ul>
+	  <tbody>
+	  <% @client.staffs.each do |staff| %>
+	    <tr>
+	        <td data-title="Name"><%= staff.full_name %></td>
+	        <td data-title="Position"><%= staff.position %></td>
+	        <td data-title="Today"><%= staff.position %></td>
+	        <td data-title="Week"><%= staff.position %></td>
+	        <td data-title="Month"><%= staff.position %></td>
+	      </tr>
+	  <% end %>
+	  </tbody>
+	</table>
+	</div>
+<% else %>
+	<h3>My Client:</h3>
+	<div id="no-more-tables">
+	<table class="col-md-12 table-bordered table-striped table-condensed cf">
+	  <thead class="cf">
+	    <tr>
+	      <th>Full name</th>
+	      <th>Business Name</th>
+	    </tr>
+	  </thead>
+
+	  <tbody>
+	  <% @staff.clients.each do |client| %>
+	    <tr>
+	        <td data-title="Name"><%= client.full_name %></td>
+	        <td data-title="Business Name"><%= client.business_name %></td>
+	      </tr>
+	  <% end %>
+	  </tbody>
+	</table>
+	</div>
 
 <% end %>

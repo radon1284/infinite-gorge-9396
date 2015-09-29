@@ -6,10 +6,25 @@ class StaffsController < ApplicationController
   # GET /staffs
   # GET /staffs.json
   def index
+    if current_user.role == 'admin'
     @staffs = Staff.all
     @task_logs = TaskLog.all
 
     @task_logs_by_date = @task_logs.group_by { |c| c.created_at.to_date }
+    elsif current_user.role == 'manager'
+    @staffs = Staff.all
+    @task_logs = TaskLog.all
+
+    @task_logs_by_date = @task_logs.group_by { |c| c.created_at.to_date }
+    elsif current_user.role == 'team_leader'
+        redirect_to dashboard_path
+    elsif current_user.role == 'client'
+        redirect_to dashboard_path
+    else
+      redirect_to dashboard_path
+    end
+    
+
   end
 
   # GET /staffs/1
@@ -19,7 +34,17 @@ class StaffsController < ApplicationController
 
   # GET /staffs/new
   def new
-    @staff = Staff.new
+    if current_user.role == 'admin'
+      @staff = Staff.new
+    elsif current_user.role == 'manager'
+      @staff = Staff.new
+    elsif current_user.role == 'team_leader'
+        redirect_to dashboard_path
+    elsif current_user.role == 'client'
+        redirect_to dashboard_path
+    else
+      redirect_to dashboard_path
+    end
   end
 
   # GET /staffs/1/edit

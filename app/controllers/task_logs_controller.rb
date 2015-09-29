@@ -8,6 +8,7 @@ class TaskLogsController < ApplicationController
   def index
     @task_logs = TaskLog.all
     @staffs = Staff.all
+    @clients = Client.all
 
     @task_logs_by_date = @task_logs.group_by { |c| c.created_at.to_date }
 

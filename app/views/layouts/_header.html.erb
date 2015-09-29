@@ -6,8 +6,8 @@
     <div class="navbar-collapse collapse" id="navbar">
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
-          <li><a>Logged in as <strong><%= current_user.meta.full_name %></strong></a><li>
-          <li><%= link_to 'Edit profile', edit_user_registration_path %><li>
+          <li><a>Logged in as <strong><%= current_user.meta.full_name %> | <%= current_user.role.titleize %></strong></a><li>
+          <li><%= link_to 'Edit profile', myprofile_path %><li>
           <li><%= link_to "Logout", destroy_user_session_path, method: :delete %><li>
         <% else %>
           <li><%= link_to "Sign up", new_user_registration_path %><li>
