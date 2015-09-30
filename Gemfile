@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
+ruby '2.2.1'
 
 gem 'rails', '4.2.4'
+gem 'groupdate', '~> 2.4.0'
 gem 'devise', '~> 3.5.1'
 gem 'cancancan', '~> 1.12.0'
 gem 'rolify'

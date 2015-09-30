@@ -2,7 +2,6 @@
   <% if @task_log.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@task_log.errors.count, "error") %> prohibited this task_log from being saved:</h2>
-
       <ul>
       <% @task_log.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -10,13 +9,6 @@
       </ul>
     </div>
   <% end %>
-
-<b>Client:</b>
-<ul>
-  <% @staff.clients.each do |client| %>
-    <li><%= client.full_name %></li>
-  <% end %>
-</ul>
 
   <div class="field">
     <%= f.label :task_title %><br>
@@ -29,10 +21,6 @@
   <div class="field">
     <%= f.label :ending_time %><br>
     <%= f.time_select :ending_time,  {ampm: true}%>
-  </div>
-    <div class="field">
-    <%= f.label :total_hrs %><br>
-    <%= f.text_field :total_hrs, :readonly => true %>
   </div>
   <div class="actions">
     <%= f.submit %>
