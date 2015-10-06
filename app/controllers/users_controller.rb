@@ -14,9 +14,8 @@ class UsersController < ApplicationController
       # @result_hr = @hr_min_value[0].to_s + ":"
       # @result_min = (((@hr_min_value[1])*60)/100).to_s + " Hrs."
       # @hr_min = @result_hr + @result_min
-
     else
-      redirect_to '/'
+      redirect_to dashboard_path
     end
 
   end
