@@ -34,12 +34,9 @@ ActiveRecord::Schema.define(version: 20150922085948) do
   create_table "staffs", force: :cascade do |t|
     t.string   "full_name"
     t.string   "position"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.integer  "employment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
-
-  add_index "staffs", ["employment_id"], name: "index_staffs_on_employment_id"
 
   create_table "task_logs", force: :cascade do |t|
     t.string   "task_title"

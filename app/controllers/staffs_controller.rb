@@ -101,6 +101,7 @@ class StaffsController < ApplicationController
     def staff_params
       params.require(:staff).permit(:full_name, :position, user_attributes: [ :id, :email, :password , :role])
     end
+    
     def update_staff_params
       params.require(:staff).permit(:full_name, :position, user_attributes: [ :id , :role], client_ids:[])
     end
