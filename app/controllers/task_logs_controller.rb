@@ -36,6 +36,7 @@ class TaskLogsController < ApplicationController
 
   # GET /task_logs/new
   def new
+    # @task_log = TaskLog.new
     @task_log = current_user.task_logs.build
   end
 
@@ -46,8 +47,8 @@ class TaskLogsController < ApplicationController
   # POST /task_logs
   # POST /task_logs.json
   def create
+    # @task_log = TaskLog.new(task_log_params)
     @task_log = current_user.task_logs.build(task_log_params)
-
     respond_to do |format|
       if @task_log.save
         format.html { redirect_to @task_log, notice: 'Task log was successfully created.' }
@@ -91,7 +92,7 @@ class TaskLogsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_log_params
-      params.require(:task_log).permit(:task_title, :starting_time, :ending_time, :total_hrs )
+      params.require(:task_log).permit(:task_title, :starting_time, :ending_time, :total_hrs, :staff_id, :client_id )
     end
 
 end

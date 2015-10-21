@@ -17,4 +17,8 @@ class TaskLog < ActiveRecord::Base
 	  self.assign_attributes(total_hrs: hrs_value)
 	end
 
+	def get_client_name
+		"#{client_id}"
+	end
+
 end
