@@ -15,11 +15,10 @@
         <ul class="list-group">
           <% @task_logs_by_date[date].each do |task_log| %>
             <%= @hrs_by_day %>
-            <% if task_log.user == current_user %>
+            <% if task_log.user_id == current_user %>
               <li class="list-group-item">
                 <%= task_log.sum_of_hrs %>
               </li>
-
             <% end %>
           <% end %>
         </ul>
