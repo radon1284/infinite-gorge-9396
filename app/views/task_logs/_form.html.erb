@@ -11,7 +11,7 @@
   <% end %>
   <div class="field">
   <%= f.label :client %><br>
-  <%= f.collection_select :client_id, Employment.where(staff_id: current_user.meta.id), :id, :client_id, {prompt: 'Select A Client'} %>
+  <%= f.collection_select :client_id, Employment.where(staff_id: current_user.meta.id), :client_id, :get_client_name, {prompt: 'Select A Client'} %>
   </div>
 
   <div class="field">
@@ -26,6 +26,7 @@
     <%= f.label :ending_time %><br>
     <%= f.time_select :ending_time,  {ampm: true}%>
   </div>
+  <%= f.hidden_field :staff_id, :value => current_user.meta.id %>
   <div class="actions">
     <%= f.submit %>
   </div>

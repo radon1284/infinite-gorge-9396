@@ -8,6 +8,8 @@ class Employment < ActiveRecord::Base
 	# accepts_nested_attributes_for :staff
 	# accepts_nested_attributes_for :client
 	
-
+	def get_client_name		
+		"#{client.full_name}"
+	end
 
 end

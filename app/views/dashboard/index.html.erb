@@ -111,6 +111,7 @@
 	</table>
 	</div>
 <% else %>
+<%= :sum_of_hrs %>
 	<h3>My Client:</h3>
 	<div id="no-more-tables">
 	<table class="col-md-12 table-bordered table-striped table-condensed cf">
@@ -132,9 +133,9 @@
 	    <tr>
 	        <td data-title="Name"><%= client.full_name %></td>
 	        <td data-title="Business Name"><%= client.business_name %></td>
-	        <td data-title="Today"></td>
-	        <td data-title="Week"></td>
-	        <td data-title="Month"></td>
+	        <td data-title="Today"><%= hr_min_value = client.user.task_logs.sum(:total_hrs) %></td>
+	        <td data-title="Week"><%= hr_min_value = client.user.task_logs.sum(:total_hrs) %></td>
+	        <td data-title="Month"><%= hr_min_value = client.user.task_logs.sum(:total_hrs) %></td>
 	      </tr>
 	  <% end %>
 	  </tbody>

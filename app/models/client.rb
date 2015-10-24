@@ -8,4 +8,5 @@ class Client < ActiveRecord::Base
 	 has_many :staffs, :through => :employments
 	 accepts_nested_attributes_for :employments, allow_destroy: true
 	 belongs_to :task_logs
+
 end

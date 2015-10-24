@@ -16,9 +16,4 @@ class TaskLog < ActiveRecord::Base
 	  hr_min = result_hr + result_min
 	  self.assign_attributes(total_hrs: hrs_value)
 	end
-
-	def get_client_name
-		"#{client_id}"
-	end
-
 end
