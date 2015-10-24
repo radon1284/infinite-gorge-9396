@@ -132,9 +132,9 @@
 	    <tr>
 	        <td data-title="Name"><%= client.full_name %></td>
 	        <td data-title="Business Name"><%= client.business_name %></td>
-	        <td data-title="Today"><%= hr_min_value = client.user.task_logs.sum(:total_hrs) %></td>
-	        <td data-title="Week"><%= hr_min_value = client.user.task_logs.sum(:total_hrs) %></td>
-	        <td data-title="Month"><%= hr_min_value = client.user.task_logs.sum(:total_hrs) %></td>
+	        <td data-title="Today"></td>
+	        <td data-title="Week"></td>
+	        <td data-title="Month"></td>
 	      </tr>
 	  <% end %>
 	  </tbody>
