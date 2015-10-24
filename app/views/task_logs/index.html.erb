@@ -17,13 +17,7 @@
             <%= @hrs_by_day %>
             <% if task_log.user == current_user %>
               <li class="list-group-item">
-                <%= task_log.starting_time.strftime("%H:%M %p") %> - <%= task_log.ending_time.strftime("%H:%M %p") %>
-              <%= hr_min_value = task_log.total_hrs.to_s.split(".").map { |s| s.to_i }
-              result_hr = hr_min_value[0].to_s + ":"
-              result_min = ((hr_min_value[1]*60)/100).to_s + " Hrs."
-              hr_min = result_hr + result_min
-              %>
-
+                <%= task_log.sum_of_hrs %>
               </li>
 
             <% end %>

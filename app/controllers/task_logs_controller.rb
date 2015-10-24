@@ -14,7 +14,7 @@ class TaskLogsController < ApplicationController
 
     @date = params[:date] ? Date.parse(params[:date]) : Date.today
 
-    # @total_hrs = current_user.task_logs.sum(:total_hrs)
+    @total_hrs = current_user.task_logs.sum(:total_hrs)
     # @hr_min_value = @total_hrs.to_s.split(".").map { |s| s.to_i }
     # @result_hr = @hr_min_value[0].to_s + ":"
     # @result_min = ((@hr_min_value[1]*60)/100).to_s + " Hrs."
