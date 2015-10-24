@@ -17,13 +17,7 @@
 
 <p>
   <strong>Tota Time:</strong>
-
-
-  <%= hr_min_value = (@task_log.total_hrs).split(".").map { |s| s.to_i } 
-            result_hr = hr_min_value[0].to_s + ":"
-            result_min = ((hr_min_value[1]*60)/100).to_s + " Hrs."
-            hr_min = result_hr + result_min
-        %>
+  <%= @task_log.sum_of_hrs %>
 </p>
 
 <%= link_to 'Edit', edit_task_log_path(@task_log) %> |

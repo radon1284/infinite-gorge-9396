@@ -5,7 +5,7 @@ class TaskLog < ActiveRecord::Base
 	has_many :client
 	accepts_nested_attributes_for :client, :update_only => true
 
-	before_save :sum_of_hrs
+	# before_save :sum_of_hrs
 
 	def sum_of_hrs
 	  sum_value = (self.ending_time - self.starting_time)/3600
