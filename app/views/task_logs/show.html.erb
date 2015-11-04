@@ -7,12 +7,12 @@
 
 <p>
   <strong>Starting time:</strong>
-  <%= @task_log.starting_time %>
+  <%= @task_log.starting_time.strftime("%r") %>
 </p>
 
 <p>
   <strong>Ending time:</strong>
-  <%= @task_log.ending_time %>
+  <%= @task_log.ending_time.strftime("%r") %>
 </p>
 
 <p>

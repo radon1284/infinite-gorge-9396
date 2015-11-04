@@ -14,18 +14,6 @@ class TaskLogsController < ApplicationController
 
     @date = params[:date] ? Date.parse(params[:date]) : Date.today
 
-    # @total_hrs = current_user.task_logs.sum(:total_hrs)
-    # @hr_min_value = @total_hrs.to_s.split(".").map { |s| s.to_i }
-    # @result_hr = @hr_min_value[0].to_s + ":"
-    # @result_min = ((@hr_min_value[1]*60)/100).to_s + " Hrs."
-    # @hr_min = @result_hr + @result_min
-
-#     @hrs_by_day = current_user.task_logs.sum(:total_hrs, 
-#                          :group => 'DATE(created_at)', 
-#                          :conditions => ['DATE(created_at) > ?', 31.days.ago])
-# (0..30).collect { |d| @hrs_by_day[d.days.ago.to_date.to_s] || 0 }.reverse
-
-
 
   end
 
