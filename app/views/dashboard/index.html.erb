@@ -141,4 +141,29 @@
 	</table>
 	</div>
 
+<div id="tasks_logs">
+  <h2 id="month">
+    <%= link_to "<", date: @date.prev_month %>
+    <%= @date.strftime("%B %Y") %>
+    <%= link_to ">", date: @date.next_month %>
+  </h2>
+  <%= calendar @date do |date| %>
+    <%= date.day %>
+    
+      <% if @task_logs_by_date[date] %>
+
+        <ul class="list-group">
+          <% @task_logs_by_date[date].each do |task_log| %>
+            <%= @hrs_by_day %>
+            <% if task_log.user == current_user %>
+              <li class="list-group-item">
+                <%= task_log.total_hrs %>
+              </li>
+            <% end %>
+          <% end %>
+        </ul>
+      <% end %>
+    <% end %>
+</div>
+
 <% end %>

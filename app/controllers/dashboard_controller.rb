@@ -7,6 +7,10 @@ class DashboardController < ApplicationController
     @staffs = Staff.all
     @clients = Client.all
     @task_logs = TaskLog.all
+
+    @task_logs_by_date = @task_logs.group_by { |c| c.created_at.to_date }
+
+    @date = params[:date] ? Date.parse(params[:date]) : Date.today
   end
 
   def edit_profile
