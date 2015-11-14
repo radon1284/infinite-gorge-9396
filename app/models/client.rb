@@ -10,6 +10,8 @@ class Client < ActiveRecord::Base
 	 belongs_to :task_logs
 
 	def total_time_today
+		# TaskLog.where("created_at <= ?", Date.today).sum(:total_hrs)
+		TaskLog.sum(:total_hrs)
 	end
 
 	def total_time_week

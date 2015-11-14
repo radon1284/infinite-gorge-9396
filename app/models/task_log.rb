@@ -17,8 +17,17 @@ class TaskLog < ActiveRecord::Base
 		hr_min = result_hr + result_min
 	end
 
-	def total_time
-		result_time = self.assign_attributes(total_hrs: sum_of_hrs)
+	def data_hrs
+		sum_value = (self.ending_time - self.starting_time)/3600
+		hrs_value = "%.2f" % ((sum_value*60)/60)
 	end
+
+	def total_time
+		result_time = self.assign_attributes(total_hrs: data_hrs)
+	end
+
+	def sum_today
+    	TaskLog.where("created_at <= ?", Date.today).sum(:total_hrs)
+  	end
 
 end

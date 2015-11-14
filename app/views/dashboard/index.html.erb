@@ -132,7 +132,7 @@
 	    <tr>
 	        <td data-title="Name"><%= client.full_name %></td>
 	        <td data-title="Business Name"><%= client.business_name %></td>
-	        <td data-title="Today"></td>
+	        <td data-title="Today"><%= client.total_time_today %></td>
 	        <td data-title="Week"></td>
 	        <td data-title="Month"></td>
 	      </tr>
@@ -140,7 +140,9 @@
 	  </tbody>
 	</table>
 	</div>
+<% end %>
 
+<div style="height:20px; clear:both;"></div>
 <div id="tasks_logs">
   <h2 id="month">
     <%= link_to "<", date: @date.prev_month %>
@@ -148,22 +150,8 @@
     <%= link_to ">", date: @date.next_month %>
   </h2>
   <%= calendar @date do |date| %>
-    <%= date.day %>
+    <p><%= date.day %></p>
+    <p class="badge"><%= @total_hrs_by_date %></p>
     
-      <% if @task_logs_by_date[date] %>
-
-        <ul class="list-group">
-          <% @task_logs_by_date[date].each do |task_log| %>
-            <%= @hrs_by_day %>
-            <% if task_log.user == current_user %>
-              <li class="list-group-item">
-                <%= task_log.total_hrs %>
-              </li>
-            <% end %>
-          <% end %>
-        </ul>
-      <% end %>
     <% end %>
 </div>
-
-<% end %>
