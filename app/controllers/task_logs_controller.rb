@@ -13,7 +13,11 @@ class TaskLogsController < ApplicationController
     @task_logs_by_date = @task_logs.group_by { |c| c.created_at.to_date }
 
     @date = params[:date] ? Date.parse(params[:date]) : Date.today
-
+    # @total_hrs_by_date = TaskLog.where("created_at <= ?", Date.today).sum(:total_hrs)
+    
+    # @total_hrs_by_date = TaskLog.group("date(created_at)").where(user_id: current_user).sum(:total_hrs)
+    @total_hrs_by_date = @task_logs.group_by { |c| c.created_at.to_date }.sum(:total_hrs)
+    
 
   end
 
@@ -39,8 +43,8 @@ class TaskLogsController < ApplicationController
     @task_log = current_user.task_logs.build(task_log_params)
     respond_to do |format|
       if @task_log.save
-        format.html { redirect_to @task_log, notice: 'Task log was successfully created.' }
-        format.json { render :show, status: :created, location: @task_log }
+        format.html { redirect_to dashboard_path, notice: 'Task log was successfully created.' }
+        format.json { render :show, status: :created, location: @dashboard }
       else
         format.html { render :new }
         format.json { render json: @task_log.errors, status: :unprocessable_entity }

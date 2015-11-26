@@ -27,7 +27,11 @@ class TaskLog < ActiveRecord::Base
 	end
 
 	def sum_today
-    	TaskLog.where("created_at <= ?", Date.today).sum(:total_hrs)
+		
+    	total = TaskLog.group("date(created_at)").where(user_id: user.id).sum(:total_hrs)
+    	# total = TaskLog.sum(:total_hrs)
+    	# total_today = TaskLog.date(created_at)
+
   	end
 
 end

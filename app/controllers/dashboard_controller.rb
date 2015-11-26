@@ -11,8 +11,11 @@ class DashboardController < ApplicationController
     @task_logs_by_date = @task_logs.group_by { |c| c.created_at.to_date }
 
     @date = params[:date] ? Date.parse(params[:date]) : Date.today
+    
+    # @total_hrs_by_date = TaskLog.where("created_at <= ?", Date.today).sum(:total_hrs)
 
-    @total_hrs_by_date = TaskLog.where("created_at <= ?", Date.today).sum(:total_hrs)
+    @total_hrs_by_date = TaskLog.select(:created_at).distinct.sum(:total_hrs)
+
   end
 
   def edit_profile
