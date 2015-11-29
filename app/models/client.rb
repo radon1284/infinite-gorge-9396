@@ -7,7 +7,7 @@ class Client < ActiveRecord::Base
 	 has_many :employments
 	 has_many :staffs, :through => :employments
 	 accepts_nested_attributes_for :employments, allow_destroy: true
-	 belongs_to :task_logs
+	 has_many :task_logs
 
 	def total_time_today
 		TaskLog.where("created_at <= ?", Date.today).sum(:total_hrs)

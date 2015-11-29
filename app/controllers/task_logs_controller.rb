@@ -15,7 +15,7 @@ class TaskLogsController < ApplicationController
     @date = params[:date] ? Date.parse(params[:date]) : Date.today
     # @total_hrs_by_date = TaskLog.where("created_at <= ?", Date.today).sum(:total_hrs)
     
-    # @total_hrs_by_date = TaskLog.group("date(created_at)").where(user_id: current_user).sum(:total_hrs)
+    # @total_hrs_by_date = TaskLog.sum(:total_hrs)
     @total_hrs_by_date = @task_logs.group_by { |c| c.created_at.to_date }.sum(:total_hrs)
     
 

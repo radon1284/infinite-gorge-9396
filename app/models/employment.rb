@@ -4,9 +4,6 @@ class Employment < ActiveRecord::Base
 
 	validates_presence_of :staff
 	validates_presence_of :client
-
-	# accepts_nested_attributes_for :staff
-	# accepts_nested_attributes_for :client
 	
 	def get_client_name		
 		"#{client.full_name}"

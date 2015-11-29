@@ -1,8 +1,7 @@
-
 class TaskLog < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :staff
-	has_many :client
+	belongs_to :client
 	accepts_nested_attributes_for :client, :update_only => true
 
 	before_save :sum_of_hrs
@@ -27,11 +26,7 @@ class TaskLog < ActiveRecord::Base
 	end
 
 	def sum_today
-		
-    	total = TaskLog.group("date(created_at)").where(user_id: user.id).sum(:total_hrs)
-    	# total = TaskLog.sum(:total_hrs)
-    	# total_today = TaskLog.date(created_at)
-
+    	total = TaskLog.group("date(created_at)").where(user_id: user.id).sum(:total_hrs).values
   	end
 
 end
