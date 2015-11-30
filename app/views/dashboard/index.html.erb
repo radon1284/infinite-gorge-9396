@@ -127,14 +127,34 @@
 	    <tr>
 	        <td data-title="Name"><%= client.full_name %></td>
 	        <td data-title="Business Name"><%= client.business_name %></td>
-	        <td data-title="Month">
-            <%= c = ("%.2f" % client.hrs_this_month).to_s.split(".").map { |s| s.to_i }
-            a = c[0].to_s + ":" + ((c[1]*60)/100).to_s + " Hrs."
-
-             %></td>
+	        <td data-title="Month"><%= client.hrs_this_month %></td>
       </tr>
 	  <% end %>
 	  </tbody>
 	</table>
 	</div>
 <% end %>
+<div style="height:20px; clear:both;"></div>
+<div id="tasks_logs">
+  <h2 id="month">
+    <%= link_to "<", date: @date.prev_month %>
+    <%= @date.strftime("%B %Y") %>
+    <%= link_to ">", date: @date.next_month %>
+  </h2>
+  <%= calendar @date do |date| %>
+    <%= date.day %>
+    
+      <% if @task_logs_by_date[date] %>
+        <ul class="list-group">
+          <% @task_logs_by_date[date].each do |task_log| %>
+            <%= @hrs_by_day %>
+            <% if task_log.user == current_user %>
+              <li class="list-group-item">
+                <%= @total_hrs_by_date %>
+              </li>
+            <% end %>
+          <% end %>
+        </ul>
+      <% end %>
+    <% end %>
+</div>
