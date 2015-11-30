@@ -127,7 +127,11 @@
 	    <tr>
 	        <td data-title="Name"><%= client.full_name %></td>
 	        <td data-title="Business Name"><%= client.business_name %></td>
-	        <td data-title="Month"><%= client.hrs_this_month %></td>
+	        <td data-title="Month">
+            <%= c = ("%.2f" % client.hrs_this_month).to_s.split(".").map { |s| s.to_i }
+            a = c[0].to_s + ":" + ((c[1]*60)/100).to_s + " Hrs."
+
+             %></td>
       </tr>
 	  <% end %>
 	  </tbody>
@@ -150,7 +154,7 @@
             <%= @hrs_by_day %>
             <% if task_log.user == current_user %>
               <li class="list-group-item">
-                <%= @total_hrs_by_date %>
+                <%= task_log.task_title %>
               </li>
             <% end %>
           <% end %>

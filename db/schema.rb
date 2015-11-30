@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20151011050959) do
     t.time     "ending_time"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-    t.string   "total_hrs"
+    t.integer  "total_hrs"
     t.integer  "user_id"
     t.integer  "staff_id"
     t.integer  "client_id"
