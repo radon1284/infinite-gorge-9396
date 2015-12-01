@@ -12,7 +12,7 @@ class DashboardController < ApplicationController
 
     @date = params[:date] ? Date.parse(params[:date]) : Date.today
 
-    @total_hrs_by_date = TaskLog.joins(:client).select("clients.*, SUM(task_logs.total_hrs) AS hrs_this_month").group(:client_id).where(user_id: current_user)
+    @total_hrs_by_date = TaskLog.joins(:client).select("clients.full_name as full_name, clients.business_name as business_name, SUM(task_logs.total_hrs) AS hrs_this_month").group(:client_id).where(user_id: current_user)
 
   end
 
