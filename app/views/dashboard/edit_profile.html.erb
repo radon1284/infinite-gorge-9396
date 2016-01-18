@@ -1,4 +1,4 @@
-<% provide(:title, 'My Profile') %>
+<% provide(:title, 'My Profiles') %>
 <% if current_user.meta_type == 'Staff' %>
 	<%= form_for (@staff) do |f| %>
 	  <% if @staff.errors.any? %>
