@@ -1,25 +1,5 @@
 <% provide(:title, 'Sign In') %>
 <% content_for :body_class, 'theme-silver page-signin' %>
-
-<%= javascript_tag do %>
-  var init = [];
-  init.push(function () {
-    var $div = $('<div id="signin-demo" class="hidden-xs"><div>PAGE BACKGROUND</div></div>'),
-        bgs  = [ 'demo/signin-bg-1.jpg', 'demo/signin-bg-2.jpg', 'demo/signin-bg-3.jpg',
-             'demo/signin-bg-4.jpg', 'demo/signin-bg-5.jpg', 'demo/signin-bg-6.jpg',
-           'demo/signin-bg-7.jpg', 'demo/signin-bg-8.jpg', 'demo/signin-bg-9.jpg' ];
-    for (var i=0, l=bgs.length; i < l; i++) $div.append($('<img src="' + bgs[i] + '">'));
-    $div.find('img').click(function () {
-      var img = new Image();
-      img.onload = function () {
-        $('#page-signin-bg > img').attr('src', img.src);
-        $(window).resize();
-      }
-      img.src = $(this).attr('src');
-    });
-    $('body').append($div);
-  });
-<% end %>
 <!-- Page background -->
 <% content_for :main_wrapper, 'page-signin-bg' %>
     <!-- Background overlay -->

@@ -1,2 +1,43 @@
 <% provide(:title, 'Home') %>
-<p>Find me in app/views/page/home.html.erb</p>
+<% content_for :body_class, 'theme-silver page-signin' %>
+<% content_for :main_wrapper, 'page-signin-bg' %>
+<div class="overlay"></div>
+<%= image_tag "demo/signin-bg-2.jpg" %>
+</div>lci
+<!-- Container -->
+	<div class="signin-container">
+		<!-- Right side -->
+		<div class="signin-form">
+			<div class="signin-text">
+					<span>Sign In to your account</span>
+				</div> <!-- / .signin-text -->
+			<div class="signin-with">
+				<!-- Facebook -->
+				<%- if controller_name != 'sessions' %>
+				  <%= link_to "Sign In", new_user_session_path, class: 'signin-with-btn', style: 'background:#4f6faa;background:rgba(79, 111, 170, .8);' %><br />
+				<% end -%>
+			</div>
+			<!-- / "Sign In with" block -->
+		</div>
+		<!-- Right side -->
+	</div>
+	<!-- / Container -->
+<%= javascript_tag do %>
+	// Resize BG
+	init.push(function () {
+		var $ph  = $('#page-signin-bg'),
+		    $img = $ph.find('> img');
+
+		$(window).on('resize', function () {
+			$img.attr('style', '');
+			if ($img.height() < $ph.height()) {
+				$img.css({
+					height: '100%',
+					width: 'auto'
+				});
+			}
+		});
+	});
+
+	window.PixelAdmin.start(init);
+<% end %>
