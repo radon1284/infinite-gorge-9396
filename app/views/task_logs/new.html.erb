@@ -1,6 +1,10 @@
 <% provide(:title, 'Add Task') %>
-<h1>New Task Log</h1>
-
+<% content_for :body_class, 'theme-default main-menu-animated' %>
+<% content_for :main_wrapper, 'main-wrapper' %>
+<div id="content-wrapper">
+<div class="panel form-horizontal">
+<div class="panel-heading">
+    <span class="panel-title">Add New Task Log</span>
+</div>
 <%= render 'form' %>
-
-<%= link_to 'Back', task_logs_path %>
+</div>

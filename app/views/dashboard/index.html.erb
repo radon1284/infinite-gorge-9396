@@ -1,7 +1,7 @@
 <% provide(:title, 'Dashboard') %>
 <% content_for :body_class, 'theme-default main-menu-animated' %>
 <% content_for :main_wrapper, 'main-wrapper' %>
-<div class="content-wrapper">
+<div id="content-wrapper">
 <% if current_user.role == 'admin' %>
   <p><%= link_to 'Add New Staff', new_staff_path, class: 'btn btn-success', :role => 'button' %></p>
   <div class="panel panel-dark panel-light-green table-light">

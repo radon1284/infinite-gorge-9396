@@ -1,43 +1,61 @@
-<h1>New Staff</h1>
+<% provide(:title, 'Add Staff') %>
+<% content_for :body_class, 'theme-default main-menu-animated' %>
+<% content_for :main_wrapper, 'main-wrapper' %>
+<div id="content-wrapper">
+  <div class="panel form-horizontal">
+  <div class="panel-heading">
+  <span class="panel-title">Add Staff</span>
+  </div>
+  <%= form_for(@staff) do |f| %>
+  <div class="panel-body">
+    <% if @staff.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@staff.errors.count, "error") %> prohibited this staff from being saved:</h2>
 
-<%= form_for(@staff) do |f| %>
-  <% if @staff.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@staff.errors.count, "error") %> prohibited this staff from being saved:</h2>
-
-      <ul>
-      <% @staff.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% @staff.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <%= f.fields_for :user_attributes, @staff.user||User.new do |ff| %>
+    <div class="form-group">
+        <%= ff.label :role, class: "col-sm-2 control-label" %>
+        <div class="col-sm-10 ">
+          <%= ff.select(:role, User.roles.keys.map {|role| [role.titleize,role]}, :class => 'form-control form-group-margin') %>
+        </div>
+        
     </div>
+      <div class="form-group">
+      <%= ff.label :email, class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= ff.email_field :email, autofocus: true, class: "form-control", placeholder: "Email" %>
+      </div>
+      </div>
+      <div class="form-group">
+        <%= ff.label :password, class: "col-sm-2 control-label" %>
+        <div class="col-sm-10">
+        <%= ff.text_field :password, class: "form-control", placeholder: "Password" %>
+        </div>
+      </div>
+    <% end %>
+    <div class="form-group">
+      <%= f.label :full_name, class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+      <%= f.text_field :full_name, class: "form-control", placeholder: "Full Name" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :position, class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+      <%= f.text_field :position, class: "form-control", placeholder: "Position" %>
+      </div>
+    </div>
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit value: "Add New Staff", class: "btn btn-primary" %>
+    </div>
+  </div>
   <% end %>
-  <%= f.fields_for :user_attributes, @staff.user||User.new do |ff| %>
-  <div class="field">
-      <%= ff.label :role %><br />
-      <%= ff.select(:role, User.roles.keys.map {|role| [role.titleize,role]}) %>
-      
   </div>
-    <div class="field">
-    <%= ff.label :email %><br />
-    <%= ff.email_field :email, autofocus: true %>
-    </div>
-    <div class="field">
-      <%= ff.label :password %><br />
-      <%= ff.text_field :password %>
-    </div>
-  <% end %>
-  <div class="field">
-    <%= f.label :full_name %><br>
-    <%= f.text_field :full_name %>
-  </div>
-  <div class="field">
-    <%= f.label :position %><br>
-    <%= f.text_field :position %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
-
-<%= link_to 'Back', staffs_path %>
+</div>

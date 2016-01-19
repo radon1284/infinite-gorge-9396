@@ -7,11 +7,12 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   	<title><%= full_title(yield(:title)) %></title>
   	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+  	
+  	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   	<!-- Open Sans font from Google CDN -->
 	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300&subset=latin" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-  	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   	<%= csrf_meta_tags %>
 <!--[if lt IE 9]>
 		<script src="assets/ie.min.js"></script>
@@ -21,14 +22,13 @@
 <%= javascript_tag do %>
 	var init = [];
 <% end %>
-	<% if user_signed_in? %>
+<% if user_signed_in? %>
 	<div id="<%= yield :main_wrapper %>">
 		<%= render 'layouts/header' %>
 		<%= render 'layouts/left_sidebar' %>
 		<%= yield %>
 		<div id="main-menu-bg"></div>
 	</div><!-- / #main-wrapper -->
-	
 <!-- Get jQuery from Google CDN -->
 <!--[if !IE]> -->
   <script type="text/javascript"> window.jQuery || document.write('<%= j(javascript_include_tag("https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js")) %>'); </script>
@@ -47,7 +47,7 @@
 	<div id="<%= yield :main_wrapper %>">
 		<%= yield %> 
 	</div><!-- / #main-wrapper -->
-	<% end %>
+<% end %>
 
 
 </body>
