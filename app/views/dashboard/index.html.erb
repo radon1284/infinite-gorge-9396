@@ -220,7 +220,7 @@
 
   <div id="tasks_logs" class="panel panel-dark panel-light-green">
     <div class="panel-heading">
-      <h2 id="month"><%= link_to date: @date.prev_month do %><i class="menu-icon fa fa-arrow-left"></i> < <% end %>
+      <h2 id="month"><%= link_to date: @date.prev_month do %><i class="menu-icon fa fa-arrow-left"></i><% end %>
       <%= @date.strftime("%B %Y") %>
       <%= link_to date: @date.next_month do %><i class="menu-icon fa fa-arrow-right"></i><% end %></h2>
     </div>

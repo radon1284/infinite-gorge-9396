@@ -1,75 +1,72 @@
-<% provide(:title, 'My Profiles') %>
-<% if current_user.meta_type == 'Staff' %>
-	<%= form_for (@staff) do |f| %>
-	  <% if @staff.errors.any? %>
-	    <div id="error_explanation">
-	      <h2><%= pluralize(@staff.errors.count, "error") %> prohibited this staff from being saved:</h2>
-
-	      <ul>
-	      <% @staff.errors.full_messages.each do |message| %>
-	        <li><%= message %></li>
+<% provide(:title, 'My Profile') %>
+<% content_for :body_class, 'theme-default main-menu-animated page-profile' %>
+<% content_for :main_wrapper, 'main-wrapper' %>
+<div id="content-wrapper">
+	<div class="profile-full-name"> <span class="text-semibold">My Profile</span></div>
+	<div class="profile-row">
+	  <div class="left-col">
+	    <div class="profile-block">
+	      <div class="panel profile-photo"> <%= image_tag("http://gravatar.com/avatar/"+ Digest::MD5.hexdigest(current_user.email.downcase)+"?s=150", class: "rounded") %></div>
+	      <br>
+	    </div>
+	  </div>
+	  <div class="right-col">
+	    <% if current_user.meta_type == 'Staff' %>
+	    <%= form_for (@staff), :html => {:class => "panel form-horizontal"} do |f| %>
+	    <div class="panel-heading"> <span class="panel-title">Profile</span> </div>
+	    <div class="panel-body">
+	      <% if @staff.errors.any? %>
+	      <div id="error_explanation">
+	        <h2><%= pluralize(@staff.errors.count, "error") %> prohibited this staff from being saved:</h2>
+	        <ul>
+	          <% @staff.errors.full_messages.each do |message| %>
+	          <li><%= message %></li>
+	          <% end %>
+	        </ul>
+	      </div>
 	      <% end %>
-	      </ul>
+	      <div class="row form-group"> <%= f.label :full_name, class: "col-sm-4 control-label" %>
+	        <div class="col-sm-8"> <%= f.text_field :full_name, class: "form-control" %> </div>
+	      </div>
+	      <div class="row form-group"> <%= f.label :position, class: "col-sm-4 control-label" %>
+	        <div class="col-sm-8"> <%= f.text_field :position, class: "form-control" %> </div>
+	      </div>
+	      <%= f.fields_for :user_attributes, @staff.user||User.new do |ff| %>
+	      <div class="row form-group"> <%= ff.label :email, class: "col-sm-4 control-label" %>
+	        <div class="col-sm-8"> <%= ff.email_field :email, autofocus: true, class: "form-control" %> </div>
+	      </div>
+	      <div class="row form-group"> <%= ff.label :password, class: "col-sm-4 control-label" %>
+	        <div class="col-sm-8"> <%= ff.text_field :password, class: "form-control" %> </div>
+	      </div>
+	      <% end %>
 	    </div>
-	  <% end %>
-	  <div class="field">
-	    <%= f.label :full_name %><br>
-	    <%= f.text_field :full_name %>
-	  </div>
-	  <div class="field">
-	    <%= f.label :position %><br>
-	    <%= f.text_field :position %>
-	  </div>
-	  <%= f.fields_for :user_attributes, @staff.user||User.new do |ff| %>
-	    <div class="field">
-	    <%= ff.label :email %><br />
-	    <%= ff.email_field :email, autofocus: true %>
-	    </div>
-	    <div class="field">
-	      <%= ff.label :password %><br />
-	      <%= ff.text_field :password %>
-	    </div>
-	  <% end %>
-
-	  <div class="actions">
-	    <%= f.submit 'Update My Profile' %>
-	  </div>
-	<% end %>
-
-<% elsif current_user.meta_type== 'Client' %>
-	<%= form_for(@client) do |f| %>
-	  <% if @client.errors.any? %>
+	    <div class="panel-footer text-right"> <%= f.submit 'Update My Profile', class: "btn btn-primary" %> </div>
+	    <% end %>
+	    <% elsif current_user.meta_type == 'Client' %>
+	    <%= form_for (@client) do |f| %>
+	    <% if @client.errors.any? %>
 	    <div id="error_explanation">
 	      <h2><%= pluralize(@client.errors.count, "error") %> prohibited this client from being saved:</h2>
-
 	      <ul>
-	      <% @client.errors.full_messages.each do |message| %>
+	        <% @client.errors.full_messages.each do |message| %>
 	        <li><%= message %></li>
-	      <% end %>
+	        <% end %>
 	      </ul>
 	    </div>
-	  <% end %>
-	    <div class="field">
-	    <%= f.label :full_name %><br>
-	    <%= f.text_field :full_name %>
+	    <% end %>
+	    <div class="field"> <%= f.label :full_name %><br>
+	      <%= f.text_field :full_name %> </div>
+	    <div class="field"> <%= f.label :business_name %><br>
+	      <%= f.text_field :business_name %> </div>
+	    <%= f.fields_for :user_attributes, @client.user||User.new do |ff| %>
+	    <div class="field"> <%= ff.label :email %><br />
+	      <%= ff.email_field :email, autofocus: true %> </div>
+	    <div class="field"> <%= ff.label :password %><br />
+	      <%= ff.text_field :password %> </div>
+	    <% end %>
+	    <div class="actions"> <%= f.submit 'Update My Profile' %> </div>
+	    <% end %>
+	    <% end %>
 	  </div>
-	  <div class="field">
-	    <%= f.label :business_name %><br>
-	    <%= f.text_field :business_name %>
-	  </div>
-	  <%= f.fields_for :user_attributes, @client.user||User.new do |ff| %>
-	    <div class="field">
-	    <%= ff.label :email %><br />
-	    <%= ff.email_field :email, autofocus: true %>
-	    </div>
-	    <div class="field">
-	      <%= ff.label :password %><br />
-	      <%= ff.text_field :password %>
-	    </div>
-	  <% end %>
-
-	  <div class="actions">
-	    <%= f.submit 'Update My Profile' %>
-	  </div>
-	<% end %>
-<% end %>
+	</div>
+</div>
