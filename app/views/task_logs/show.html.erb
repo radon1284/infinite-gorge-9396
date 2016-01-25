@@ -1,4 +1,7 @@
-<p id="notice"><%= notice %></p>
+<% provide(:title, 'Edit Staff') %>
+<% content_for :body_class, 'theme-default main-menu-animated' %>
+<% content_for :main_wrapper, 'main-wrapper' %>
+<div id="content-wrapper">
 
 <p>
   <strong>Task title:</strong>
@@ -22,3 +25,7 @@
 
 <%= link_to 'Edit', edit_task_log_path(@task_log) %> |
 <%= link_to 'Back', task_logs_path %>
+
+
+
+</div>

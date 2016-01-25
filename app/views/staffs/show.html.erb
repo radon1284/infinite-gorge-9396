@@ -2,44 +2,56 @@
 <% content_for :body_class, 'theme-default main-menu-animated' %>
 <% content_for :main_wrapper, 'main-wrapper' %>
 <div id="content-wrapper">
-<div class="panel panel-success panel-dark widget-profile">
-					<div class="panel-heading">
-						<div class="widget-profile-bg-icon"><i class="fa fa-flask"></i></div>
-						<%= image_tag("http://gravatar.com/avatar/"+ Digest::MD5.hexdigest(@staff.user.email.downcase)+"?s=52", class: "widget-profile-avatar") %>
-						<div class="widget-profile-header">
-							<span><%= @staff.full_name %></span><br>
-							<%= @staff.position %>
-						</div>
-					</div> <!-- / .panel-heading -->
-					<div class="list-group">
-						<p class="list-group-item"><i class="fa fa-suitcase list-group-icon"></i><strong>Client:</strong></p>
-						<div class="panel">
-						<table class="table table-bordered">
-      <thead>
-        <tr>
-          <th>Full name</th>
-          <th>Business Name</th>
-          <th>Time</th>
-        </tr>
-      </thead>
-      <tbody class="valign-middle">
-        <% @hrs_by_client.each do |client|%>
-        <tr>
-          <td data-title="Name"><%= client.full_name %></td>
-          <td data-title="Business Name"><%= client.business_name %></td>
-          <td data-title="Month"><%= c = ("%.2f" % client.hrs_this_month).to_s.split(".").map { |s| s.to_i }
+<%= link_to 'Edit', edit_staff_path(@staff) %>|
+    <%= link_to 'Back', staffs_path %>
+    <div class="panel panel-success panel-dark widget-profile">
+      <div class="panel-heading">
+        <div class="widget-profile-bg-icon">
+          <i class="fa fa-flask"></i>
+        </div><%= image_tag("http://gravatar.com/avatar/"+ Digest::MD5.hexdigest(@staff.user.email.downcase)+"?s=52", class: "widget-profile-avatar") %>
+        <div class="widget-profile-header">
+          <span><%= @staff.full_name %></span><br>
+          <%= @staff.position %>
+        </div>
+      </div><!-- / .panel-heading -->
+      <div class="list-group">
+        <p class="list-group-item"><i class=
+        "fa fa-suitcase list-group-icon"></i><strong>Client:</strong></p><%@staff.clients.each do |client| %><p class="list-group-item"
+        href="#"><i class=
+        "fa fa-user list-group-icon"></i><%= client.full_name %></p> <%end %>
+      </div>
+    </div>
+
+    <div class="panel panel-dark panel-light-green">
+      <div class="panel-heading">
+        <span class="panel-title">Time Use</span>
+      </div>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Full name</th>
+            <th>Business Name</th>
+            <th>Time</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody class="valign-middle">
+          <%@hrs_by_client.each do |client|%>
+          <tr>
+            <td data-title="Name"><%= client.full_name %></td>
+            <td data-title="Business Name"><%= client.business_name %></td>
+            <td data-title="Month">
+            <%= c = ("%.2f" % client.hrs_this_month).to_s.split(".").map { |s| s.to_i }
               a = c[0].to_s + ":" + ((c[1]*60)/100).to_s + " Hrs."
 
                %></td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
-</div>
-</div>
-</div>
+            <td data-title="Month">
+            <%= c = ("%.2f" % client.hrs_this_day).to_s.split(".").map { |s| s.to_i }
+              a = c[0].to_s + ":" + ((c[1]*60)/100).to_s + " Hrs."
 
-
-<%= link_to 'Edit', edit_staff_path(@staff) %> |
-<%= link_to 'Back', staffs_path %>
+               %></td>
+          </tr><%end %>
+        </tbody>
+      </table>
+    </div>
 </div>
