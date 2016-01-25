@@ -1,21 +1,50 @@
-<p id="notice"><%= notice %></p>
+<% provide(:title, 'Edit Staff') %>
+<% content_for :body_class, 'theme-default main-menu-animated' %>
+<% content_for :main_wrapper, 'main-wrapper' %>
+<div id="content-wrapper">
+<div class="panel panel-success panel-dark widget-profile">
+					<div class="panel-heading">
+						<div class="widget-profile-bg-icon"><i class="fa fa-flask"></i></div>
+						<%= image_tag("http://gravatar.com/avatar/"+ Digest::MD5.hexdigest(@staff.user.email.downcase)+"?s=52", class: "widget-profile-avatar") %>
+						<div class="widget-profile-header">
+							<span><%= @staff.full_name %></span><br>
+							<%= @staff.position %>
+						</div>
+					</div> <!-- / .panel-heading -->
+					<div class="list-group">
+						<p class="list-group-item"><i class="fa fa-suitcase list-group-icon"></i><strong>Client:</strong></p>
+						<% @staff.clients.each do |client| %>
+						<a href="#" class="list-group-item"><i class="fa fa-user list-group-icon"></i><%= client.full_name %><span class="badge badge-warning">7</span></a>
+						<% end %>
+					</div>
+</div>
 
-<p>
-  <strong>Full name:</strong>
-  <%= @staff.full_name %>
-</p>
 
-<p>
-  <strong>Position:</strong>
-  <%= @staff.position %>
-</p>
+<div class="panel panel-dark panel-light-green">
+    <div class="panel-heading"><span class="panel-title">My Client</span></div>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Full name</th>
+          <th>Business Name</th>
+          <th>Time</th>
+        </tr>
+      </thead>
+      <tbody class="valign-middle">
+        <% @hrs_by_client.each do |client|%>
+        <tr>
+          <td data-title="Name"><%= client.full_name %></td>
+          <td data-title="Business Name"><%= client.business_name %></td>
+          <td data-title="Month"><%= c = ("%.2f" % client.hrs_this_month).to_s.split(".").map { |s| s.to_i }
+              a = c[0].to_s + ":" + ((c[1]*60)/100).to_s + " Hrs."
 
-<b>Client:</b>
-<ul>
-  <% @staff.clients.each do |client| %>
-    <li><%= client.full_name %></li>
-  <% end %>
-</ul>
+               %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 
 <%= link_to 'Edit', edit_staff_path(@staff) %> |
 <%= link_to 'Back', staffs_path %>
+</div>

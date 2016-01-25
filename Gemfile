@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.2.1'
+ruby '2.1.5'
 
 gem 'rails', '4.2.4'
 gem 'groupdate', '~> 2.4.0'

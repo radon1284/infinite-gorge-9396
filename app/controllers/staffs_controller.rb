@@ -30,6 +30,7 @@ class StaffsController < ApplicationController
   # GET /staffs/1
   # GET /staffs/1.json
   def show
+    @hrs_by_client = TaskLog.joins(:client).select("clients.*, SUM(task_logs.total_hrs) AS hrs_this_month").group("clients.id").where(user_id: @staff.user.id)
   end
 
   # GET /staffs/new
