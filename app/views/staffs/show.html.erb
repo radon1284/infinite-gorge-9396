@@ -22,6 +22,30 @@
       </div>
     </div>
 
+
+<div class="panel panel-dark panel-light-green">
+    <div class="panel-heading"><span class="panel-title">Timeline</span></div>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Time Worked Today</th>
+          <th>Time Worked This Week</th>
+          <th>Time Worked This Month</th>
+          <th>All Time</th>
+        </tr>
+      </thead>
+      <tbody class="valign-middle">
+        <tr>
+          <td data-title="Today"><%= @total_today %></td>
+          <td data-title="Week"><%= @total_week %></td>
+          <td data-title="Months"><%= @total_month %></td>
+          <td data-title="All Time"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
     <div class="panel panel-dark panel-light-green">
       <div class="panel-heading">
         <span class="panel-title">Time Use</span>
@@ -42,14 +66,12 @@
             <td data-title="Business Name"><%= client.business_name %></td>
             <td data-title="Month">
             <%= c = ("%.2f" % client.hrs_this_month).to_s.split(".").map { |s| s.to_i }
-              a = c[0].to_s + ":" + ((c[1]*60)/100).to_s + " Hrs."
-
-               %></td>
+              a = c[0].to_s + ":" + ((c[1]*60)/100).to_s + " Hrs." %>
+            </td>
             <td data-title="Month">
             <%= c = ("%.2f" % client.hrs_this_day).to_s.split(".").map { |s| s.to_i }
-              a = c[0].to_s + ":" + ((c[1]*60)/100).to_s + " Hrs."
-
-               %></td>
+              a = c[0].to_s + ":" + ((c[1]*60)/100).to_s + " Hrs." %>
+            </td>
           </tr><%end %>
         </tbody>
       </table>

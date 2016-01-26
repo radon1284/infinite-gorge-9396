@@ -8,7 +8,18 @@ Rails.application.routes.draw do
   resources :task_logs
   devise_for :users, :path_prefix => 'profiles'
   resources :users
-  root 'pages#home'
+
+  # if user_signed_in?
+  # root 'dashboard#index'
+  # else
+  # root 'pages#home'
+  # end
+
+  authenticated :user do
+  root :to => "dashboard#index"
+  end
+
+  root :to => "pages#home", :as => "authenticated_root"
 
   # get 'user/index'
 

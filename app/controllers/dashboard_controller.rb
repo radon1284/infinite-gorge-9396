@@ -4,13 +4,14 @@ class DashboardController < ApplicationController
 
   def index
     @users = User.all
-    @staffs = Staff.all
+    @staffs = Staff.includes(:clients).includes(:task_logs).all
     @clients = Client.all
     @task_logs = TaskLog.all
 
     @task_logs_by_date = @task_logs.group_by { |c| c.created_at.to_date }
 
     @date = params[:date] ? Date.parse(params[:date]) : Date.today
+
 
     @today = Date.today
     @total_time_today = TaskLog.joins(:client).select("clients.*, SUM(task_logs.total_hrs) AS time_today").group("@today").where(user_id: current_user)
@@ -19,7 +20,7 @@ class DashboardController < ApplicationController
 
     @hrs_by_client = TaskLog.joins(:client).select("clients.*, SUM(task_logs.total_hrs) AS hrs_this_month").group("clients.id").where(user_id: current_user)
 
-    # @hrs_by_staff = TaskLog.joins(:staff).joins(:client).joins(:user).select("staffs.full_name AS full_names").select("staffs.position AS positions").select("users.email AS emails").group("staffs.id").where(user_id: current_user)
+    @hrs_by_staff = TaskLog.joins(:staff).joins(:client).joins(:user).select("staffs.full_name AS full_names").select("staffs.position AS positions").select("users.email AS emails").group("staffs.id").where(user_id: current_user)
 
     @name = current_user.meta.full_name.split(" ").map { |s| s.to_s }
     @first_name = "#{@name[0].to_s}"
@@ -39,9 +40,6 @@ class DashboardController < ApplicationController
     @time_month = TaskLog.where('created_at >= ? and created_at <= ?', @dates.beginning_of_month, @dates.end_of_month).where(user_id: current_user).sum('total_hrs')
     @by_month = ("%.2f" % @time_month).to_s.split(".").map { |s| s.to_i }
     @total_month = @by_month[0].to_s + ":" + ((@by_month[1]*60)/100).to_s + " Hrs."
-
-    # @today = TaskLog.where('created_at >= ? and created_at <= ?', @dates.beginning_of_day, @dates.end_of_day)
-    @hrs_by_staff = TaskLog.joins(:staff).joins(:user).select("staffs.*, SUM(task_logs.total_hrs) AS today").select("users.email AS emails").group("staffs.id").where(client_id: @client.id)
 
   end
 

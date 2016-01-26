@@ -7,6 +7,9 @@ class TaskLog < ActiveRecord::Base
 	before_save :sum_of_hrs
 	before_save :total_time
 
+	validates :client_id, presence: true
+	validates :task_title, presence: true
+
 	def sum_of_hrs
 		sum_value = (self.ending_time - self.starting_time)/3600
 		hrs_value = "%.2f" % ((sum_value*60)/60)
