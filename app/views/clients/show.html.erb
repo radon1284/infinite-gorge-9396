@@ -1,15 +1,36 @@
-
-
 <% provide(:title, 'Edit Staff') %>
 <% content_for :body_class, 'theme-default main-menu-animated' %>
 <% content_for :main_wrapper, 'main-wrapper' %>
 <div id="content-wrapper">
-   <b>Staff:</b>
-   <ul>
-      <% @client.staffs.each do |staff| %>
-      <li><%= staff.full_name %></li>
-      <% end %>
-   </ul>
+   <div class="panel panel-dark panel-light-green">
+      <div class="panel-heading">
+         <span class="panel-title"><i class="panel-title-icon fa fa-smile-o"></i>Staff</span>
+         <div class="panel-heading-controls">
+         </div>
+         <!-- / .panel-heading-controls -->
+      </div>
+      <!-- / .panel-heading -->
+      <table class="table">
+         <thead>
+            <tr>
+               <th>#</th>
+               <th>Full Name</th>
+               <th>Position</th>
+               <th></th>
+            </tr>
+         </thead>
+         <tbody class="valign-middle">
+            <% @client.staffs.each do |staff| %>
+            <tr>
+               <td><%= staff.id %></td>
+               <td> <%= image_tag("http://gravatar.com/avatar/"+ Digest::MD5.hexdigest(@client.user.email.downcase)+"?s=26", class: "rounded") %> <%= staff.full_name %></td>
+               <td><%= staff.position  %></td>
+               <td></td>
+            </tr>
+            <% end %>
+         </tbody>
+      </table>
+   </div>
    <div class="panel panel-success panel-dark widget-profile">
       <div class="panel-heading">
          <div class="widget-profile-bg-icon"><i class="fa fa-flask"></i></div>
@@ -49,4 +70,6 @@
    </div>
    <%= link_to 'Edit', edit_client_path(@client) %> |
    <%= link_to 'Back', clients_path %>
+
+
 </div>

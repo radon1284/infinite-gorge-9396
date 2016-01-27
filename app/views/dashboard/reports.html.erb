@@ -2,43 +2,84 @@
 <% content_for :body_class, 'theme-default main-menu-animated page-profile' %>
 <% content_for :main_wrapper, 'main-wrapper' %>
 <div id="content-wrapper">
-
-	<div class="stat-panel">
-							<div class="stat-row">
-								<div class="stat-cell bg-success darker">
-							<!-- Stat panel bg icon -->
-							<i style="font-size:60px;line-height:80px;height:80px;" class="fa fa-lightbulb-o bg-icon"></i>
-							<!-- Big text -->
-							<span class="text-bg">Time Use for All Staff</span><br>
-							<!-- Small text -->
-							<span class="text-sm">Your account statistics</span>
-						</div>
-							</div> <!-- /.stat-row -->
-							<div class="stat-row">
-								<!-- Bordered, without top border, horizontally centered text -->
-								<div class="stat-counters bordered no-border-t text-center">
-									<!-- Small padding, without horizontal padding -->
-									<div class="stat-cell col-xs-4 padding-sm no-padding-hr">
-										<!-- Big text -->
-										<span class="text-bg"><strong><%= @total_today %></strong></span><br>
-										<!-- Extra small text -->
-										<span class="text-xs text-muted">Total Hrs Today</span>
-									</div>
-									<!-- Small padding, without horizontal padding -->
-									<div class="stat-cell col-xs-4 padding-sm no-padding-hr">
-										<!-- Big text -->
-										<span class="text-bg"><strong><%= @total_week %></strong></span><br>
-										<!-- Extra small text -->
-										<span class="text-xs text-muted">Total Hrs This Week</span>
-									</div>
-									<!-- Small padding, without horizontal padding -->
-									<div class="stat-cell col-xs-4 padding-sm no-padding-hr">
-										<!-- Big text -->
-										<span class="text-bg"><strong><%= @total_month %></strong></span><br>
-										<!-- Extra small text -->
-										<span class="text-xs text-muted">Total Hrs This Month</span>
-									</div>
-								</div> <!-- /.stat-counters -->
-							</div> <!-- /.stat-row -->
-	</div>
+   <div class="stat-panel">
+      <div class="stat-row">
+         <div class="stat-cell bg-success darker">
+            <!-- Stat panel bg icon -->
+            <i style="font-size:60px;line-height:80px;height:80px;" class="fa fa-lightbulb-o bg-icon"></i>
+            <!-- Big text -->
+            <span class="text-bg">Time Use for All Staff</span><br>
+            <!-- Small text -->
+            <span class="text-sm">Your account statistics</span>
+         </div>
+      </div>
+      <!-- /.stat-row -->
+      <div class="stat-row">
+         <!-- Bordered, without top border, horizontally centered text -->
+         <div class="stat-counters bordered no-border-t text-center">
+            <!-- Small padding, without horizontal padding -->
+            <div class="stat-cell col-xs-4 padding-sm no-padding-hr">
+               <!-- Big text -->
+               <span class="text-bg"><strong><%= @total_today %></strong></span><br>
+               <!-- Extra small text -->
+               <span class="text-xs text-muted">Total Hrs Today</span>
+            </div>
+            <!-- Small padding, without horizontal padding -->
+            <div class="stat-cell col-xs-4 padding-sm no-padding-hr">
+               <!-- Big text -->
+               <span class="text-bg"><strong><%= @total_week %></strong></span><br>
+               <!-- Extra small text -->
+               <span class="text-xs text-muted">Total Hrs This Week</span>
+            </div>
+            <!-- Small padding, without horizontal padding -->
+            <div class="stat-cell col-xs-4 padding-sm no-padding-hr">
+               <!-- Big text -->
+               <span class="text-bg"><strong><%= @total_month %></strong></span><br>
+               <!-- Extra small text -->
+               <span class="text-xs text-muted">Total Hrs This Month</span>
+            </div>
+         </div>
+         <!-- /.stat-counters -->
+      </div>
+      <!-- /.stat-row -->
+   </div>
+   <div class="panel panel-dark panel-light-green">
+      <div class="panel-heading">
+         <span class="panel-title"><i class="panel-title-icon fa fa-smile-o"></i>Staff</span>
+         <div class="panel-heading-controls">
+         </div>
+         <!-- / .panel-heading-controls -->
+      </div>
+      <!-- / .panel-heading -->
+      <table class="table">
+         <tr>
+            <th rowspan="2">Staff Name</th>
+            <th rowspan="2">Postion</th>
+            <th rowspan="2">Client Name</th>
+            <th colspan="3">Time</th>
+         </tr>
+         <tr>
+            <th>Today</th>
+            <th>Week</th>
+            <th>Month</th>
+         </tr>
+         </thead>
+         <tbody class="valign-middle">
+            <% @hrs_staff_by_client.each do |staff|%>
+            <tr>
+               <td data-title="Name"><%= image_tag("http://gravatar.com/avatar/"+ Digest::MD5.hexdigest(staff.emails.downcase)+"?s=26", class: "rounded") %> <%= staff.full_names %></td>
+               <td data-title="Position"><%= staff.positions %></td>
+               <td data-title="Position"><%= staff.client_names %></td>
+               
+               <td data-title="Today"><%= c = ("%.2f" % staff.today).to_s.split(".").map { |s| s.to_i }
+                  a = c[0].to_s + ":" + ((c[1]*60)/100).to_s + " Hrs."
+                  
+                   %></td>
+               <td data-title="Week"></td>
+               <td data-title="Month"></td>
+            </tr>
+            <% end %>
+         </tbody>
+      </table>
+   </div>
 </div>
