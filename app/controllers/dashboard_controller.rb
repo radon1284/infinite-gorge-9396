@@ -19,9 +19,9 @@ class DashboardController < ApplicationController
 
     @hrs_all_time = TaskLog.joins(:client).select("clients.*, SUM(task_logs.total_hrs) AS all_time").group("@today").where(user_id: current_user)
 
-    @hrs_by_client = TaskLog.joins(:client).select("clients.*, SUM(task_logs.ending_time - task_logs.starting_time) AS hrs_this_month").group("clients.id").where(user_id: current_user)
+    @hrs_by_client = TaskLog.joins(:client).select("clients.*, SUM(task_logs.total_hrs) AS hrs_this_month").group("clients.id").where(user_id: current_user)
 
-    @hrs_by_staff = TaskLog.joins(:staff).joins(:client).joins(:user).select("staffs.full_name AS full_names").select("staffs.position AS positions").select("users.email AS emails").group("staffs.id").where(user_id: current_user)
+    @hrs_by_staff = TaskLog.joins(:staff).joins(:client).joins(:user).select("staffs.full_name AS full_names").select("staffs.position AS positions").select("users.email AS emails").select("clients.*, SUM(task_logs.total_hrs) AS today").group("staffs.id").where(client_id: @client.id)
 
     @name = current_user.meta.full_name.split(" ").map { |s| s.to_s }
     @first_name = "#{@name[0].to_s}"
