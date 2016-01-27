@@ -15,9 +15,9 @@ class DashboardController < ApplicationController
 
 
     @today = Date.today
-    @total_time_today = TaskLog.joins(:client).select("clients.*, SUM(task_logs.total_hrs) AS time_today").group("@today").where(user_id: current_user)
+    @total_time_today = TaskLog.joins(:client).select("clients.*, SUM(task_logs.total_hrs) AS time_today").group("clients.id").where(user_id: current_user)
 
-    @hrs_all_time = TaskLog.joins(:client).select("clients.*, SUM(task_logs.total_hrs) AS all_time").group("@today").where(user_id: current_user)
+    @hrs_all_time = TaskLog.joins(:client).select("clients.*, SUM(task_logs.total_hrs) AS all_time").group("clients.id").where(user_id: current_user)
 
     @hrs_by_client = TaskLog.joins(:client).select("clients.*, SUM(task_logs.total_hrs) AS hrs_this_month").group("clients.id").where(user_id: current_user)
 
