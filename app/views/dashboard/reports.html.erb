@@ -1,0 +1,44 @@
+<% provide(:title, 'Reports') %>
+<% content_for :body_class, 'theme-default main-menu-animated page-profile' %>
+<% content_for :main_wrapper, 'main-wrapper' %>
+<div id="content-wrapper">
+
+	<div class="stat-panel">
+							<div class="stat-row">
+								<div class="stat-cell bg-success darker">
+							<!-- Stat panel bg icon -->
+							<i style="font-size:60px;line-height:80px;height:80px;" class="fa fa-lightbulb-o bg-icon"></i>
+							<!-- Big text -->
+							<span class="text-bg">Time Use for All Staff</span><br>
+							<!-- Small text -->
+							<span class="text-sm">Your account statistics</span>
+						</div>
+							</div> <!-- /.stat-row -->
+							<div class="stat-row">
+								<!-- Bordered, without top border, horizontally centered text -->
+								<div class="stat-counters bordered no-border-t text-center">
+									<!-- Small padding, without horizontal padding -->
+									<div class="stat-cell col-xs-4 padding-sm no-padding-hr">
+										<!-- Big text -->
+										<span class="text-bg"><strong><%= @total_today %></strong></span><br>
+										<!-- Extra small text -->
+										<span class="text-xs text-muted">Total Hrs Today</span>
+									</div>
+									<!-- Small padding, without horizontal padding -->
+									<div class="stat-cell col-xs-4 padding-sm no-padding-hr">
+										<!-- Big text -->
+										<span class="text-bg"><strong><%= @total_week %></strong></span><br>
+										<!-- Extra small text -->
+										<span class="text-xs text-muted">Total Hrs This Week</span>
+									</div>
+									<!-- Small padding, without horizontal padding -->
+									<div class="stat-cell col-xs-4 padding-sm no-padding-hr">
+										<!-- Big text -->
+										<span class="text-bg"><strong><%= @total_month %></strong></span><br>
+										<!-- Extra small text -->
+										<span class="text-xs text-muted">Total Hrs This Month</span>
+									</div>
+								</div> <!-- /.stat-counters -->
+							</div> <!-- /.stat-row -->
+	</div>
+</div>

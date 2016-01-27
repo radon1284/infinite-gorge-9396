@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   get 'dashboard' => 'dashboard#index'
   get 'myprofile' => 'dashboard#edit_profile'
+  get 'reports' => 'dashboard#reports'
 
   resources :clients
   resources :staffs
@@ -9,17 +10,11 @@ Rails.application.routes.draw do
   devise_for :users, :path_prefix => 'profiles'
   resources :users
 
-  # if user_signed_in?
-  # root 'dashboard#index'
-  # else
-  # root 'pages#home'
-  # end
-
   authenticated :user do
   root :to => "dashboard#index"
   end
 
-  root :to => "pages#home", :as => "authenticated_root"
+  root :to => "pages#home", :as => "home"
 
   # get 'user/index'
 
