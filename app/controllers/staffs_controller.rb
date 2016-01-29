@@ -45,8 +45,7 @@ class StaffsController < ApplicationController
     @by_month = ("%.2f" % @time_month).to_s.split(".").map { |s| s.to_i }
     @total_month = @by_month[0].to_s + ":" + ((@by_month[1]*60)/100).to_s + " Hrs."
 
-
-    @hrs_by_client = TaskLog.joins(:client).select("clients.*, SUM(task_logs.total_hrs) AS hrs_this_month").select("clients.*, SUM(task_logs.total_hrs) AS hrs_this_day").group("clients.id").where(user_id: @staff.id)
+    @hrs_by_client = TaskLog.joins(:client).select("clients.*, SUM(task_logs.total_hrs) AS hrs_today").group("clients.id").where(user_id: @staff.id)
   end
 
   # GET /staffs/new
