@@ -9,6 +9,17 @@ class DashboardController < ApplicationController
     @clients = Client.all
     @task_logs = TaskLog.all
 
+    # For Manager
+    @list_of_managers = Staff.joins(:user).includes(:clients).includes(:task_logs).where("role = '0'")
+
+    @list_of_teamleads = Staff.joins(:user).includes(:clients).includes(:task_logs).where("role = '2'")
+
+    @list_of_staffs = Staff.joins(:user).includes(:clients).includes(:task_logs).where("role = '4'")
+
+    # For Team Leader
+    @teamleads = Staff.joins(:user).includes(:clients).includes(:task_logs).where("role = '4'")
+
+
     @task_logs_by_date = @task_logs.group_by { |c| c.created_at.to_date }
 
     @date = params[:date] ? Date.parse(params[:date]) : Date.today
