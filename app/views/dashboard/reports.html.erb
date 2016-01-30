@@ -2,7 +2,7 @@
 <% content_for :body_class, 'theme-default main-menu-animated page-profile' %>
 <% content_for :main_wrapper, 'main-wrapper' %>
 <div id="content-wrapper">
-	
+	<div><%= @half_mnths %></div>
 	<div class="stat-panel">
       <div class="stat-row">
          <div class="stat-cell bg-success darker">
@@ -106,11 +106,12 @@
       </div>
       <!-- / .panel-heading -->
       <table class="table table-bordered">
+      <thead>
          <tr>
             <th rowspan="2">Staff Name</th>
             <th rowspan="2">Postion</th>
             <th rowspan="2">Client Name</th>
-            <th colspan="3">Time</th>
+            <th colspan="8">Time</th>
          </tr>
          <tr>
             <th>Time Worked</th>
@@ -146,4 +147,7 @@
          </tbody>
       </table>
    </div>
+
+
+
 </div>

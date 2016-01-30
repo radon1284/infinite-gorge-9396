@@ -16,6 +16,8 @@ class DashboardController < ApplicationController
 
     @list_of_staffs = Staff.joins(:user).includes(:clients).includes(:task_logs).where("role = '4'")
 
+
+
     # For Team Leader
     @teamleads = Staff.joins(:user).includes(:clients).includes(:task_logs).where("role = '4'")
 
@@ -74,6 +76,15 @@ class DashboardController < ApplicationController
     @teamleads_count = User.where("role = '2'").count
     @clients_count = User.where("role = '3'").count
     @staffs_count = User.where("role = '4'").count
+
+    # @half_mnths = TaskLog.group('date(created_at)').having("date(created_at) > ?", Date.today - 14).sum(:total_hrs)
+
+    summary = TaskLog.group('date(created_at)').sum(:total_hrs).to_a
+    @past_two_weeks = ((Date.today - 14).. Date.today)
+
+    @half_mnths =Hash[*@past_two_weeks.map(&:to_s).product([0.0]).flatten].merge Hash[*summary.flatten]
+
+    @half_mnths.to_a
 
   end
 
