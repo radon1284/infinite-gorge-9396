@@ -97,15 +97,15 @@
       </div>
       <!-- /.stat-row -->
    </div>
-   <div class="panel panel-dark panel-light-green">
-      <div class="panel-heading"> 
-         <span class="panel-title"><i class="panel-title-icon fa fa-smile-o"></i>Staff</span>
-         <div class="panel-heading-controls">
+   <div class="table-success">
+      <div class="table-header"> 
+         <div class="table-caption">
+         <i class="panel-title-icon fa fa-smile-o"></i>Staff
          </div>
          <!-- / .panel-heading-controls --> 
       </div>
       <!-- / .panel-heading -->
-      <table class="table">
+      <table class="table table-bordered">
          <tr>
             <th rowspan="2">Staff Name</th>
             <th rowspan="2">Postion</th>
@@ -113,24 +113,34 @@
             <th colspan="3">Time</th>
          </tr>
          <tr>
-            <th>Today</th>
-            <th>Week</th>
-            <th>Month</th>
+            <th>Time Worked</th>
+            <th>Monday</th>
+            <th>Tuesday</th>
+            <th>Wednsday</th>
+            <th>Thursday</th>
+            <th>Friday</th>
+            <th>Saturday</th>
+            <th>Sunday</th>
          </tr>
          </thead>
          <tbody class="valign-middle">
             <% @hrs_staff_by_client.each do |staff|%>
             <tr>
-               <td data-title="Name"><%= image_tag("http://gravatar.com/avatar/"+ Digest::MD5.hexdigest(staff.emails.downcase)+"?s=26", class: "rounded") %> <%= staff.full_names %></td>
-               <td data-title="Position"><%= staff.positions %></td>
-               <td data-title="Position"><%= staff.client_names %></td>
+               	<td data-title="Name"><%= image_tag("http://gravatar.com/avatar/"+ Digest::MD5.hexdigest(staff.emails.downcase)+"?s=26", class: "rounded") %> <%= staff.full_names %></td>
+               	<td data-title="Position"><%= staff.positions %></td>
+               	<td data-title="Position"><%= staff.client_names %></td>
                
-               <td data-title="Today"><%= c = ("%.2f" % staff.today).to_s.split(".").map { |s| s.to_i }
+               	<td data-title="Time Worked"><%= c = ("%.2f" % staff.today).to_s.split(".").map { |s| s.to_i }
                   a = c[0].to_s + ":" + ((c[1]*60)/100).to_s + " Hrs."
                   
                    %></td>
-               <td data-title="Week"></td>
-               <td data-title="Month"></td>
+               	<th data-title="Monday"></th>
+            	<th data-title="Tuesday"></th>
+            	<th data-title="Wednsday"></th>
+            	<th data-title="Thursday"></th>
+            	<th data-title="Friday"></th>
+            	<th data-title="Saturday"></th>
+            	<th data-title="Sunday"></th>
             </tr>
             <% end %>
          </tbody>
