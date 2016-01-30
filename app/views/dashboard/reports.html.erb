@@ -2,6 +2,60 @@
 <% content_for :body_class, 'theme-default main-menu-animated page-profile' %>
 <% content_for :main_wrapper, 'main-wrapper' %>
 <div id="content-wrapper">
+	
+	<div class="stat-panel">
+      <div class="stat-row">
+         <div class="stat-cell bg-success darker">
+            <!-- Stat panel bg icon -->
+            <i style="font-size:60px;line-height:80px;height:80px;" class="fa fa-lightbulb-o bg-icon"></i>
+            <!-- Big text -->
+            <span class="text-bg">Users</span><br>
+            <!-- Small text -->
+            <span class="text-sm">Number of Users</span>
+         </div>
+      </div>
+      <!-- /.stat-row -->
+      <div class="stat-row">
+         <!-- Bordered, without top border, horizontally centered text -->
+         <div class="stat-counters bordered no-border-t text-center">
+            <!-- Small padding, without horizontal padding -->
+            <div class="stat-cell col-xs-4 padding-sm no-padding-hr">
+               <!-- Big text -->
+               <span class="text-bg"><strong><%= @admin_count %></strong></span><br>
+               <!-- Extra small text -->
+               <span class="text-xs text-muted">Total Number of Admins</span>
+            </div>
+            <div class="stat-cell col-xs-4 padding-sm no-padding-hr">
+               <!-- Big text -->
+               <span class="text-bg"><strong><%= @manager_count %></strong></span><br>
+               <!-- Extra small text -->
+               <span class="text-xs text-muted">Total Number of Managers</span>
+            </div>
+            <div class="stat-cell col-xs-4 padding-sm no-padding-hr">
+               <!-- Big text -->
+               <span class="text-bg"><strong><%= @teamleads_count %></strong></span><br>
+               <!-- Extra small text -->
+               <span class="text-xs text-muted">Total Number of Team Leaders</span>
+            </div>
+            <div class="stat-cell col-xs-4 padding-sm no-padding-hr">
+               <!-- Big text -->
+               <span class="text-bg"><strong><%= @clients_count %></strong></span><br>
+               <!-- Extra small text -->
+               <span class="text-xs text-muted">Total Number of Clients</span>
+            </div>
+            <!-- Small padding, without horizontal padding -->
+            <div class="stat-cell col-xs-4 padding-sm no-padding-hr">
+               <!-- Big text -->
+               <span class="text-bg"><strong><%= @staffs_count %></strong></span><br>
+               <!-- Extra small text -->
+               <span class="text-xs text-muted">Total Number of Staffs</span>
+            </div>
+         </div>
+         <!-- /.stat-counters -->
+      </div>
+      <!-- /.stat-row -->
+   </div>
+
    <div class="stat-panel">
       <div class="stat-row">
          <div class="stat-cell bg-success darker">
@@ -44,11 +98,11 @@
       <!-- /.stat-row -->
    </div>
    <div class="panel panel-dark panel-light-green">
-      <div class="panel-heading">
+      <div class="panel-heading"> 
          <span class="panel-title"><i class="panel-title-icon fa fa-smile-o"></i>Staff</span>
          <div class="panel-heading-controls">
          </div>
-         <!-- / .panel-heading-controls -->
+         <!-- / .panel-heading-controls --> 
       </div>
       <!-- / .panel-heading -->
       <table class="table">

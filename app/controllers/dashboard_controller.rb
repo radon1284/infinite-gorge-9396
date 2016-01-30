@@ -69,6 +69,12 @@ class DashboardController < ApplicationController
 
     @hrs_staff_by_client = TaskLog.joins(:staff).joins(:client).joins(:user).select("staffs.full_name AS full_names").select("staffs.position AS positions").select("clients.full_name AS client_names").select("users.email AS emails").select("clients.*, SUM(task_logs.total_hrs) AS today").group("staffs.id, users.id, clients.id")
 
+    @admin_count = User.where("role = '0'").count
+    @manager_count = User.where("role = '1'").count
+    @teamleads_count = User.where("role = '2'").count
+    @clients_count = User.where("role = '3'").count
+    @staffs_count = User.where("role = '4'").count
+
   end
 
   private
