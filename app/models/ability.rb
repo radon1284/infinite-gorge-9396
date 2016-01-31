@@ -8,9 +8,9 @@ class Ability
       if user.role == 'admin'
         can :manage, :all
       elsif user.role == 'manager'
-        can :read, :create, :all
+        can :manage, :all
       elsif user.role == 'team_leader'
-        can :read, :all
+        can :manage, [TaskLog, Client, Staff]
       elsif user.role == 'client'
         can [:create, :read], [TaskLog, Client]
         can :update, Client

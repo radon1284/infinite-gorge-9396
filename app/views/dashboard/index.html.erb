@@ -168,6 +168,7 @@
           <th rowspan="2">Role</th>
           <th rowspan="2">Number of client</th>
           <th rowspan="2">Postion</th>
+          <th colspan="2"></th>
         </tr>
 
       </thead>
@@ -179,6 +180,8 @@
           <td data-title="Role"><%= staff.user.role.humanize %></td>
           <td data-title="Role"><%= staff.clients.count %></td>
           <td data-title="Position"><%= staff.position %></td>
+          <td data-title="Show"><%= link_to 'Show', staff %></td>
+          <td data-title="Edit"><%= link_to 'Edit', edit_staff_path(staff) %></td>
         </tr>
         <% end %>
       </tbody>
@@ -194,6 +197,7 @@
           <th>Role</th>
           <th>Number of staff</th>
           <th>Business Name</th>
+          <th colspan="2"></th>
         </tr>
       </thead>
       <tbody>
@@ -204,6 +208,8 @@
           <td data-title="Role"><%= client.user.role.humanize %></td>
           <td data-title="Role"><%= client.staffs.count %></td>
           <td data-title="Business Name"><%= client.business_name %></td>
+          <td data-title="Show"><%= link_to 'Show', client %></td>
+          <td data-title="Edit"><%= link_to 'Edit', edit_client_path(client) %></td>
         </tr>
         <% end %>
       </tbody>

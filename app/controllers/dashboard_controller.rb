@@ -1,5 +1,5 @@
 class DashboardController < ApplicationController
-  before_action :set_dashboard, only: [:index, :edit_profile]
+  before_action :set_dashboard, only: [:index, :edit_profile, :reports]
   before_filter :authenticate_user!
   # before_action :set_client_dashboard, only: [:index]
 

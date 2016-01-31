@@ -1,6 +1,11 @@
+<% provide(:title, 'My Profile') %>
+<% content_for :body_class, 'theme-default main-menu-animated page-profile' %>
+<% content_for :main_wrapper, 'main-wrapper' %>
+<div id="content-wrapper">
 <h1>Editing Task Log</h1>
 
 <%= render 'form' %>
 
 <%= link_to 'Show', @task_log %> |
 <%= link_to 'Back', task_logs_path %>
+</div>
