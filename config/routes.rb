@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  mount Bootsy::Engine => '/bootsy', as: 'bootsy'
   get 'dashboard' => 'dashboard#index'
   get 'myprofile' => 'dashboard#edit_profile'
   get 'reports' => 'dashboard#reports'

@@ -1,4 +1,5 @@
 class TaskLog < ActiveRecord::Base
+	include Bootsy::Container
 	belongs_to :user
 	belongs_to :staff
 	belongs_to :client
@@ -9,6 +10,10 @@ class TaskLog < ActiveRecord::Base
 
 	validates :client_id, presence: true
 	validates :task_title, presence: true
+	validates :task_id, presence: true
+	validates :task_description, presence: true
+	validates :starting_time, presence: true
+	validates :ending_time, presence: true
 
 	def sum_of_hrs
 		sum_value = (self.ending_time - self.starting_time)/3600
