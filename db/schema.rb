@@ -32,7 +32,6 @@ ActiveRecord::Schema.define(version: 20160201051202) do
     t.string   "business_name"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-    t.float    "multiplier"
   end
 
   create_table "employments", force: :cascade do |t|
@@ -40,6 +39,7 @@ ActiveRecord::Schema.define(version: 20160201051202) do
     t.integer  "client_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float    "multiplier"
   end
 
   add_index "employments", ["client_id"], name: "index_employments_on_client_id"
@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 20160201051202) do
     t.integer  "user_id"
     t.integer  "staff_id"
     t.integer  "client_id"
-    t.string   "task_id"
+    t.string   "task_code"
     t.text     "task_description"
   end
 

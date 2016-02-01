@@ -84,7 +84,7 @@ class TaskLogsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_log_params
-      params.require(:task_log).permit(:task_title, :task_id, :task_description, :bootsy_image_gallery_id, :starting_time, :ending_time, :total_hrs, :staff_id, :client_id )
+      params.require(:task_log).permit(:task_title, :task_code, :task_description, :bootsy_image_gallery_id, :starting_time, :ending_time, :total_hrs, :staff_id, :client_id )
     end
 
 end
