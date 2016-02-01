@@ -10,7 +10,7 @@ class TaskLog < ActiveRecord::Base
 
 	validates :client_id, presence: true
 	validates :task_title, presence: true
-	validates :task_id, presence: true
+	validates :task_code, presence: true
 	validates :task_description, presence: true
 	validates :starting_time, presence: true
 	validates :ending_time, presence: true
