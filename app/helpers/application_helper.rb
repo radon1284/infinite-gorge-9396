@@ -8,4 +8,10 @@ module ApplicationHelper
       "#{page_title} | #{base_title}"
     end
   end
+  
+  def first_name
+  	name = current_user.meta.full_name.split(" ").map { |s| s.to_s }
+    first_name = "#{name[0].to_s}"
+  end
+		
 end

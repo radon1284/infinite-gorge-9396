@@ -16,9 +16,7 @@ class Ability
         can :update, Client
         can :read, Staff
       elsif  user.role == 'staff'
-        can [:create, :read], [TaskLog, Staff]
-        # can :read, Client
-        can :read, Staff
+        can :manage, [TaskLog, Staff]
       else
         can :read, :all
       end

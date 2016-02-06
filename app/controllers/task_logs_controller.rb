@@ -17,7 +17,6 @@ class TaskLogsController < ApplicationController
     
     # @total_hrs_by_date = TaskLog.sum(:total_hrs)
     @total_hrs_by_date = @task_logs.group_by { |c| c.created_at.to_date }.sum(:total_hrs)
-    
 
   end
 
@@ -86,5 +85,5 @@ class TaskLogsController < ApplicationController
     def task_log_params
       params.require(:task_log).permit(:task_title, :task_code, :task_description, :bootsy_image_gallery_id, :starting_time, :ending_time, :total_hrs, :staff_id, :client_id )
     end
-
+    
 end

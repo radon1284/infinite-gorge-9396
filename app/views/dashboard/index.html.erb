@@ -256,18 +256,15 @@
           <th>Time Worked Today</th>
           <th>Time Worked This Week</th>
           <th>Time Worked This Month</th>
-          <th>All Time</th>
+          <th>All Time Worked</th>
         </tr>
       </thead>
       <tbody class="valign-middle">
         <tr>
-          <td data-title="Today"><%= @total_today %></td>
-          <td data-title="Week"><%= @total_week %></td>
-          <td data-title="Months"><%= @total_month %></td>
-          <td data-title="All Time"><% @total_time_today.each do |client|%><%= c = ("%.2f" % client.time_today).to_s.split(".").map { |s| s.to_i }
-              a = c[0].to_s + ":" + ((c[1]*60)/100).to_s + " Hrs."
-
-               %><% end %></td>
+          <td data-title="Today"><%= @total_worked_daily %></td>
+          <td data-title="Week"><%= @total_worked_this_week %></td>
+          <td data-title="Months"><%= @total_worked_this_month %></td>
+          <td data-title="All Time"><%= @total_all_time %></td>
         </tr>
       </tbody>
     </table>
@@ -279,7 +276,7 @@
         <tr>
           <th>Full name</th>
           <th>Business Name</th>
-          <th>Time</th>
+          <th>All Time  Per Client</th>
         </tr>
       </thead>
       <tbody class="valign-middle">

@@ -4,4 +4,4 @@
 
 jQuery ->
   $('#task_log_total_hrs').datepicker
-    dateFormat: 'yy-mm-dd'
+    dateFormat: 'yy-mm-dd' 

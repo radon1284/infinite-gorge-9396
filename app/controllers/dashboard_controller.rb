@@ -27,8 +27,47 @@ class DashboardController < ApplicationController
     @date = params[:date] ? Date.parse(params[:date]) : Date.today
 
 
+
+    @dates = Date.today
+    @time_today = TaskLog.where('created_at >= ? and created_at <= ?', @dates.beginning_of_day, @dates.end_of_day).select("SUM(task_logs.total_hrs) AS time_today").where(user_id: current_user)
+    # @by_day = ("%.2f" % @time_today).to_s.split(".").map { |s| s.to_i }
+    # @total_today = @by_day[0].to_s + ":" + ((@by_day[1]*60)/100).to_s + " Hrs."
+
+    @time_month = TaskLog.where('created_at >= ? and created_at <= ?', @dates.beginning_of_month, @dates.end_of_month).sum('total_hrs')
+    @by_month = ("%.2f" % @time_month).to_s.split(".").map { |s| s.to_i }
+    @total_month = @by_month[0].to_s + ":" + ((@by_month[1]*60)/100).to_s + " Hrs."
+
+    if  current_user.role == 'staff'
+
+      # Daily total work per staff
+      @total_this_daily = TaskLog.where('created_at >= ? and created_at <= ?', @dates.beginning_of_day, @dates.end_of_day).where(user_id: @staff.id).sum(:total_hrs)
+      @calculate_daily = ("%.2f" % @total_this_daily).to_s.split(".").map { |s| s.to_i }
+      @total_worked_daily = @calculate_daily[0].to_s + ":" + ((@calculate_daily[1]*60)/100).to_s + " Hrs."
+
+
+      # weekly total work per staff
+      @total_this_week = TaskLog.where('created_at >= ? and created_at <= ?', @dates.beginning_of_week(start_day = :monday), @dates.end_of_week(end_day = :sunday)).where(user_id: @staff.id).sum(:total_hrs)
+      @calculate_week = ("%.2f" % @total_this_week).to_s.split(".").map { |s| s.to_i }
+      @total_worked_this_week = @calculate_week[0].to_s + ":" + ((@calculate_week[1]*60)/100).to_s + " Hrs."
+
+
+      # monthly total work per staff
+      @total_this_month = TaskLog.where('created_at >= ? and created_at <= ?', @dates.beginning_of_month, @dates.end_of_month).where(user_id: @staff.id).sum(:total_hrs)
+      @calculate_month = ("%.2f" % @total_this_month).to_s.split(".").map { |s| s.to_i }
+      @total_worked_this_month = @calculate_month[0].to_s + ":" + ((@calculate_month[1]*60)/100).to_s + " Hrs."
+
+      # time total work per staff
+      @all_staff_time = TaskLog.includes(:staff).where(user_id: @staff.id).sum(:total_hrs)
+      @by_all_time = ("%.2f" % @all_staff_time).to_s.split(".").map { |s| s.to_i }
+      @total_all_time = @by_all_time[0].to_s + ":" + ((@by_all_time[1]*60)/100).to_s + " Hrs."
+    end
+
+
+
     @today = Date.today
+
     @total_time_today = TaskLog.joins(:client).select("clients.*, SUM(task_logs.total_hrs) AS time_today").group("clients.id").where(user_id: current_user)
+
 
     @hrs_all_time = TaskLog.joins(:client).select("clients.*, SUM(task_logs.total_hrs) AS all_time").group("clients.id").where(user_id: current_user)
 
@@ -37,13 +76,7 @@ class DashboardController < ApplicationController
     if  current_user.role == 'client'
       @hrs_staff_by_client = TaskLog.joins(:staff).joins(:client).joins(:user).select("staffs.full_name AS full_names").select("staffs.position AS positions").select("users.email AS emails").select("clients.*, SUM(task_logs.total_hrs) AS today").group("staffs.id, users.id, clients.id").where(client_id: @client.id)
     end
-
-    @name = current_user.meta.full_name.split(" ").map { |s| s.to_s }
-    @first_name = "#{@name[0].to_s}"
-
-
-
-
+    
   end
 
   def edit_profile

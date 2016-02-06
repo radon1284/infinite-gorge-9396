@@ -2,7 +2,7 @@
     <div id="main-menu-inner">
       <div class="menu-content top" id="menu-content-demo"> 
         <div>
-          <div class="text-bg"><span class="text-slim">Welcome,</span> <span class="text-semibold"><%= @first_name %></span></div>
+          <div class="text-bg"><span class="text-slim">Welcome,</span> <span class="text-semibold"><%= first_name %></span></div>
           <%= gravatar_for @user, size: 54 %> 
           <div class="btn-group"><a href="#" class="btn btn-xs btn-primary btn-outline dark"><i class="fa fa-envelope"></i></a>
             <%= link_to myprofile_path, class: "btn btn-xs btn-primary btn-outline dark" do %><i class="fa fa-user"></i><% end %>
@@ -30,6 +30,7 @@
             <li> <%= link_to dashboard_path do %><i class="menu-icon fa fa-dashboard"></i><span class="mm-text">Dashboard</span><% end %> </li>
         <% else %>
             <li> <%= link_to dashboard_path do %><i class="menu-icon fa fa-dashboard"></i><span class="mm-text">Dashboard</span><% end %> </li>
+            <li><%= link_to task_logs_path do %><i class="menu-icon fa fa-calendar-check-o"></i><span class="mm-text">All Task</span><% end %></li>
             <li><%= link_to new_task_log_path do %><i class="menu-icon fa fa-calendar-plus-o"></i><span class="mm-text">Add new task</span><% end %></li>
         <% end %>
       </ul>

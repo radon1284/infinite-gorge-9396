@@ -23,7 +23,6 @@ class StaffsController < ApplicationController
     else
       redirect_to dashboard_path
     end
-    
 
   end
 
@@ -119,6 +118,6 @@ class StaffsController < ApplicationController
     end
     
     def update_staff_params
-      params.require(:staff).permit(:full_name, :position, user_attributes: [ :id , :role], client_ids:[])
+      params.require(:staff).permit(:full_name, :position, user_attributes: [ :id , :role], client_ids:[], employment_attributes:[:multiplier])
     end
 end

@@ -4,6 +4,8 @@ class Employment < ActiveRecord::Base
 
 	validates_presence_of :staff
 	validates_presence_of :client
+
+	# validates :multiplier, presence: true
 	
 	def get_client_name		
 		"#{client.full_name}"

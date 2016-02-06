@@ -3,6 +3,7 @@ class ClientsController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
 
+
   # GET /clients
   # GET /clients.json
   def index
@@ -76,6 +77,8 @@ class ClientsController < ApplicationController
 
     end
     def update_client_params
-      params.require(:client).permit(:full_name, :business_name, user_attributes: [ :id, :role ], staff_ids:[])
+      params.require(:client).permit(:full_name, :business_name, user_attributes: [ :id, :role ], staff_ids:[], employment_attributes:[:multiplier])
     end
+
+    
 end
