@@ -2,30 +2,38 @@
 <% content_for :body_class, 'theme-default main-menu-animated' %>
 <% content_for :main_wrapper, 'main-wrapper' %>
 <div id="content-wrapper">
+<div class="panel">
+<div class="panel-heading">
+	<span class="panel-title">Edit Task Log</span>
+</div>
+	<div class="panel-body buttons-with-margins">
+		<p>
+		  <strong>Task title:</strong>
+		  <%= @task_log.task_title %>
+		</p>
 
-<p>
-  <strong>Task title:</strong>
-  <%= @task_log.task_title %>
-</p>
+		<p>
+		  <strong>Starting time:</strong>
+		  <%= @task_log.starting_time.strftime("%r") %>
+		</p>
 
-<p>
-  <strong>Starting time:</strong>
-  <%= @task_log.starting_time.strftime("%r") %>
-</p>
+		<p>
+		  <strong>Ending time:</strong>
+		  <%= @task_log.ending_time.strftime("%r") %>
+		</p>
 
-<p>
-  <strong>Ending time:</strong>
-  <%= @task_log.ending_time.strftime("%r") %>
-</p>
-
-<p>
-  <strong>Tota Time:</strong>
-  <%= @task_log.sum_of_hrs %>
-</p>
-
-<%= link_to 'Edit', edit_task_log_path(@task_log) %> |
-<%= link_to 'Back', task_logs_path %>
-
-
-
+		<p>
+		  <strong>Tota Time:</strong>
+		  <%= @task_log.sum_of_hrs %>
+		</p>
+		<div>
+		<%= @task_log.task_description.html_safe %>
+		</div>
+		
+		
+		
+	</div>
+</div>
+<%= link_to 'Edit', edit_task_log_path(@task_log), class: 'btn btn-info btn-rounded' %>
+<%= link_to 'Back', task_logs_path, class: 'btn btn-primary btn-rounded' %>
 </div>
