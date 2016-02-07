@@ -101,7 +101,7 @@ class StaffsController < ApplicationController
   def destroy
     @staff.destroy
     respond_to do |format|
-      format.html { redirect_to staffs_url, notice: 'Staff was successfully destroyed.' }
+      format.html { redirect_to dashboard_path, notice: 'Staff was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

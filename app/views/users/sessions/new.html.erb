@@ -37,10 +37,11 @@
 <%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => { :id => 'signin-form_id' }) do |f| %>
 <div class="signin-text">
           <span>Sign In to your account</span>
+          <%= devise_error_messages! %>
         </div> <!-- / .signin-text -->
 
   <div class="form-group w-icon">
-    <%= devise_error_messages! %>
+
     <%= f.email_field :email, autofocus: true, id: "username_id", class: "form-control input-lg", placeholder: "Username or email" %>
     <span class="fa fa-user signin-form-icon"></span>
   </div>
