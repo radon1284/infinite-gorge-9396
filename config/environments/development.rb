@@ -41,4 +41,6 @@ Rails.application.configure do
   Time::DATE_FORMATS[:task_time] = "%H:%M %p"
 
   config.action_mailer.default_url_options = { :host => 'localhost:3001' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
 end

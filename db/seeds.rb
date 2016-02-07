@@ -13,15 +13,15 @@
 # [:admin, :manager, :team_leader, :client, :staff].each do |role|
 #   Role.find_or_create_by({ name: role })
 # end
-Staff.create(
-:full_name => 'Monty Hooke', 
-:position => 'CEO', 
-:user_attributes => {
-  :email => 'monty@montyghooke.com', 
-  :password => 'Monty4521',
-  :role => 'admin'
-  }
-)
+# Staff.create(
+# :full_name => 'Monty Hooke', 
+# :position => 'CEO', 
+# :user_attributes => {
+#   :email => 'monty@montyghooke.com', 
+#   :password => 'Monty4521',
+#   :role => 'admin'
+#   }
+# )
 Staff.create(
 :full_name => 'Ruel Nopal', 
 :position => 'Web Master', 
