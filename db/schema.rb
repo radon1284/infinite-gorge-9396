@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160201051202) do
+ActiveRecord::Schema.define(version: 20160207020919) do
 
   create_table "bootsy_image_galleries", force: :cascade do |t|
     t.integer  "bootsy_resource_id"
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 20160201051202) do
     t.integer  "client_id"
     t.string   "task_code"
     t.text     "task_description"
+    t.datetime "completed_at"
   end
 
   create_table "users", force: :cascade do |t|

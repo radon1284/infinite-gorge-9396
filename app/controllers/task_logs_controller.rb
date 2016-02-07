@@ -75,6 +75,19 @@ class TaskLogsController < ApplicationController
     end
   end
 
+  def complete
+    respond_to do |format|
+      if @task_log.update_attribute(:completed_at, Time.now)
+        format.html { redirect_to @task_log, notice: 'Task log was successfully Approved.'}
+        format.json { render :index, status: :ok, location: @task_log }
+      else
+        format.html { render :edit }
+        format.json { render json: @task_log.errors, status: :unprocessable_entity }
+      end
+    end
+
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_task_log

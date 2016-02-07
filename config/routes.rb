@@ -7,7 +7,11 @@ Rails.application.routes.draw do
 
   resources :clients
   resources :staffs
-  resources :task_logs
+  resources :task_logs do
+    member do
+      patch :complete
+    end
+  end
   devise_for :users, :path_prefix => 'profiles'
   resources :users
 
