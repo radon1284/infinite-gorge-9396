@@ -77,4 +77,5 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
   Time::DATE_FORMATS[:task_time] = "%H:%M %p"
+  config.action_mailer.default_url_options = { :host => 'http://infinite-gorge-9396.herokuapp.com' }
 end

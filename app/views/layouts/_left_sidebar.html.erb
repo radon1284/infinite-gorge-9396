@@ -18,6 +18,10 @@
             <li> <%= link_to reports_path do %><i class="menu-icon fa fa-bar-chart "></i><span class="mm-text">Reports</span><% end %></li>
             <li><%= link_to new_staff_path do %><i class="menu-icon fa fa-user"></i><span class="mm-text">Add New Staff</span><% end %></li>
             <li><%= link_to new_client_path do %><i class="menu-icon fa fa-group"></i><span class="mm-text">Add New Client</span><% end %></li>
+            
+            <li><%= link_to task_logs_path do %><i class="menu-icon fa fa-calendar-check-o"></i><span class="mm-text">All Task</span><% end %></li>
+            <li><%= link_to new_task_log_path do %><i class="menu-icon fa fa-calendar-plus-o"></i><span class="mm-text">Add new task</span><% end %></li>
+
         <% elsif current_user.role == 'manager' %>
             <li> <%= link_to dashboard_path do %><i class="menu-icon fa fa-dashboard"></i><span class="mm-text">Dashboard</span><% end %> </li>
             <li> <%= link_to reports_path do %><i class="menu-icon fa fa-bar-chart "></i><span class="mm-text">Reports</span><% end %></li>

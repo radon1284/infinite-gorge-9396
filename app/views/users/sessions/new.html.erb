@@ -40,7 +40,7 @@
         </div> <!-- / .signin-text -->
 
   <div class="form-group w-icon">
-    
+    <%= devise_error_messages! %>
     <%= f.email_field :email, autofocus: true, id: "username_id", class: "form-control input-lg", placeholder: "Username or email" %>
     <span class="fa fa-user signin-form-icon"></span>
   </div>
