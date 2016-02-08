@@ -78,7 +78,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
   Time::DATE_FORMATS[:task_time] = "%H:%M %p"
 
-  config.action_mailer.default_url_options = { :host => 'infinite-gorge-9396.herokuapp.com' }
+  config.action_mailer.default_url_options = { :host => 'bossdash.com' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
@@ -87,7 +87,7 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
   address: "smtp.gmail.com",
   port: 587,
-  domain: "infinite-gorge-9396.herokuapp.com",
+  domain: "bossdash.com",
   authentication: "plain",
   enable_starttls_auto: true,
   user_name: ENV["GMAIL_USERNAME"],
