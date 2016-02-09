@@ -1,5 +1,6 @@
 class DashboardController < ApplicationController
-  before_action :set_dashboard, only: [:index, :edit_profile, :reports]
+  before_action :set_dashboard, only: [:index, :reports]
+  before_action :set_user, only: [:edit_profile]
   before_filter :authenticate_user!
   # before_action :set_client_dashboard, only: [:index]
 
@@ -84,6 +85,17 @@ class DashboardController < ApplicationController
     @staffs = Staff.all
     @clients = Client.all
     @task_logs = TaskLog.all
+
+    respond_to do |format|
+      if @user.update(user_params)
+        format.html { redirect_to @staff, notice: 'Staff was successfully updated.' }
+        format.json { render :show, status: :ok, location: @staff }
+      else
+        format.html { render :edit }
+        format.json { render json: @staff.errors, status: :unprocessable_entity }
+      end
+    end
+
   end
 
   def reports
@@ -130,5 +142,13 @@ class DashboardController < ApplicationController
       end
       
     end
+
+  def set_user
+      @user = User.find(current_user.id)
+  end
+
+  def user_params
+      params.require(:user).permit(:email, :password, :role)
+  end
 
 end

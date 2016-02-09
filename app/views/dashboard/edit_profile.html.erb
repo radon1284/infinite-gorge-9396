@@ -11,7 +11,7 @@
 	    </div>
 	  </div>
 	  <div class="right-col">
-	    <% if current_user.meta_type == 'Staff' %>
+	    <% if current_user.role == 'admin' %>
 	    <%= form_for (@staff), :html => {:class => "panel form-horizontal"} do |f| %>
 	    <div class="panel-heading"> <span class="panel-title">Profile</span> </div>
 	    <div class="panel-body">
@@ -40,7 +40,7 @@
 	      </div>
 	      <% end %>
 	    </div>
-	    <div class="panel-footer text-right"> <%= f.submit 'Update My Profile', class: "btn btn-primary" %> </div>
+	    <div class="panel-footer text-right"><%= f.submit 'Update My Profile', class: "btn btn-primary" %> </div>
 	    <% end %>
 	    <% elsif current_user.meta_type == 'Client' %>
 	    <%= form_for (@client) do |f| %>
