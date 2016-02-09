@@ -1,8 +1,13 @@
-<% provide(:title, 'Edit Staff') %>
+<% provide(:title, 'Editing Client') %>
 <% content_for :body_class, 'theme-default main-menu-animated' %>
 <% content_for :main_wrapper, 'main-wrapper' %>
 <div id="content-wrapper">
-<h1>Editing Client</h1>
+<div class="panel">
+<div class="panel-heading">
+<h1 class="panel-title">Editing Client</h1>
+</div>
+<div class="panel-body buttons-with-margins">
+
 
 <%= form_for(@client) do |f| %>
   <% if @client.errors.any? %>
@@ -38,12 +43,11 @@
 <%= label_tag dom_id(staff), staff.full_name %><br>
   <% end %>
   <br>
-  <div class="actions">
-    <%= f.submit 'Edit Client' %>
-  </div>
+  
+    <%= f.submit 'Edit Client', class: "btn btn-success"  %>
+    <%= link_to 'Show', @client, class: "btn btn-info" %>
+    <%= link_to 'Back', dashboard_path, class: "btn btn-primary"  %>
+  
 <% end %>
-
-
-<%= link_to 'Show', @client %> |
-<%= link_to 'Back', clients_path %>
+</div>
 </div>

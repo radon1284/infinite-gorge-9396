@@ -1,3 +1,7 @@
+<% provide(:title, 'All Clients') %>
+<% content_for :body_class, 'theme-default main-menu-animated' %>
+<% content_for :main_wrapper, 'main-wrapper' %>
+<div id="content-wrapper">
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Clients</h1>
@@ -30,6 +34,7 @@
   </tbody>
 </table>
 </div>
-<br>
+<%= link_to 'New Client', new_client_path, class: "btn btn-success" %>
+</div>
 
-<%= link_to 'New Client', new_client_path %>
+
