@@ -25,6 +25,7 @@ group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'
   gem 'spring'
+  gem "letter_opener", :git => 'git://github.com/cavi21/letter_opener.git'
 end
 
 group :production do

@@ -22,126 +22,13 @@
 #   :role => 'admin'
 #   }
 # )
-Staff.create(
-:full_name => 'Ruel Nopal', 
-:position => 'Web Master', 
-:user_attributes => {
-  :email => 'radon@radongrafix.com', 
-  :password => 'qazx1234',
-  :role => 'admin'
-  }
-)
 # Staff.create(
-# :full_name => 'Ruel Nopal 1', 
-# :position => 'Web Develper', 
+# :full_name => 'Ruel Nopal', 
+# :position => 'Web Master', 
 # :user_attributes => {
-#   :email => 'radon1@radongrafix.com', 
+#   :email => 'radon@radongrafix.com', 
 #   :password => 'qazx1234',
-#   :role => 'manager'
-#   }
-# )
-# Staff.create(
-# :full_name => 'Ruel Nopal 2', 
-# :position => 'Web Develper', 
-# :user_attributes => {
-#   :email => 'radon2@radongrafix.com', 
-#   :password => 'qazx1234',
-#   :role => 'team_leader'
-#   }
-# )
-# Staff.create(
-# :full_name => 'Ruel Nopal 3', 
-# :position => 'Web Develper', 
-# :user_attributes => {
-#   :email => 'radon3@radongrafix.com', 
-#   :password => 'qazx1234',
-#   }
-# )
-# Staff.create(
-# :full_name => 'Ruel Nopal 4', 
-# :position => 'Web Develper', 
-# :user_attributes => {
-#   :email => 'radon4@radongrafix.com', 
-#   :password => 'qazx1234'
-#   }
-# )
-# Staff.create(
-# :full_name => 'Ruel Nopal 5', 
-# :position => 'Web Develper', 
-# :user_attributes => {
-#   :email => 'radon5@radongrafix.com', 
-#   :password => 'qazx1234'
-#   }
-# )
-# Staff.create(
-# :full_name => 'Ruel Nopal 6', 
-# :position => 'Web Develper', 
-# :user_attributes => {
-#   :email => 'radon6@radongrafix.com', 
-#   :password => 'qazx1234'
-#   }
-# )
-# Staff.create(
-# :full_name => 'Ruel Nopal 7', 
-# :position => 'Web Develper', 
-# :user_attributes => {
-#   :email => 'radon7@radongrafix.com', 
-#   :password => 'qazx1234'
-#   }
-# )
-
-# Client.create(
-# :full_name => 'Monty Hooke', 
-# :business_name => 'MontFox', 
-# :user_attributes => {
-#   :email => 'monty@montyghooke.com', 
-#   :password => 'qazx1234',
-#   :role => 'client'
-#   }
-# )
-# Client.create(
-# :full_name => 'Monty Hooke 1', 
-# :business_name => 'MontFox 1', 
-# :user_attributes => {
-#   :email => 'monty1@montyghooke.com', 
-#   :password => 'qazx1234',
-#   :role => 'client'
-#   }
-# )
-# Client.create(
-# :full_name => 'Monty Hooke 2', 
-# :business_name => 'MontFox 2', 
-# :user_attributes => {
-#   :email => 'monty2@montyghooke.com', 
-#   :password => 'qazx1234',
-#   :role => 'client'
-#   }
-# )
-# Client.create(
-# :full_name => 'Monty Hooke 3', 
-# :business_name => 'MontFox 3', 
-# :user_attributes => {
-#   :email => 'monty3@montyghooke.com', 
-#   :password => 'qazx1234',
-#   :role => 'client'
-#   }
-# )
-# Client.create(
-# :full_name => 'Monty Hooke 4', 
-# :business_name => 'MontFox 4', 
-# :user_attributes => {
-#   :email => 'monty4@montyghooke.com', 
-#   :password => 'qazx1234',
-#   :role => 'client'
-#   }
-# )
-# Client.create(
-# :full_name => 'Monty Hooke 5', 
-# :business_name => 'MontFox 5', 
-# :user_attributes => {
-#   :email => 'monty5@montyghooke.com', 
-#   :password => 'qazx1234',
-#   :role => 'client'
+#   :role => 'admin'
 #   }
 # )
 # Client.create(
@@ -153,3 +40,195 @@ Staff.create(
 #   :role => 'client'
 #   }
 # )
+Staff.create(
+:full_name => 'Aba', 
+:position => 'Web Staff', 
+:user_attributes => {
+  :email => 'aba@ezyva.com', 
+  :password => 'DP@bwt,57n2qup',
+  :role => 'staff'
+  }
+)
+Staff.create(
+:full_name => 'accountingteam2', 
+:position => 'accountingteam2', 
+:user_attributes => {
+  :email => 'accountingteam2@ezyva.com', 
+  :password => 'DP@bwt,57n2qup',
+  :role => 'staff'
+  }
+)
+Staff.create(
+:full_name => 'accountingteam', 
+:position => 'accountingteam', 
+:user_attributes => {
+  :email => 'accountingteam@ezyva.com', 
+  :password => 'DP@bwt,57n2qup',
+  :role => 'staff'
+  }
+)
+Staff.create(
+:full_name => 'accounts', 
+:position => 'accounts', 
+:user_attributes => {
+  :email => 'accounts@ezyva.com', 
+  :password => 'DP@bwt,57n2qup',
+  :role => 'staff'
+  }
+)
+Staff.create(
+:full_name => 'accounts', 
+:position => 'accounts', 
+:user_attributes => {
+  :email => 'accountsupport@ezyva.com', 
+  :password => 'DP@bwt,57n2qup',
+  :role => 'staff'
+  }
+)
+Staff.create(
+:full_name => 'ace@ezyva.com', 
+:position => 'ace', 
+:user_attributes => {
+  :email => 'ace@ezyva.com', 
+  :password => 'DP@bwt,57n2qup',
+  :role => 'staff'
+  }
+)
+Staff.create(
+:full_name => 'adrian@ezyva.com', 
+:position => 'adrian@ezyva.com', 
+:user_attributes => {
+  :email => 'adrian@ezyva.com', 
+  :password => 'DP@bwt,57n2qup',
+  :role => 'staff'
+  }
+)
+Staff.create(
+:full_name => 'albert', 
+:position => 'albert', 
+:user_attributes => {
+  :email => 'albert@ezyva.com', 
+  :password => 'DP@bwt,57n2qup',
+  :role => 'staff'
+  }
+)
+Staff.create(
+:full_name => 'alleana', 
+:position => 'alleana', 
+:user_attributes => {
+  :email => 'alleana@ezyva.com', 
+  :password => 'DP@bwt,57n2qup',
+  :role => 'staff'
+  }
+)
+
+# alleana@ezyva.com
+# alvin.protos@ezyva.com
+# alvina@ezyva.com
+# anam@ezyva.com
+# annachristine@ezyva.com
+# caressa@ezyva.com
+# carol@ezyva.com
+# cesar@ezyva.com
+# cherry@ezyva.com
+# cherrydecena@ezyva.com
+# christianf@ezyva.com
+# christopher@ezyva.com
+# cynthia@ezyva.com
+# dan@ezyva.com
+# daniel@ezyva.com
+# daryl@ezyva.com
+# dexter@ezyva.com
+# diane@ezyva.com
+# djanellene@ezyva.com
+# dk@ezyva.com
+# edgar@ezyva.com
+# elaines@ezyva.com
+# elmer@ezyva.com
+# eugemin@ezyva.com
+# evy@ezyva.com
+# floyd@ezyva.com
+# franz@ezyva.com
+# gemmie@ezyva.com
+# genevieve@ezyva.com
+# gerald@ezyva.com
+# grace@ezyva.com
+# hanna@ezyva.com
+# haydee@ezyva.com
+# hernani@ezyva.com
+# humanresources@ezyva.com
+# info@ezyva.com
+# jag@ezyva.com
+# japheth@ezyva.com
+# jaredasher@ezyva.com
+# jaymee@ezyva.com
+# jeena@ezyva.com
+# jefferson@ezyva.com
+# jenica.javier@ezyva.com
+# jenniferlyn@ezyva.com
+# jessica.balderas@ezyva.com
+# joanne@ezyva.com
+# jonard@ezyva.com
+# joreen@ezyva.com
+# josephe@ezyva.com
+# jules@ezyva.com
+# julie@ezyva.com
+# juvelyn@ezyva.com
+# karen@ezyva.com
+# karina@ezyva.com
+# karl@ezyva.com
+# kath@ezyva.com
+# kristine@ezyva.com
+# kristinem@ezyva.com
+# lalaine@ezyva.com
+# lee@ezyva.com
+# leila@ezyva.com
+# liez@ezyva.com
+# lilibeth@ezyva.com
+# love.velasquez@ezyva.com
+# luisa@ezyva.com
+# manuelito@ezyva.com
+# margaret@ezyva.com
+# mariatheodora@ezyva.com
+# marichu@ezyva.com
+# marie@ezyva.com
+# marieann@ezyva.com
+# mark.apao@ezyva.com
+# mark@ezyva.com
+# marklester@ezyva.com
+# markq@ezyva.com
+# michael@ezyva.com
+# milbert@ezyva.com
+# mylene@ezyva.com
+# natalia@ezyva.com
+# nathaniel@ezyva.com
+# nick@ezyva.com
+# nicolejhon@ezyva.com
+# paulo@ezyva.com
+# placement@ezyva.com
+# princess@ezyva.com
+# raluc@ezyva.com
+# recruitment@ezyva.com
+# rem@ezyva.com
+# remielyn.mendador@ezyva.com
+# rescelle@ezyva.com
+# rhea@ezyva.com
+# robin@ezyva.com
+# romwil@ezyva.com
+# ronald.bernabe@ezyva.com
+# rowena.liboon@ezyva.com
+# rowena@ezyva.com
+# roxanne@ezyva.com
+# sales@ezyva.com
+# sheena.santos@ezyva.com
+# shey@ezyva.com
+# shine@ezyva.com
+# shirley@ezyva.com
+# sonny@ezyva.com
+# sourcing@ezyva.com
+# support@ezyva.com
+# tess@ezyva.com
+# thea@ezyva.com
+# tomik@ezyva.com
+# van@ezyva.com
+# vicky@ezyva.com
