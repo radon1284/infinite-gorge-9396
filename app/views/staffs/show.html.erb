@@ -2,8 +2,9 @@
 <% content_for :body_class, 'theme-default main-menu-animated' %>
 <% content_for :main_wrapper, 'main-wrapper' %>
 <div id="content-wrapper">
-<%= link_to 'Edit', edit_staff_path(@staff) %>|
-    <%= link_to 'Back', staffs_path %>
+    <%= link_to 'Edit', edit_staff_path(@staff), class: "btn btn-info" %>
+    <%= link_to 'Back', dashboard_path, class: "btn btn-primary" %>
+    <br>
     <div class="panel panel-success panel-dark widget-profile">
       <div class="panel-heading">
         <div class="widget-profile-bg-icon">

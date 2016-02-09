@@ -1,9 +1,8 @@
 <% provide(:title, 'Edit Staff') %>
 <% content_for :body_class, 'theme-default main-menu-animated' %>
 <% content_for :main_wrapper, 'main-wrapper' %>
-
 <div id="content-wrapper">
-  <h1>Editing Staff</h1>
+  
   <%= form_for(@staff) do |f| %>
   <% if @staff.errors.any? %>
   <div id="error_explanation">
@@ -15,7 +14,9 @@
     </ul>
   </div>
   <% end %>
-  <div class="stat-panel"> 
+  <div class="panel">
+  <div class="panel-heading"><h1 class="panel-title">Editing Staff</h1></div>
+  
     <!-- Success background, bordered, without top and bottom borders, without left border, without padding, vertically and horizontally centered text, large text -->
     <div class="stat-cell col-xs-2 bordered no-border-vr no-border-l no-padding valign-middle text-center text-lg" > <%= image_tag("http://gravatar.com/avatar/"+ Digest::MD5.hexdigest(@staff.user.email.downcase)+"?s=100", class: "rounded") %> </div>
     <!-- /.stat-cell --> 
@@ -65,27 +66,17 @@
                 <% Client.all.each do |client| %>
                 <tr>
                   <td class="col-sm-3"><%= check_box_tag "staff[client_ids][]", client.id, @staff.client_ids.include?(client.id), id: dom_id(client) %> <%= label_tag dom_id(client), client.full_name %></td>
-                  <%= form_for client do |ff| %>
-                  <td class="col-sm-9">
-                  
-                  <%= ff.fields_for :employments do |p| %>
-                    <%= p.text_field :multiplier, class: 'form-control', placeholder: 'Multiplier' %>
-                    <% end %>
-                  
-                  </td>
-                  <td><%= ff.submit "Submit" %></td>
-                  <% end %>
                 </tr>
 
                 <% end %>
             </tbody>
           </table>
         </div>
-        <div class="actions"> <%= f.submit 'Edit Staff', class: 'btn btn-success' %> </div>
+        <div class="actions"> <%= f.submit 'Edit Staff', class: 'btn btn-success' %> <%= link_to 'Show', @staff, class: 'btn btn-info' %> <%= link_to 'Back', dashboard_path, class: 'btn btn-primary' %> </div>
         <% end %>
-        <%= link_to 'Show', @staff %> | <%= link_to 'Back', staffs_path %> </div>
+        </div>
       <!-- /.stat-rows --> 
     </div>
   </div>
-  <!-- /.stat-cell --> 
+  <!-- /.stat-cell -->
 </div>
