@@ -37,6 +37,14 @@
     <%= f.label :business_name %><br>
     <%= f.text_field :business_name %>
   </div>
+    <div class="field">
+    <%= f.label :crm_code %><br>
+    <%= f.text_field :crm_code %>
+  </div>
+  <div class="field">
+    <%= f.label :initial_hrs %><br>
+    <%= f.text_field :initial_hrs %>
+  </div>
 <%= hidden_field_tag "client[staff_ids][]", nil %>
 <% Staff.all.each do |staff| %>
 <%= check_box_tag "client[staff_ids][]", staff.id, @client.staff_ids.include?(staff.id), id: dom_id(staff) %>

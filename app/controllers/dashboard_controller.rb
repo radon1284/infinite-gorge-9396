@@ -87,8 +87,8 @@ class DashboardController < ApplicationController
     @task_logs = TaskLog.all
 
     respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to @staff, notice: 'Staff was successfully updated.' }
+      if @user.update_attribute(params[current_user.id])
+        format.html { redirect_to @staff, notice: 'Your account was successfully updated.' }
         format.json { render :show, status: :ok, location: @staff }
       else
         format.html { render :edit }

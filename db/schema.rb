@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160207020919) do
+ActiveRecord::Schema.define(version: 20160210004122) do
 
   create_table "bootsy_image_galleries", force: :cascade do |t|
     t.integer  "bootsy_resource_id"
@@ -32,6 +32,8 @@ ActiveRecord::Schema.define(version: 20160207020919) do
     t.string   "business_name"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.string   "crm_code"
+    t.float    "initial_hrs"
   end
 
   create_table "employments", force: :cascade do |t|

@@ -4,21 +4,28 @@
 <div id="content-wrapper">
   <div class="panel form-horizontal">
   <div class="panel-heading">
-              <span class="panel-title">Add Client</span>
+      <span class="panel-title">Add Client</span>
   </div>
   <%= form_for(@client) do |f| %>
   <div class="panel-body">
-    <% if @client.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@client.errors.count, "error") %> prohibited this client from being saved:</h2>
-
-        <ul>
-        <% @client.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-        </ul>
+      <% if @client.errors.any? %>
+      <div class="panel panel-danger panel-body-colorful alert alert-danger">
+        <div class="panel-heading"> <span class="panel-title text-danger"><%= pluralize(@client.errors.count, "error") %> prohibited this client from being saved:</span>
+          <div class="panel-heading-controls">
+            <div class="panel-heading-icon">
+              <button class="close" data-dismiss="alert" type="button"><i class="fa fa-times"></i> </button>
+            </div>
+          </div>
+        </div>
+        <div class="panel-body">
+          <ul>
+            <% @client.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
       </div>
-    <% end %>
+      <% end %>
     <%= f.fields_for :user_attributes, @client.user||User.new do |ff| %>
       <div class="form-group">
         <%= ff.label :role, class: "col-sm-2 control-label" %>
@@ -49,6 +56,18 @@
       <%= f.label :business_name, class: "col-sm-2 control-label" %>
       <div class="col-sm-10">
       <%= f.text_field :business_name, class: "form-control", placeholder: "Business Name" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :crm_code, class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+      <%= f.text_field :crm_code, class: "form-control", placeholder: :crm_code %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :initial_hrs, class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+      <%= f.text_field :initial_hrs, class: "form-control", placeholder: :initial_hrs %>
       </div>
     </div>
     <div class="col-sm-offset-2 col-sm-10">
