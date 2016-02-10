@@ -1,61 +1,59 @@
 <% provide(:title, 'Editing Client') %>
 <% content_for :body_class, 'theme-default main-menu-animated' %>
 <% content_for :main_wrapper, 'main-wrapper' %>
+
 <div id="content-wrapper">
-<div class="panel">
-<div class="panel-heading">
-<h1 class="panel-title">Editing Client</h1>
-</div>
-<div class="panel-body buttons-with-margins">
-
-
-<%= form_for(@client) do |f| %>
-  <% if @client.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@client.errors.count, "error") %> prohibited this client from being saved:</h2>
-
-      <ul>
-      <% @client.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+  <div class="panel">
+    <div class="panel-heading">
+      <h1 class="panel-title">Editing Client</h1>
     </div>
-  <% end %>
-  <%= f.fields_for :user_attributes, @client.user do |ff| %>
-  <div class="field">
-      <%= ff.label :role %><br />
-      <%= ff.select(:role, User.roles.keys.map {|role| [role.titleize,role]}) %>
+    <div class="panel-body buttons-with-margins"> <%= form_for(@client) do |f| %>
+      <% if @client.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@client.errors.count, "error") %> prohibited this client from being saved:</h2>
+        <ul>
+          <% @client.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+      <% end %>
+      <%= f.fields_for :user_attributes, @client.user do |ff| %>
+      <div class="row form-group">
+        <label class="col-sm-2 control-label">Role:</label>
+        <div class="col-sm-10"> <strong>Client</strong><%= ff.hidden_field :role, :value => "client" %></div>
+      </div>
+      <% end %>
+      <div class="row form-group"> <%= f.label :full_name, class: "col-sm-2 control-label" %>
+        <div class="col-sm-10"> <%= f.text_field :full_name, class: "form-control" %></div>
+      </div>
+      <div class="row form-group"> <%= f.label :business_name, class: "col-sm-2 control-label" %>
+        <div class="col-sm-10"> <%= f.text_field :business_name, class: "form-control" %></div>
+      </div>
+      <div class="row form-group"> <%= f.label :crm_code, class: "col-sm-2 control-label" %>
+        <div class="col-sm-10"> <%= f.text_field :crm_code, class: "form-control" %></div>
+      </div>
+      <div class="row form-group"> <%= f.label :initial_hrs, class: "col-sm-2 control-label" %>
+        <div class="col-sm-10"> <%= f.text_field :initial_hrs, class: "form-control" %></div>
+      </div>
+      <div class="table-success">
+        <div class="table-header">
+          <div class="table-caption"> List of Staffs </div>
+        </div>
+        <table class="table table-bordered">
+          <tbody>
+            <%= hidden_field_tag "client[staff_ids][]", nil %>
+            <% Staff.all.each do |staff| %>
+            <tr>
+            <td class="col-sm-3"><%= check_box_tag "client[staff_ids][]", staff.id, @client.staff_ids.include?(staff.id), id: dom_id(staff) %> <%= label_tag dom_id(staff), staff.full_name %>
+          </td></tr>
+          <% end %>
+            </tbody>
+          
+        </table>
+      </div>
+      <%= f.submit 'Edit Client', class: "btn btn-success"  %> <%= link_to 'Show', @client, class: "btn btn-info" %> <%= link_to 'Back', dashboard_path, class: "btn btn-primary"  %>
+      <% end %>
+    </div>
   </div>
-  <% end %>
-
-
-  <div class="field">
-    <%= f.label :full_name %><br>
-    <%= f.text_field :full_name %>
-  </div>
-  <div class="field">
-    <%= f.label :business_name %><br>
-    <%= f.text_field :business_name %>
-  </div>
-    <div class="field">
-    <%= f.label :crm_code %><br>
-    <%= f.text_field :crm_code %>
-  </div>
-  <div class="field">
-    <%= f.label :initial_hrs %><br>
-    <%= f.text_field :initial_hrs %>
-  </div>
-<%= hidden_field_tag "client[staff_ids][]", nil %>
-<% Staff.all.each do |staff| %>
-<%= check_box_tag "client[staff_ids][]", staff.id, @client.staff_ids.include?(staff.id), id: dom_id(staff) %>
-<%= label_tag dom_id(staff), staff.full_name %><br>
-  <% end %>
-  <br>
-  
-    <%= f.submit 'Edit Client', class: "btn btn-success"  %>
-    <%= link_to 'Show', @client, class: "btn btn-info" %>
-    <%= link_to 'Back', dashboard_path, class: "btn btn-primary"  %>
-  
-<% end %>
-</div>
 </div>
