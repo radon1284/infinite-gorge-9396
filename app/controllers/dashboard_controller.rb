@@ -33,8 +33,8 @@ class DashboardController < ApplicationController
 
     @dates = Date.today
     @time_today = TaskLog.where('created_at >= ? and created_at <= ?', @dates.beginning_of_day, @dates.end_of_day).select("SUM(task_logs.total_hrs) AS time_today").where(user_id: current_user)
-    @by_day = ("%.2f" % @time_today).to_s.split(".").map { |s| s.to_i }
-    @total_today = @by_day[0].to_s + ":" + ((@by_day[1]*60)/100).to_s + " Hrs."
+    # @by_day = ("%.2f" % @time_today).to_s.split(".").map { |s| s.to_i }
+    # @total_today = @by_day[0].to_s + ":" + ((@by_day[1]*60)/100).to_s + " Hrs."
 
     @time_month = TaskLog.where('created_at >= ? and created_at <= ?', @dates.beginning_of_month, @dates.end_of_month).sum('total_hrs')
     @by_month = ("%.2f" % @time_month).to_s.split(".").map { |s| s.to_i }
