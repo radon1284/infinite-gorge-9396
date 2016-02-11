@@ -11,13 +11,13 @@ class DashboardController < ApplicationController
     @task_logs = TaskLog.all
 
     # For Manager and admin
-    @list_of_admins = Staff.joins(:user).includes(:clients).includes(:task_logs).where("role = '0'")
+    @list_of_admins = Staff.joins(:user).includes(:clients).includes(:task_logs).where("role = '0'").page(params[:page]).per_page(10)
 
-    @list_of_managers = Staff.joins(:user).includes(:clients).includes(:task_logs).where("role = '1'")
+    @list_of_managers = Staff.joins(:user).includes(:clients).includes(:task_logs).where("role = '1'").page(params[:page]).per_page(10)
 
-    @list_of_teamleads = Staff.joins(:user).includes(:clients).includes(:task_logs).where("role = '2'")
+    @list_of_teamleads = Staff.joins(:user).includes(:clients).includes(:task_logs).where("role = '2'").page(params[:page]).per_page(10)
 
-    @list_of_staffs = Staff.joins(:user).includes(:clients).includes(:task_logs).where("role = '4'")
+    @list_of_staffs = Staff.joins(:user).includes(:clients).includes(:task_logs).where("role = '4'").page(params[:page]).per_page(10)
 
 
 

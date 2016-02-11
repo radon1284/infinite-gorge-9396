@@ -6,9 +6,12 @@ class TaskLogsController < ApplicationController
   # GET /task_logs
   # GET /task_logs.json
   def index
-    @task_logs = TaskLog.all
-    @staffs = Staff.all
+    @users = User.all
+    @staffs = Staff.includes(:clients).includes(:task_logs).all
     @clients = Client.all
+    @task_logs_unapprove = TaskLog.where(completed_at: nil).page(params[:page]).per_page(10)
+
+    @task_logs_approve = TaskLog.page(params[:page]).per_page(10)
 
     @task_logs_by_date = @task_logs.group_by { |c| c.created_at.to_date }
 
@@ -17,6 +20,31 @@ class TaskLogsController < ApplicationController
     
     # @total_hrs_by_date = TaskLog.sum(:total_hrs)
     @total_hrs_by_date = @task_logs.group_by { |c| c.created_at.to_date }.sum(:total_hrs)
+
+    if  current_user.role == 'staff'
+          @dates = DateTime.now.utc
+
+          # Daily total work per staff
+          @total_this_daily = TaskLog.where('created_at >= ? and created_at <= ?', @dates.beginning_of_day, @dates.end_of_day).where(user_id: @users).sum(:total_hrs)
+          @calculate_daily = ("%.2f" % @total_this_daily).to_s.split(".").map { |s| s.to_i }
+          @total_worked_daily = @calculate_daily[0].to_s + ":" + ((@calculate_daily[1]*60)/100).to_s + " Hrs."
+
+          # weekly total work per staff
+          @total_this_week = TaskLog.where('created_at >= ? and created_at <= ?', @dates.beginning_of_week(start_day = :monday), @dates.end_of_week(end_day = :sunday)).where(user_id: @users).sum(:total_hrs)
+          @calculate_week = ("%.2f" % @total_this_week).to_s.split(".").map { |s| s.to_i }
+          @total_worked_this_week = @calculate_week[0].to_s + ":" + ((@calculate_week[1]*60)/100).to_s + " Hrs."
+
+
+          # monthly total work per staff
+          @total_this_month = TaskLog.where('created_at >= ? and created_at <= ?', @dates.beginning_of_month, @dates.end_of_month).where(user_id: @users).sum(:total_hrs)
+          @calculate_month = ("%.2f" % @total_this_month).to_s.split(".").map { |s| s.to_i }
+          @total_worked_this_month = @calculate_month[0].to_s + ":" + ((@calculate_month[1]*60)/100).to_s + " Hrs."
+
+          # # time total work per staff
+          # @all_staff_time = TaskLog.includes(:staff).where(user_id: @staff.user.id).sum(:total_hrs)
+          # @by_all_time = ("%.2f" % @all_staff_time).to_s.split(".").map { |s| s.to_i }
+          # @total_all_time = @by_all_time[0].to_s + ":" + ((@by_all_time[1]*60)/100).to_s + " Hrs."
+    end
 
   end
 
@@ -29,7 +57,7 @@ class TaskLogsController < ApplicationController
   def new
     # @task_log = TaskLog.new
     
-    
+
     @task_log = current_user.task_logs.build
   end
 
@@ -98,7 +126,7 @@ class TaskLogsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_log_params
-      params.require(:task_log).permit(:task_title, :task_code, :task_description, :bootsy_image_gallery_id, :starting_time, :ending_time, :total_hrs, :staff_id, :client_id )
+      params.require(:task_log).permit(:task_title, :task_code, :task_description, :task_date, :bootsy_image_gallery_id, :starting_time, :ending_time, :total_hrs, :staff_id, :client_id )
     end
     
 end

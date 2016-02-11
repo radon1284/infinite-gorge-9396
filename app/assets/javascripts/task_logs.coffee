@@ -3,5 +3,5 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 jQuery ->
-  $('#task_log_total_hrs').datepicker
+  $('#task_log_task_date').datepicker
     dateFormat: 'yy-mm-dd' 

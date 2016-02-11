@@ -9,7 +9,6 @@ class StaffsController < ApplicationController
     if current_user.role == 'admin'
     @staffs = Staff.all
     @task_logs = TaskLog.all
-
     @task_logs_by_date = @task_logs.group_by { |c| c.created_at.to_date }
     elsif current_user.role == 'manager'
     @staffs = Staff.all

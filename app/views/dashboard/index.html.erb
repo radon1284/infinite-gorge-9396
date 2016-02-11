@@ -5,7 +5,7 @@
 <% if current_user.role == 'admin' %>
 <p><%= link_to 'Add New Staff', new_staff_path, class: 'btn btn-success', :role => 'button' %></p>
 <div class="panel panel-dark panel-light-green table-light">
-      <div class="panel-heading"><span class="panel-title">List Of Team Admins</span>
+      <div class="panel-heading"><span class="panel-title">List Of Team Admins</span> <div class="panel-heading-controls"><%= will_paginate @list_of_admins, renderer: BootstrapPagination::Rails %></div>
 </div>
       <table class="table table-bordered">
         <thead class="cf">
@@ -35,7 +35,7 @@
     </div>
 
   <div class="panel panel-dark panel-light-green table-light">
-      <div class="panel-heading"><span class="panel-title">List Of Team Managers</span></div>
+      <div class="panel-heading"><span class="panel-title">List Of Team Managers</span><div class="panel-heading-controls"><%= will_paginate @list_of_managers, renderer: BootstrapPagination::Rails %></div></div>
       <table class="table table-bordered">
         <thead class="cf">
           <tr>
@@ -64,7 +64,7 @@
     </div>
 
   <div class="panel panel-dark panel-light-green table-light">
-      <div class="panel-heading"><span class="panel-title">List Of Team Leaders</span></div>
+      <div class="panel-heading"><span class="panel-title">List Of Team Leaders</span><div class="panel-heading-controls"><%= will_paginate @list_of_teamleads, renderer: BootstrapPagination::Rails %></div></div>
       <table class="table table-bordered">
         <thead class="cf">
           <tr>
@@ -92,7 +92,7 @@
       </table>
     </div>
     <div class="panel panel-dark panel-light-green table-light">
-      <div class="panel-heading"><span class="panel-title">List Of Staffs</span></div>
+      <div class="panel-heading"><span class="panel-title">List Of Staffs</span><div class="panel-heading-controls"><%= will_paginate @list_of_staffs, renderer: BootstrapPagination::Rails %></div></div>
       <table class="table table-bordered">
         <thead class="cf">
           <tr>
