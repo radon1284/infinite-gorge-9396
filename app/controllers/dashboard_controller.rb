@@ -10,8 +10,10 @@ class DashboardController < ApplicationController
     @clients = Client.all
     @task_logs = TaskLog.all
 
-    # For Manager
-    @list_of_managers = Staff.joins(:user).includes(:clients).includes(:task_logs).where("role = '0'")
+    # For Manager and admin
+    @list_of_admins = Staff.joins(:user).includes(:clients).includes(:task_logs).where("role = '0'")
+
+    @list_of_managers = Staff.joins(:user).includes(:clients).includes(:task_logs).where("role = '1'")
 
     @list_of_teamleads = Staff.joins(:user).includes(:clients).includes(:task_logs).where("role = '2'")
 
