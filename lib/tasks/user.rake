@@ -6,3 +6,7 @@ namespace :user do
     end
   end
 end
+# Command in terminal
+# rake user:resend_confirmation
+	
+# heroku run rake user:resend_confirmation

@@ -11,7 +11,7 @@
 	    </div>
 	  </div>
 	  <div class="right-col">
-	    <% if current_user.role == 'admin' %>
+	    <% if current_user.role == 'staff' %>
 	    <%= form_for (@staff), :html => {:class => "panel form-horizontal"} do |f| %>
 	    <div class="panel-heading"> <span class="panel-title">Profile</span> </div>
 	    <div class="panel-body">

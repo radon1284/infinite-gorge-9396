@@ -41,26 +41,26 @@ class DashboardController < ApplicationController
     @total_month = @by_month[0].to_s + ":" + ((@by_month[1]*60)/100).to_s + " Hrs."
 
     if  current_user.role == 'staff'
+      @today = Date.today
 
       # Daily total work per staff
-      @total_this_daily = TaskLog.where('created_at >= ? and created_at <= ?', @dates.beginning_of_day, @dates.end_of_day).where(user_id: @staff.id).sum(:total_hrs)
+      @total_this_daily = TaskLog.where('created_at >= ? and created_at <= ?', @dates.beginning_of_day, @dates.end_of_day).where(user_id: @staff.user.id).sum(:total_hrs)
       @calculate_daily = ("%.2f" % @total_this_daily).to_s.split(".").map { |s| s.to_i }
       @total_worked_daily = @calculate_daily[0].to_s + ":" + ((@calculate_daily[1]*60)/100).to_s + " Hrs."
 
-
       # weekly total work per staff
-      @total_this_week = TaskLog.where('created_at >= ? and created_at <= ?', @dates.beginning_of_week(start_day = :monday), @dates.end_of_week(end_day = :sunday)).where(user_id: @staff.id).sum(:total_hrs)
+      @total_this_week = TaskLog.where('created_at >= ? and created_at <= ?', @dates.beginning_of_week(start_day = :monday), @dates.end_of_week(end_day = :sunday)).where(user_id: @staff.user.id).sum(:total_hrs)
       @calculate_week = ("%.2f" % @total_this_week).to_s.split(".").map { |s| s.to_i }
       @total_worked_this_week = @calculate_week[0].to_s + ":" + ((@calculate_week[1]*60)/100).to_s + " Hrs."
 
 
       # monthly total work per staff
-      @total_this_month = TaskLog.where('created_at >= ? and created_at <= ?', @dates.beginning_of_month, @dates.end_of_month).where(user_id: @staff.id).sum(:total_hrs)
+      @total_this_month = TaskLog.where('created_at >= ? and created_at <= ?', @dates.beginning_of_month, @dates.end_of_month).where(user_id: @staff.user.id).sum(:total_hrs)
       @calculate_month = ("%.2f" % @total_this_month).to_s.split(".").map { |s| s.to_i }
       @total_worked_this_month = @calculate_month[0].to_s + ":" + ((@calculate_month[1]*60)/100).to_s + " Hrs."
 
       # time total work per staff
-      @all_staff_time = TaskLog.includes(:staff).where(user_id: @staff.id).sum(:total_hrs)
+      @all_staff_time = TaskLog.includes(:staff).where(user_id: @staff.user.id).sum(:total_hrs)
       @by_all_time = ("%.2f" % @all_staff_time).to_s.split(".").map { |s| s.to_i }
       @total_all_time = @by_all_time[0].to_s + ":" + ((@by_all_time[1]*60)/100).to_s + " Hrs."
     end
@@ -88,15 +88,7 @@ class DashboardController < ApplicationController
     @clients = Client.all
     @task_logs = TaskLog.all
 
-    respond_to do |format|
-      if @user.update_attribute(params[current_user.id])
-        format.html { redirect_to @staff, notice: 'Your account was successfully updated.' }
-        format.json { render :show, status: :ok, location: @staff }
-      else
-        format.html { render :edit }
-        format.json { render json: @staff.errors, status: :unprocessable_entity }
-      end
-    end
+    
 
   end
 
