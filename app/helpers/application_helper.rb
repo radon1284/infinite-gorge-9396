@@ -14,4 +14,7 @@ module ApplicationHelper
     first_name = "#{name[0].to_s}"
   end
 		
+  def date_today
+    today = Date.today
+  end
 end

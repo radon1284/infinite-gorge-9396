@@ -28,6 +28,8 @@ class TaskLogsController < ApplicationController
   # GET /task_logs/new
   def new
     # @task_log = TaskLog.new
+    
+    
     @task_log = current_user.task_logs.build
   end
 
