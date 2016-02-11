@@ -4,7 +4,7 @@
 <div id="content-wrapper">
 <div class="panel">
 <div class="panel-heading">
-	<span class="panel-title"><%= @task_log.task_title.titleize %> <strong>(<%= @task_log.task_code %>)</strong></span>
+	<span class="panel-title"><%= @task_log.task_title.titleize %> <strong>(<%= @task_log.task_code %>)</strong></span> <div class="panel-heading-controls"><strong><span class="text-light-gray">Task Created: </span><span class="text-danger"><%= @task_log.task_date.strftime("%B %d. %Y") %></span></strong></div>
 </div>
 	<div class="panel-body buttons-with-margins">
 		<p>
