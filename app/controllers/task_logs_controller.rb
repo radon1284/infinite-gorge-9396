@@ -108,7 +108,7 @@ class TaskLogsController < ApplicationController
   def complete
     respond_to do |format|
       if @task_log.update_attribute(:completed_at, Time.now)
-        format.html { redirect_to @task_log, notice: 'Task log was successfully Approved.'}
+        format.html { redirect_to action: "index", notice: 'Task log was successfully Approved.'}
         format.json { render :index, status: :ok, location: @task_log }
       else
         format.html { render :edit }
