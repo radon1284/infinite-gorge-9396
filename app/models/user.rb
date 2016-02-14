@@ -12,6 +12,15 @@ class User < ActiveRecord::Base
 
   after_initialize :set_default_role, :if => :new_record?
 
+    has_many :team_leader, class_name: "User", foreign_key: "manager_id"
+    belongs_to :manager, class_name: "User"
+
+    has_many :staff, class_name: "User", foreign_key: "team_leader_id"
+    belongs_to :team_leader, class_name: "User"
+
+    has_many :client, class_name: "User", foreign_key: "team_leader_id"
+    belongs_to :team_leader, class_name: "User"
+
   private
   def set_default_role
     self.role ||= :staff
