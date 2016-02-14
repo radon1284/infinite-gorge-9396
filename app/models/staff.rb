@@ -22,6 +22,9 @@ class Staff < ActiveRecord::Base
 	    end
 	end
 
+	def team_leader_id
+	end
+
 	def total_time_today
 	end
 	def total_time_week

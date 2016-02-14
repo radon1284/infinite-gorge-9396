@@ -22,7 +22,7 @@ class DashboardController < ApplicationController
 
 
     # For Team Leader
-    @teamleads = Staff.joins(:user).includes(:clients).includes(:task_logs).where("role = '4'")
+    @teamleads = Staff.joins(:user).includes(:clients).includes(:task_logs).where("role = '4'").where(team_leader_id: current_user)
 
 
     @task_logs_by_date = @task_logs.group_by { |c| c.created_at.to_date }
