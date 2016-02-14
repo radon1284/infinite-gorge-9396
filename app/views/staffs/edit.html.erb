@@ -1,20 +1,23 @@
 <% provide(:title, 'Edit Staff') %>
 <% content_for :body_class, 'theme-default main-menu-animated' %>
 <% content_for :main_wrapper, 'main-wrapper' %>
+
 <div id="content-wrapper">
   <div class="panel">
-  <div class="panel-heading"><h1 class="panel-title">Editing Staff</h1></div>
-  <%= form_for(@staff) do |f| %>
-  <% if @staff.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@staff.errors.count, "error") %> prohibited this staff from being saved:</h2>
-    <ul>
-      <% @staff.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
-  <% end %>
+    <div class="panel-heading">
+      <h1 class="panel-title">Editing Staff</h1>
+    </div>
+    <%= form_for(@staff) do |f| %>
+    <% if @staff.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@staff.errors.count, "error") %> prohibited this staff from being saved:</h2>
+      <ul>
+        <% @staff.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
     <!-- Success background, bordered, without top and bottom borders, without left border, without padding, vertically and horizontally centered text, large text -->
     <div class="stat-cell col-xs-2 bordered no-border-vr no-border-l no-padding valign-middle text-center text-lg" > <%= image_tag("http://gravatar.com/avatar/"+ Digest::MD5.hexdigest(@staff.user.email.downcase)+"?s=100", class: "rounded") %> </div>
     <!-- /.stat-cell --> 
@@ -25,17 +28,14 @@
         <div class="stat-rows">
           <div class="stat-row"> 
             <!-- Success background, small padding, vertically aligned text -->
-            <div class="stat-cell padding-sm valign-middle">
-            <%= f.fields_for :user_attributes, @staff.user do |ff| %> 
+            <div class="stat-cell padding-sm valign-middle"> <%= f.fields_for :user_attributes, @staff.user do |ff| %>
               <div class="row form-group">
                 <label class="col-sm-2 control-label">Role:</label>
                 <div class="col-sm-10"><%= ff.select(:role, User.roles.keys.map {|role| [role.titleize,role]}) %></div>
               </div>
-            <% end %>
-
+              <% end %>
             </div>
           </div>
-          
           <div class="stat-row"> 
             <!-- Success darken background, small padding, vertically aligned text -->
             <div class="stat-cell padding-sm valign-middle">
@@ -45,28 +45,28 @@
               </div>
             </div>
           </div>
-          <% if current_user.role == 'admin' %>
+          <% if @staff.user.role == 'team_leader' %>
           <div class="stat-row"> 
             <!-- Success darker background, small padding, vertically aligned text -->
             <div class="stat-cell padding-sm valign-middle">
-                <div class="row form-group">
-                  <label class="col-sm-2 control-label">Manager:</label>
-                  <div class="col-sm-10"> <%= f.text_field :manager_id, class: "form-control", placeholder: "Enter Manager Id  Here" %> </div>
-                </div>
+              <div class="row form-group">
+                <label class="col-sm-2 control-label">Manager:</label>
+                <div class="col-sm-10"> <%= f.text_field :manager_id, class: "form-control", placeholder: "Enter Manager Id  Here" %> </div>
+              </div>
             </div>
-            </div>
-            <div class="stat-row"> 
+          </div>
+          <% elsif @staff.user.role == 'staff' %>
+          <div class="stat-row"> 
             <!-- Success darker background, small padding, vertically aligned text -->
             <div class="stat-cell padding-sm valign-middle">
-                <div class="row form-group">
-                  <label class="col-sm-2 control-label">Team leader:</label>
-                  <div class="col-sm-10"> <%= f.text_field :team_leader_id, class: "form-control", placeholder: "Enter Team Leader Id  Here" %> </div>
+              <div class="row form-group">
+                <label class="col-sm-2 control-label">Team leader:</label>
+                <div class="col-sm-10"> <%= f.text_field :team_leader_id, class: "form-control", placeholder: "Enter Team Leader Id  Here" %>
                 </div>
-          </div>
+              </div>
+            </div>
           </div>
           <% end %>
-
-        
           <div class="stat-row"> 
             <!-- Success darker background, small padding, vertically aligned text -->
             <div class="stat-cell padding-sm valign-middle">
@@ -77,29 +77,26 @@
             </div>
           </div>
         </div>
-
         <div class="table-success">
           <div class="table-header">
             <div class="table-caption"> Add A Clients </div>
           </div>
           <table class="table table-bordered">
             <tbody>
-            
               <%= hidden_field_tag "staff[client_ids][]", nil %>
-                <% Client.all.each do |client| %>
-                <tr>
-                  <td class="col-sm-3"><%= check_box_tag "staff[client_ids][]", client.id, @staff.client_ids.include?(client.id), id: dom_id(client) %> <%= label_tag dom_id(client), client.full_name %></td>
-                </tr>
-
-                <% end %>
+              <% Client.all.each do |client| %>
+              <tr>
+                <td class="col-sm-3"><%= check_box_tag "staff[client_ids][]", client.id, @staff.client_ids.include?(client.id), id: dom_id(client) %> <%= label_tag dom_id(client), client.full_name %></td>
+              </tr>
+              <% end %>
             </tbody>
           </table>
         </div>
         <div class="actions"> <%= f.submit 'Update Staff', class: 'btn btn-success' %> <%= link_to 'Show', @staff, class: 'btn btn-info' %> <%= link_to 'Back', dashboard_path, class: 'btn btn-primary' %> </div>
         <% end %>
-        </div>
+      </div>
       <!-- /.stat-rows --> 
     </div>
   </div>
-  <!-- /.stat-cell -->
+  <!-- /.stat-cell --> 
 </div>
