@@ -36,9 +36,9 @@
       </thead>
       <tbody class="valign-middle">
         <tr>
-          <td data-title="Today"><%= @total_today %></td>
-          <td data-title="Week"><%= @total_week %></td>
-          <td data-title="Months"><%= @total_month %></td>
+          <td data-title="Today"><%= @staff_total_today %></td>
+          <td data-title="Week"><%= @staff_total_week %></td>
+          <td data-title="Months"><%= @staff_total_month %></td>
         </tr>
       </tbody>
     </table>
@@ -58,7 +58,8 @@
           </tr>
         </thead>
         <tbody class="valign-middle">
-          <%@hrs_by_client.each do |client|%>
+          <% @hrs_by_client_per_staff.each do |client|%>
+          
           <tr>
             <td data-title="Name"><%= client.full_name %></td>
             <td data-title="Business Name"><%= client.business_name %></td>
@@ -67,7 +68,9 @@
              c = ("%.2f" % timeday ).to_s.split(".").map { |s| s.to_i }
               a = c[0].to_s + ":" + ((c[1]*60)/100).to_s + " Hrs." %>
             </td>
-          </tr><%end %>
+          </tr>
+         
+          <%end %>
         </tbody>
       </table>
     </div>
