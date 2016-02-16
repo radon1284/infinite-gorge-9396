@@ -11,4 +11,8 @@ class Employment < ActiveRecord::Base
 		"#{client.full_name}"
 	end
 
+	def get_team_leader_name		
+		"#{staff.full_name}"
+	end
+
 end

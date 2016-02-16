@@ -38,7 +38,7 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
-  Time::DATE_FORMATS[:task_time] = "%H:%M %p"
+  # Time::DATE_FORMATS[:task_time] = "%H:%M %p"
 
   config.action_mailer.default_url_options = { :host => 'localhost:3001' }
   # config.action_mailer.delivery_method = :letter_opener

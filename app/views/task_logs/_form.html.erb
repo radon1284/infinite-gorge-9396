@@ -1,4 +1,16 @@
 <%= form_for(@task_log) do |f| %>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#task_log_task_date').datepicker({
+      changeMonth: false,
+      changeYear: false,
+      stepMonths: false,
+      dateFormat: "yyyy-mm-dd",
+      
+
+    });
+  });
+</script>
 <div class="panel-body">
   <% if @task_log.errors.any? %>
     <div id="error_explanation">
