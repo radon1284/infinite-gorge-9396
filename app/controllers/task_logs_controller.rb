@@ -7,9 +7,9 @@ class TaskLogsController < ApplicationController
   # GET /task_logs.json
   def index
     @users = User.all
-    @staffs = Staff.includes(:client).includes(:task_logs).all
+    @staffs = Staff.all
     @clients = Client.all
-    @task_logs_unapprove = TaskLog.includes(:client).includes(:staff).page(params[:page]).per_page(10)
+    @task_logs_unapprove = TaskLog.includes(:client).includes(:staff).where(completed_at: nil).page(params[:page]).per_page(10)
 
     @task_logs_approve = TaskLog.includes(:client).includes(:staff).page(params[:page]).per_page(10)
 

@@ -16,6 +16,15 @@ class TaskLog < ActiveRecord::Base
 	validates :starting_time, presence: true
 	validates :ending_time, presence: true
 
+	def client_name
+		"#{client.full_name}"
+	end
+
+	def staff_name
+		"#{staff.full_name}"
+	end
+
+
 	def completed?
 		!completed_at.blank?
 	end
