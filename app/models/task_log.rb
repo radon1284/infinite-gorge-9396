@@ -18,11 +18,11 @@ class TaskLog < ActiveRecord::Base
 	validates :ending_time, presence: true
 
 	def client_name
-		"#{client.full_name}"
+		client.try(:full_name)
 	end
 
 	def staff_name
-		"#{staff.full_name}"
+		staff.try(:full_name)
 	end
 
 
