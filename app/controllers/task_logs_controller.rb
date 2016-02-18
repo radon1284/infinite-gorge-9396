@@ -7,11 +7,11 @@ class TaskLogsController < ApplicationController
   # GET /task_logs.json
   def index
     @users = User.all
-    @staffs = Staff.includes(:clients).includes(:task_logs).all
+    @staffs = Staff.includes(:client).includes(:task_logs).all
     @clients = Client.all
-    @task_logs_unapprove = TaskLog.where(completed_at: nil).page(params[:page]).per_page(10)
+    @task_logs_unapprove = TaskLog.includes(:client).where(completed_at: nil).page(params[:page]).per_page(10)
 
-    @task_logs_approve = TaskLog.page(params[:page]).per_page(10)
+    @task_logs_approve = TaskLog.includes(:client).page(params[:page]).per_page(10)
 
     @task_logs_by_date = @task_logs.group_by { |c| c.created_at.to_date }
 
