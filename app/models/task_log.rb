@@ -4,6 +4,7 @@ class TaskLog < ActiveRecord::Base
 	belongs_to :staff
 	belongs_to :client
 	accepts_nested_attributes_for :client, :update_only => true
+	accepts_nested_attributes_for :staff, :update_only => true
 
 	before_save :sum_of_hrs
 	before_save :total_time

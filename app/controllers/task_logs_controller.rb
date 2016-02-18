@@ -9,9 +9,10 @@ class TaskLogsController < ApplicationController
     @users = User.all
     @staffs = Staff.all
     @clients = Client.all
-    @task_logs_unapprove = TaskLog.includes(:client).includes(:staff).where(completed_at: nil).page(params[:page]).per_page(10).all
 
-    @task_logs_approve = TaskLog.includes(:client).includes(:staff).page(params[:page]).per_page(10).all
+    @task_logs_unapprove = TaskLog.includes(:client).includes(:staff).where(completed_at: nil).page(params[:page]).per_page(10)
+
+    @task_logs_approve = TaskLog.includes(:client).includes(:staff).page(params[:page]).per_page(10)
 
     @task_logs_by_date = @task_logs.group_by { |c| c.created_at.to_date }
 
