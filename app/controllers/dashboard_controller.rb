@@ -93,22 +93,30 @@ class DashboardController < ApplicationController
   end
 
   def reports
+
     @dates = DateTime.now.utc
-    @time_today = TaskLog.where('created_at >= ? and created_at <= ?', @dates.beginning_of_day, @dates.end_of_day).sum('total_hrs')
+    @time_today = TaskLog.where('created_at >= ? and created_at <= ?', @dates.beginning_of_day, @dates.end_of_day).where.not(completed_at: '').sum('total_hrs')
     @by_day = ("%.2f" % @time_today).to_s.split(".").map { |s| s.to_i }
     @total_today = @by_day[0].to_s + ":" + ((@by_day[1]*60)/100).to_s + " Hrs."
 
 
-    @time_week = TaskLog.where('created_at >= ? and created_at <= ?', @dates.beginning_of_week(start_day = :monday), @dates.end_of_week(end_day = :sunday)).sum('total_hrs')
+    @time_week = TaskLog.where('created_at >= ? and created_at <= ?', @dates.beginning_of_week(start_day = :monday), @dates.end_of_week(end_day = :sunday)).where.not(completed_at: '').sum('total_hrs')
     @by_week = ("%.2f" % @time_week).to_s.split(".").map { |s| s.to_i }
     @total_week = @by_week[0].to_s + ":" + ((@by_week[1]*60)/100).to_s + " Hrs."
 
 
-    @time_month = TaskLog.where('created_at >= ? and created_at <= ?', @dates.beginning_of_month, @dates.end_of_month).sum('total_hrs')
+    @time_month = TaskLog.where('created_at >= ? and created_at <= ?', @dates.beginning_of_month, @dates.end_of_month).where.not(completed_at: '').sum('total_hrs')
     @by_month = ("%.2f" % @time_month).to_s.split(".").map { |s| s.to_i }
     @total_month = @by_month[0].to_s + ":" + ((@by_month[1]*60)/100).to_s + " Hrs."
 
     @hrs_staff_by_client = TaskLog.joins(:staff).joins(:client).joins(:user).select("staffs.full_name AS full_names").select("staffs.position AS positions").select("clients.full_name AS client_names").select("users.email AS emails").select("clients.*, SUM(task_logs.total_hrs) AS today").group("staffs.id, users.id, clients.id")
+
+    @week_start = @dates.beginning_of_week(start_day = :monday)
+
+    @week_end = @dates.end_of_week(end_day = :sunday)
+
+    @days_count = (@week_start..@week_end)
+
 
     @admin_count = User.where("role = '0'").count
     @manager_count = User.where("role = '1'").count

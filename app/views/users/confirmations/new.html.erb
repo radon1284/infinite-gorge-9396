@@ -1,16 +1,80 @@
-<h2>Resend confirmation instructions</h2>
+<% provide(:title, 'Resend confirmation instructions') %>
+<% content_for :body_class, 'theme-silver page-signin' %>
+<!-- Page background -->
+<% content_for :main_wrapper, 'page-signin-bg' %>
+    <!-- Background overlay -->
+    <div class="overlay"></div>
+    <!-- Replace this with your bg image -->
+    <%= image_tag "demo/signin-bg-1.jpg" %>
+  </div>
+  <!-- / Page background -->
+<div class="signin-container">
 
-<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+    <!-- Left side -->
+    <div class="signin-info">
+       <%= link_to root_path, class: "logo" do %>
+        <%= image_tag "demo/logo-big.png", :style => 'margin-top: -5px'  %>
+        BossDash
+        <% end %>
+      <!-- / .logo -->
+      <div class="slogan">
+        Simple. Flexible. Powerful.
+      </div> <!-- / .slogan -->
+      <ul>
+        <li><i class="fa fa-sitemap signin-icon"></i> Flexible modular structure</li>
+        <li><i class="fa fa-file-text-o signin-icon"></i> LESS &amp; SCSS source files</li>
+        <li><i class="fa fa-outdent signin-icon"></i> RTL direction support</li>
+        <li><i class="fa fa-heart signin-icon"></i> Crafted with love</li>
+      </ul> <!-- / Info list -->
+    </div>
+    <!-- / Left side -->
+
+    <!-- Right side -->
+    <div class="signin-form">
+
+      <!-- Form -->
+<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post, :id => 'signin-form_id' }) do |f| %>
+<div class="signin-text">
+          <span>Sign In to your account</span>
+        </div> <!-- / .signin-text -->
   <%= devise_error_messages! %>
+  <div class="form-group w-icon">
+<%= f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), id: "username_id", class: "form-control input-lg", placeholder: "Email" %> 
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %> 
+    <span class="fa fa-user signin-form-icon"></span>
   </div>
+ 
+  <div class="form-actions">
+  <%= f.submit "Resend confirmation instructions", class: "signin-btn bg-primary" %>
+  </div>
+<% end %>  
+    </div>
+    <!-- Right side -->
+  </div>
+  <!-- / Container -->
 
-  <div class="actions">
-    <%= f.submit "Resend confirmation instructions" %>
-  </div>
+<!-- Get jQuery from Google CDN -->
+<!--[if !IE]> -->
+  <script type="text/javascript"> window.jQuery || document.write('<%= j(javascript_include_tag("https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js")) %>'); </script>
+<!-- <![endif]-->
+<!--[if lte IE 9]>
+  <script type="text/javascript"> window.jQuery || document.write('<%= j(javascript_include_tag("https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js")) %>'); </script>
+<![endif]-->
+<%= javascript_tag do %>
+  // Resize BG
+  init.push(function () {
+    var $ph  = $('#page-signin-bg'),
+        $img = $ph.find('> img');
+
+    $(window).on('resize', function () {
+      $img.attr('style', '');
+      if ($img.height() < $ph.height()) {
+        $img.css({
+          height: '100%',
+          width: 'auto'
+        });
+      }
+    });
+  });
+  window.PixelAdmin.start(init);
 <% end %>
-
-<%= render "Users/shared/links" %>

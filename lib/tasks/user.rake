@@ -11,4 +11,4 @@ end
 	
 # heroku run rake user:resend_confirmation
 
-# http://bossdash.com/profiles/users/confirmation?confirmation_token=4MPgzJRi3LBrKgHVTE83"
+# http://bossdash.com/profiles/users/confirmation?confirmation_token=e9gZ9E3s5a3qZSgsUJ_Y
