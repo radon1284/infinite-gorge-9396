@@ -95,7 +95,7 @@ class DashboardController < ApplicationController
   def reports
 
     @dates = DateTime.now.utc
-    @time_today = TaskLog.where('created_at >= ? and created_at <= ?', @dates.beginning_of_day, @dates.end_of_day).sum('total_hrs')
+    @time_today = TaskLog.where('created_at >= ? and created_at <= ?', @dates.beginning_of_day, @dates.end_of_day).where.not(completed_at: '').sum('total_hrs')
     @by_day = ("%.2f" % @time_today).to_s.split(".").map { |s| s.to_i }
     @total_today = @by_day[0].to_s + ":" + ((@by_day[1]*60)/100).to_s + " Hrs."
 
