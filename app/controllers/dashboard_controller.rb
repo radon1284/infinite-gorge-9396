@@ -95,17 +95,17 @@ class DashboardController < ApplicationController
   def reports
 
     @dates = DateTime.now.utc
-    @time_today = TaskLog.where('created_at >= ? and created_at <= ?', @dates.beginning_of_day, @dates.end_of_day).where.not(completed_at: '').sum('total_hrs')
+    @time_today = TaskLog.where('created_at >= ? and created_at <= ?', @dates.beginning_of_day, @dates.end_of_day).sum('total_hrs')
     @by_day = ("%.2f" % @time_today).to_s.split(".").map { |s| s.to_i }
     @total_today = @by_day[0].to_s + ":" + ((@by_day[1]*60)/100).to_s + " Hrs."
 
 
-    @time_week = TaskLog.where('created_at >= ? and created_at <= ?', @dates.beginning_of_week(start_day = :monday), @dates.end_of_week(end_day = :sunday)).sum('total_hrs')
+    @time_week = TaskLog.where('created_at >= ? and created_at <= ?', @dates.beginning_of_week(start_day = :monday), @dates.end_of_week(end_day = :sunday)).where.not(completed_at: '').sum('total_hrs')
     @by_week = ("%.2f" % @time_week).to_s.split(".").map { |s| s.to_i }
     @total_week = @by_week[0].to_s + ":" + ((@by_week[1]*60)/100).to_s + " Hrs."
 
 
-    @time_month = TaskLog.where('created_at >= ? and created_at <= ?', @dates.beginning_of_month, @dates.end_of_month).sum('total_hrs')
+    @time_month = TaskLog.where('created_at >= ? and created_at <= ?', @dates.beginning_of_month, @dates.end_of_month).where.not(completed_at: '').sum('total_hrs')
     @by_month = ("%.2f" % @time_month).to_s.split(".").map { |s| s.to_i }
     @total_month = @by_month[0].to_s + ":" + ((@by_month[1]*60)/100).to_s + " Hrs."
 
