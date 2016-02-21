@@ -325,7 +325,37 @@
   </div>
   <% elsif current_user.role == 'client' %>
   <div class="panel panel-dark panel-light-green">
-    <div class="panel-heading"><span class="panel-title">My Staff</span></div>
+      <div class="panel-heading">
+         <span class="panel-title"><i class="panel-title-icon fa fa-smile-o"></i>My List of  Staff</span>
+         <div class="panel-heading-controls">
+         </div>
+         <!-- / .panel-heading-controls -->
+      </div>
+      <!-- / .panel-heading -->
+      <table class="table">
+         <thead>
+            <tr>
+               <th>#</th>
+               <th>Full Name</th>
+               <th>Position</th>
+               <th>Role</th>
+            </tr>
+         </thead>
+         <tbody class="valign-middle">
+            <% @client.staffs.each do |staff| %>
+            <tr>
+               <td><%= staff.id %></td>
+               <td> <%= image_tag("http://gravatar.com/avatar/"+ Digest::MD5.hexdigest(staff.user.email.downcase)+"?s=26", class: "rounded") %> <%= staff.full_name %></td>
+               <td><%= staff.position %></td>
+               <td><%= staff.user.role.humanize %></td>
+            </tr>
+            <% end %>
+         </tbody>
+      </table>
+   </div>
+
+  <div class="panel panel-dark panel-light-green">
+    <div class="panel-heading"><span class="panel-title">Time work per Staff</span></div>
     <table class="table table-bordered">
       <tr>
         <th rowspan="2">Full name</th>

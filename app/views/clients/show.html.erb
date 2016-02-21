@@ -16,7 +16,7 @@
                <th>#</th>
                <th>Full Name</th>
                <th>Position</th>
-               <th></th>
+               <th>Role</th>
             </tr>
          </thead>
          <tbody class="valign-middle">
@@ -25,12 +25,14 @@
                <td><%= staff.id %></td>
                <td> <%= image_tag("http://gravatar.com/avatar/"+ Digest::MD5.hexdigest(staff.user.email.downcase)+"?s=26", class: "rounded") %> <%= staff.full_name %></td>
                <td><%= staff.position %></td>
-               <td></td>
+               <td><%= staff.user.role.humanize %></td>
             </tr>
             <% end %>
          </tbody>
       </table>
    </div>
+
+
    <div class="panel panel-success panel-dark widget-profile">
       <div class="panel-heading">
          <div class="widget-profile-bg-icon"><i class="fa fa-flask"></i></div>

@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-
+  before_save :skip_email_confirmtion
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable
@@ -25,6 +25,10 @@ class User < ActiveRecord::Base
   private
   def set_default_role
     self.role ||= :staff
+  end
+
+  def skip_email_confirmtion
+   self.skip_confirmation!
   end
 
 
