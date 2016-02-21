@@ -10,14 +10,17 @@ def my_helper
       # a = c[0].to_s + ":" + ((c[1]*60)/100).to_s + " Hrs."
     end
   end
-def mhsn
-	arr = ["a", "b", "c"]
-		content_tag(:tr) do
-		  arr.each do |item|
-		  concat content_tag(:td, item)
-		end
-	end
-end
+  
+  def mhsn
+  	arr = ["a", "b", "c"]
+  		content_tag(:tr) do
+  		  arr.each do |item|
+  		  concat content_tag(:td, item)
+  		end
+  	end
+  end
+
+
 end
 
 # <tr>

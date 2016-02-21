@@ -138,7 +138,7 @@
                      a = c[0].to_s + ":" + ((c[1]*60)/100).to_s + " Hrs."
                      
                       %></td>
-                  <th data-title="Monday"><%= @total_today %></th>
+                  <th data-title="Monday"></th>
                	<th data-title="Tuesday"></th>
                	<th data-title="Wednsday"></th>
                	<th data-title="Thursday"></th>
@@ -153,6 +153,7 @@
       </table>
    </div>
 
-
-
+<% @days_count.each do |ds| %>
+  
+<% end %>
 </div>
