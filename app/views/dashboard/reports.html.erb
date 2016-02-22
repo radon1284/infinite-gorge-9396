@@ -130,7 +130,7 @@
             <% @hrs_staff_by_client.each do |staff|%>
                
                <tr>
-                  	<td data-title="Name"><%= image_tag("http://gravatar.com/avatar/"+ Digest::MD5.hexdigest(staff.emails.downcase)+"?s=26", class: "rounded") %> <%= staff.full_names %></td>
+                  	<td data-title="Name"><%= image_tag("http://gravatar.com/avatar/"+ Digest::MD5.hexdigest(staff.emails.downcase)+"?s=26", class: "rounded") %> <%= staff.staff_names %></td>
                   	<td data-title="Position"><%= staff.positions %></td>
                   	<td data-title="Position"><%= staff.client_names %></td>
                   
@@ -138,13 +138,14 @@
                      a = c[0].to_s + ":" + ((c[1]*60)/100).to_s + " Hrs."
                      
                       %></td>
-                  <th data-title="Monday"></th>
-               	<th data-title="Tuesday"></th>
-               	<th data-title="Wednsday"></th>
-               	<th data-title="Thursday"></th>
-               	<th data-title="Friday"></th>
-               	<th data-title="Saturday"></th>
-               	<th data-title="Sunday"></th>
+
+                  <td data-title="Monday"></td>
+               	<td data-title="Tuesday"></td>
+               	<td data-title="Wednsday"></td>
+               	<td data-title="Thursday"></td>
+               	<td data-title="Friday"></td>
+               	<td data-title="Saturday"></td>
+               	<td data-title="Sunday"></td>
                   
                </tr>
             
@@ -152,8 +153,9 @@
          </tbody>
       </table>
    </div>
-
-<% @days_count.each do |ds| %>
-  
+   <ul>
+<% @summaries.each do |value| %>
+<li><%= value.total_hrs %></li>
 <% end %>
+</ul>
 </div>

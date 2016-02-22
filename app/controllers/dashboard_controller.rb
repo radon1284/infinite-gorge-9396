@@ -109,14 +109,14 @@ class DashboardController < ApplicationController
     @by_month = ("%.2f" % @time_month).to_s.split(".").map { |s| s.to_i }
     @total_month = @by_month[0].to_s + ":" + ((@by_month[1]*60)/100).to_s + " Hrs."
 
-    @hrs_staff_by_client = TaskLog.joins(:staff).joins(:client).joins(:user).select("staffs.full_name AS full_names").select("staffs.position AS positions").select("clients.full_name AS client_names").select("users.email AS emails").select("clients.*, SUM(task_logs.total_hrs) AS today").group("staffs.id, users.id, clients.id")
+    @hrs_staff_by_client = TaskLog.joins(:staff).joins(:client).joins(:user).select("staffs.full_name AS staff_names").select("staffs.position AS positions").select("clients.full_name AS client_names").select("users.email AS emails").select("clients.*, SUM(task_logs.total_hrs) AS today").where.not(completed_at: nil).group("staffs.id, users.id, clients.id")
 
     @week_start = @dates.beginning_of_week(start_day = :monday)
 
-    @week_end = @dates.end_of_week(end_day = :sunday)
+    @week_end = @dates.end_of_week(end_day = :monday)
 
     @days_count = (@week_start..@week_end)
-
+    @time_per_day = TaskLog.joins(:staff).joins(:client).joins(:user).where.not(completed_at: nil).sum('total_hrs')
 
     @admin_count = User.where("role = '0'").count
     @manager_count = User.where("role = '1'").count
@@ -126,12 +126,14 @@ class DashboardController < ApplicationController
 
     # @half_mnths = TaskLog.group('date(created_at)').having("date(created_at) > ?", Date.today - 14).sum(:total_hrs)
 
-    summary = TaskLog.group('date(created_at)').sum(:total_hrs).to_a
-    @past_two_weeks = ((Date.today - 14).. Date.today)
+    # @summary = TaskLog.group('date(completed_at)').select("staffs.full_name AS staff_names").sum(:total_hrs).to_a
+    # @past_two_weeks = (@week_start..@week_end)
 
-    @half_mnths =Hash[*@past_two_weeks.map(&:to_s).product([0.0]).flatten].merge Hash[*summary.flatten]
+    # @half_mnths = Hash[*@past_two_weeks.map(&:to_s).product([0.0]).flatten].merge Hash[*@summary.flatten]
 
-    @half_mnths.to_a
+    # @half_mnths.to_a
+
+    @summaries = TaskLog.group_by_day(:created_at).sum(:total_hrs)
 
   end
 
