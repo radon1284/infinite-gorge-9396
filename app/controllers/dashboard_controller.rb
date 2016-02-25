@@ -126,14 +126,14 @@ class DashboardController < ApplicationController
 
     # @half_mnths = TaskLog.group('date(created_at)').having("date(created_at) > ?", Date.today - 14).sum(:total_hrs)
 
-    # @summary = TaskLog.group('date(completed_at)').select("staffs.full_name AS staff_names").sum(:total_hrs).to_a
-    # @past_two_weeks = (@week_start..@week_end)
+
 
     # @half_mnths = Hash[*@past_two_weeks.map(&:to_s).product([0.0]).flatten].merge Hash[*@summary.flatten]
-
     # @half_mnths.to_a
+    # @past_two_weeks = (@week_start..@week_end)
+    # @summary = TaskLog.group('date(completed_at)').select("staffs.full_name AS staff_names").sum(:total_hrs).to_a
 
-    @summaries = TaskLog.group_by_day(:created_at).sum(:total_hrs)
+    # @summaries = TaskLog.group_by_day(:created_at).sum(:total_hrs)
 
   end
 
