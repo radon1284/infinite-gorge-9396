@@ -84,9 +84,10 @@ class StaffsController < ApplicationController
   # PATCH/PUT /staffs/1
   # PATCH/PUT /staffs/1.json
   def update
+    @staff = Staff.find(params[:id])
     respond_to do |format|
       if @staff.update(update_staff_params)
-        format.html { redirect_to @staff, notice: 'Staff was successfully updated.' }
+        format.html { redirect_to edit_staff_path(@staff), notice: 'Staff was successfully updated.' }
         format.json { render :show, status: :ok, location: @staff }
       else
         format.html { render :edit }
@@ -117,6 +118,6 @@ class StaffsController < ApplicationController
     end
     
     def update_staff_params
-      params.require(:staff).permit(:full_name, :position, :user_id, :admin_id, :manager_id, :team_leader_id, user_attributes: [ :id , :role, :user_id, :admin_id, :manager_id, :team_leader_id], client_ids:[], employment_attributes:[:multiplier])
+      params.require(:staff).permit(:full_name, :position, :user_id, :admin_id, :manager_id, :team_leader_id, user_attributes: [ :id , :role, :user_id, :admin_id, :manager_id, :team_leader_id], client_ids:[], employments_attributes:[:multiplier, :id])
     end
 end

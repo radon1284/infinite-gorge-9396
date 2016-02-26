@@ -17,6 +17,8 @@ class TaskLog < ActiveRecord::Base
 	validates :starting_time, presence: true
 	validates :ending_time, presence: true
 
+	enum switcher: [:calculate_time, :input_ime]
+
 	def client_name
 		client.try(:full_name)
 	end
