@@ -124,16 +124,7 @@ class DashboardController < ApplicationController
     @clients_count = User.where("role = '3'").count
     @staffs_count = User.where("role = '4'").count
 
-    # @half_mnths = TaskLog.group('date(created_at)').having("date(created_at) > ?", Date.today - 14).sum(:total_hrs)
-
-
-
-    # @half_mnths = Hash[*@past_two_weeks.map(&:to_s).product([0.0]).flatten].merge Hash[*@summary.flatten]
-    # @half_mnths.to_a
-    # @past_two_weeks = (@week_start..@week_end)
-    # @summary = TaskLog.group('date(completed_at)').select("staffs.full_name AS staff_names").sum(:total_hrs).to_a
-
-    # @summaries = TaskLog.group_by_day(:created_at).sum(:total_hrs)
+    @credits = TaskLog.joins(:staff).joins(:client).joins(:user).joins(:employment).select("staffs.full_name AS staff_names").select("staffs.position AS positions").select("clients.full_name AS client_names").select("employments.*, SUM(employments.multiplier) AS credit_remaining").select("clients.*, SUM(task_logs.total_hrs) AS today").where.not(completed_at: nil).group("staffs.id, users.id, clients.id")
 
   end
 

@@ -85,6 +85,7 @@
             <tbody>
               <%= hidden_field_tag "staff[client_ids][]", nil %>
               <% Client.all.each do |client| %>
+              
               <tr>
                 <td class="col-sm-3"><%= check_box_tag "staff[client_ids][]", client.id, @staff.client_ids.include?(client.id), id: dom_id(client) %> <%= label_tag dom_id(client), client.full_name %></td>
 
@@ -93,23 +94,23 @@
             </tbody>
           </table>
         </div>
-<div class="table-success">
-  <div class="table-header">
-    <div class="table-caption">Client Credits for each Staff</div>
-  </div>
-  <table class="table table-bordered">
-  <tbody>
-  <% if @staff.employments.present? %>
-    <%= f.fields_for :employments do |ugf| %>
-      <tr><td class="col-sm-3"><% client = ugf.object.client %>
-      <%= client.full_name rescue 'invalid ug' %></td>
-      <td class="col-sm-9"><%= ugf.text_field :multiplier %></td>
-      </td></tr>
-    <% end %>
-  <% else %>
-    <tr><td class="col-sm-3">No Users in this group yet</td></tr>
-  <% end %>
-</tbody>
+        <div class="table-success">
+          <div class="table-header">
+            <div class="table-caption">Client Credits for each Staff</div>
+          </div>
+          <table class="table table-bordered">
+            <tbody>
+              <% if @staff.employments.present? %>
+                <%= f.fields_for :employments do |ugf| %>
+                  <tr><td class="col-sm-3"><% client = ugf.object.client %>
+                  <%= client.full_name rescue 'invalid ug' %></td>
+                  <td class="col-sm-9"><%= ugf.text_field :multiplier, class: "form-control" %></td>
+                  </td></tr>
+                <% end %>
+              <% else %>
+                <tr><td class="col-sm-3">No Client for this staff yet</td></tr>
+              <% end %>
+            </tbody>
           </table>
         </div>
 
