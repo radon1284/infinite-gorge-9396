@@ -124,7 +124,7 @@ class DashboardController < ApplicationController
     @clients_count = User.where("role = '3'").count
     @staffs_count = User.where("role = '4'").count
 
-    @credits = TaskLog.joins(:staff).joins(:client).joins(:user).joins(:employment).select("staffs.full_name AS staff_names").select("staffs.position AS positions").select("clients.full_name AS client_names").select("employments.*, SUM(employments.multiplier) AS credit_remaining").select("clients.*, SUM(task_logs.total_hrs) AS today").where.not(completed_at: nil).group("staffs.id, users.id, clients.id")
+    @credits = TaskLog.joins(:staff).joins(:client).joins(:user).joins(:employment).select("staffs.full_name AS staff_names").select("staffs.position AS positions").select("clients.full_name AS client_names").select("employments.*, SUM(employments.multiplier) AS multipliers").select("clients.*, SUM(task_logs.total_hrs) AS today").where.not(completed_at: nil).group("staffs.id, users.id, clients.id")
 
   end
 

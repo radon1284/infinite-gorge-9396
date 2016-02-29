@@ -68,6 +68,8 @@
   </div>
 
   <%= f.hidden_field :total_hrs, :value => "" %>
+  
+  <%= f.hidden_field :employment_id, :value => get_employment_id %>
   <%= f.hidden_field :staff_id, :value => current_user.meta.id %>
   <div class="col-sm-offset-2 col-sm-10">
     <%= f.submit value: "Add Task", class: "btn btn-primary" %>

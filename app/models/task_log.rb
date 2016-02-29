@@ -55,4 +55,8 @@ class TaskLog < ActiveRecord::Base
     	total = TaskLog.group("date(created_at)").where(user_id: user.id).sum(:total_hrs).values
   	end
 
+  	def get_employment_id
+  		emp_id = Employment.where(staff_id: current_user.meta.id)
+  	end
+
 end

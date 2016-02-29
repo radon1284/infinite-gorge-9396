@@ -167,8 +167,9 @@
          <th>Client Name</th>
             <th >Staff Name</th>
             <th >Postion</th>
-            <th >Current Credits</th>
-            <th >Time</th>
+            <th >Credits Remaning</th>
+            <th >Time Running for client</th>
+            <th >Time Use By Staff</th>
          </tr>
          </thead>
          <tbody class="valign-middle">
@@ -179,8 +180,13 @@
                   <td data-title="Position"><%= staff.client_names %></td>
                   <td data-title="Name"><%= staff.staff_names %></td>
                   <td data-title="Position"><%= staff.positions %></td>
-                  <td data-title="Position"><%= c_results = staff.credit_remaining - staff.today
-                  c = ("%.2f" % c_results).to_s.split(".").map { |s| s.to_i }
+                  <td data-title="Position"><%= 
+                  c_results = staff.multipliers * staff.today
+                  credits = staff.client.initial_hrs - c_results
+                  c = ("%.2f" % credits).to_s.split(".").map { |s| s.to_i }
+                     a = c[0].to_s + ":" + ((c[1]*60)/100).to_s + " Hrs." %></td>
+                  <td data-title="Position"><%= t_results = staff.multipliers * staff.today
+                  c = ("%.2f" % t_results).to_s.split(".").map { |s| s.to_i }
                      a = c[0].to_s + ":" + ((c[1]*60)/100).to_s + " Hrs." %></td>
                   <td data-title="Time Worked"><%= c = ("%.2f" % staff.today).to_s.split(".").map { |s| s.to_i }
                      a = c[0].to_s + ":" + ((c[1]*60)/100).to_s + " Hrs."

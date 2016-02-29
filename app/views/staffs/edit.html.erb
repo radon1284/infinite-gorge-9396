@@ -85,7 +85,7 @@
             <tbody>
               <%= hidden_field_tag "staff[client_ids][]", nil %>
               <% Client.all.each do |client| %>
-              
+
               <tr>
                 <td class="col-sm-3"><%= check_box_tag "staff[client_ids][]", client.id, @staff.client_ids.include?(client.id), id: dom_id(client) %> <%= label_tag dom_id(client), client.full_name %></td>
 
@@ -96,7 +96,7 @@
         </div>
         <div class="table-success">
           <div class="table-header">
-            <div class="table-caption">Client Credits for each Staff</div>
+            <div class="table-caption">Client Multiplier</div>
           </div>
           <table class="table table-bordered">
             <tbody>
