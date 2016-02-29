@@ -38,9 +38,6 @@
       <div class="row form-group"> <%= f.label :crm_code, class: "col-sm-2 control-label" %>
         <div class="col-sm-10"> <%= f.text_field :crm_code, class: "form-control" %></div>
       </div>
-      <div class="row form-group"> <label class = "col-sm-2 control-label">Credits</label>
-        <div class="col-sm-10"> <%= f.text_field :initial_hrs, class: "form-control" %></div>
-      </div>
       <div class="table-success">
         <div class="table-header">
           <div class="table-caption"> List of Staffs </div>
@@ -56,6 +53,27 @@
             </tbody>
           
         </table>
+
+        <div class="table-success">
+          <div class="table-header">
+            <div class="table-caption">Credits per Staff</div>
+          </div>
+          <table class="table table-bordered">
+            <tbody>
+              <% if @client.employments.present? %>
+                <%= f.fields_for :employments do |ugf| %>
+                  <tr><td class="col-sm-3"><% staff = ugf.object.staff %>
+                  <%= staff.full_name rescue 'invalid ug' %></td>
+                  <td class="col-sm-9"><%= ugf.text_field :credits, class: "form-control" %></td>
+                  </td></tr>
+                <% end %>
+              <% else %>
+                <tr><td class="col-sm-3">No Client for this staff yet</td></tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+
       </div>
       <%= f.submit 'Edit Client', class: "btn btn-success"  %> <%= link_to 'Show', @client, class: "btn btn-info" %> <%= link_to 'Back', dashboard_path, class: "btn btn-primary"  %>
       <% end %>

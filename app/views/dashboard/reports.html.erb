@@ -181,10 +181,12 @@
                   <td data-title="Name"><%= staff.staff_names %></td>
                   <td data-title="Position"><%= staff.positions %></td>
                   <td data-title="Position"><%= 
-                  c_results = staff.multipliers * staff.today
-                  credits = staff.client.initial_hrs - c_results
-                  c = ("%.2f" % credits).to_s.split(".").map { |s| s.to_i }
-                     a = c[0].to_s + ":" + ((c[1]*60)/100).to_s + " Hrs." %></td>
+                  t_results = staff.multipliers * staff.today
+                  credits_remaning = staff.staff_credits - t_results
+                  c = ("%.2f" % credits_remaning).to_s.split(".").map { |s| s.to_i }
+                     a = c[0].to_s + ":" + ((c[1]*60)/100).to_s + " Hrs."
+
+                   %></td>
                   <td data-title="Position"><%= t_results = staff.multipliers * staff.today
                   c = ("%.2f" % t_results).to_s.split(".").map { |s| s.to_i }
                      a = c[0].to_s + ":" + ((c[1]*60)/100).to_s + " Hrs." %></td>

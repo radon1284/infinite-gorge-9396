@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160228142947) do
+ActiveRecord::Schema.define(version: 20160229011700) do
 
   create_table "bootsy_image_galleries", force: :cascade do |t|
     t.integer  "bootsy_resource_id"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20160228142947) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.float    "multiplier"
+    t.float    "credits"
   end
 
   add_index "employments", ["client_id"], name: "index_employments_on_client_id"
