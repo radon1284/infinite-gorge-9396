@@ -21,6 +21,9 @@ class User < ActiveRecord::Base
     has_many :client, class_name: "User", foreign_key: "team_leader_id"
     belongs_to :team_leader, class_name: "User"
 
+  def team_leader_name
+    "#{staff.full_name}"
+  end
 
   private
   def set_default_role

@@ -51,7 +51,9 @@
             <div class="stat-cell padding-sm valign-middle">
               <div class="row form-group">
                 <label class="col-sm-2 control-label">Manager:</label>
-                <div class="col-sm-10"> <%= f.text_field :manager_id, class: "form-control", placeholder: "Enter Manager Id  Here" %> </div>
+                <div class="col-sm-10"><%= select("user","manager_id", User.where("role = '1'").collect {|p| [ p.email, p.id ] }, { include_blank: true })
+%>
+                </div>
               </div>
             </div>
           </div>
@@ -61,7 +63,8 @@
             <div class="stat-cell padding-sm valign-middle">
               <div class="row form-group">
                 <label class="col-sm-2 control-label">Team leader:</label>
-                <div class="col-sm-10"> <%= f.text_field :team_leader_id, class: "form-control", placeholder: "Enter Team Leader Id  Here" %>
+               
+                <div class="col-sm-10"><%= select("staff","full_name", Staff.joins(:user).where("role = '2'").collect {|p| [ p.full_name, p.id ] }, {prompt: 'Select Team Leader'}) %>
                 </div>
               </div>
             </div>

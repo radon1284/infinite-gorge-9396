@@ -9,6 +9,7 @@ class TaskLog < ActiveRecord::Base
 
 	before_save :sum_of_hrs
 	before_save :total_time
+	before_save :get_employment_id
 
 	validates :client_id, presence: true
 	validates :task_title, presence: true
