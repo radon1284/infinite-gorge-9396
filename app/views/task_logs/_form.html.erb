@@ -59,6 +59,14 @@
     <%= f.time_select :ending_time, {ampm: true} %>
      </div>
   </div>
+  <p>Or</p>
+ <div class="form-group">
+    <%= f.label :total_hrs, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10 ">
+    <%= f.text_field :total_hrs, class: "form-control", placeholder: :total_hrs %>
+     </div>
+  </div>
+
   <div class="form-group">
   <div class="col-sm-2"></div>
     <div class="col-sm-10 ">
@@ -68,8 +76,6 @@
   </div>
 
   <%= f.hidden_field :total_hrs, :value => "" %>
-  
-  <%= f.hidden_field :employment_id, :value => get_employment_id %>
   <%= f.hidden_field :staff_id, :value => current_user.meta.id %>
   <div class="col-sm-offset-2 col-sm-10">
     <%= f.submit value: "Add Task", class: "btn btn-primary" %>

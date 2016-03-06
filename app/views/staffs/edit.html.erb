@@ -51,7 +51,7 @@
             <div class="stat-cell padding-sm valign-middle">
               <div class="row form-group">
                 <label class="col-sm-2 control-label">Manager:</label>
-                <div class="col-sm-10"><%= select("user","manager_id", User.where("role = '1'").collect {|p| [ p.email, p.id ] }, { include_blank: true })
+                <div class="col-sm-10"><%= select("staff","full_name", Staff.joins(:user).collect {|p| [ p.full_name, p.id ] }, { include_blank: true })
 %>
                 </div>
               </div>
@@ -64,7 +64,7 @@
               <div class="row form-group">
                 <label class="col-sm-2 control-label">Team leader:</label>
                
-                <div class="col-sm-10"><%= select("staff","full_name", Staff.joins(:user).where("role = '2'").collect {|p| [ p.full_name, p.id ] }, {prompt: 'Select Team Leader'}) %>
+                <div class="col-sm-10"><%= f.select("team_leader_id", Staff.joins(:user).where("role = '2'").collect {|p| [ p.full_name, p.id ] }, {prompt: 'Select Team Leader'}) %>
                 </div>
               </div>
             </div>

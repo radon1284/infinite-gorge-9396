@@ -70,6 +70,7 @@ class TaskLogsController < ApplicationController
   # POST /task_logs.json
   def create
     # @task_log = TaskLog.new(task_log_params)
+     # @post.user_id = current_user.id
     @task_log = current_user.task_logs.build(task_log_params)
     respond_to do |format|
       if @task_log.save
