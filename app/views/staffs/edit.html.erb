@@ -62,7 +62,7 @@
             <!-- Success darker background, small padding, vertically aligned text -->
             <div class="stat-cell padding-sm valign-middle">
               <div class="row form-group">
-                <label class="col-sm-2 control-label">Team leader:</label>
+                <label class="col-sm-2 control-label">Assign Team leader:</label>
                
                 <div class="col-sm-10"><%= f.select("team_leader_id", Staff.joins(:user).where("role = '2'").collect {|p| [ p.full_name, p.id ] }, {prompt: 'Select Team Leader'}) %>
                 </div>
