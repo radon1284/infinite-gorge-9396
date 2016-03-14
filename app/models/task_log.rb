@@ -29,6 +29,10 @@ class TaskLog < ActiveRecord::Base
 		staff.try(:full_name)
 	end
 
+	def business_name
+		staff.try(:business_name)
+	end
+
 
 	def completed?
 		!completed_at.blank?

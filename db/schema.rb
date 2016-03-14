@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160229011700) do
+ActiveRecord::Schema.define(version: 20160314052604) do
 
   create_table "bootsy_image_galleries", force: :cascade do |t|
     t.integer  "bootsy_resource_id"
@@ -33,16 +33,22 @@ ActiveRecord::Schema.define(version: 20160229011700) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.string   "crm_code"
-    t.float    "initial_hrs"
   end
+
+  create_table "credits", force: :cascade do |t|
+    t.float    "credits"
+    t.integer  "client_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "credits", ["client_id"], name: "index_credits_on_client_id"
 
   create_table "employments", force: :cascade do |t|
     t.integer  "staff_id"
     t.integer  "client_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.float    "multiplier"
-    t.float    "credits"
   end
 
   add_index "employments", ["client_id"], name: "index_employments_on_client_id"

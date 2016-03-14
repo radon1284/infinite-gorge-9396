@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   get 'myprofile' => 'dashboard#edit_profile'
   get 'reports' => 'dashboard#reports'
 
-  resources :clients
+  resources :clients do
+    resources :credits
+  end
   resources :staffs
   resources :task_logs do
     member do
