@@ -6,7 +6,11 @@ Rails.application.routes.draw do
   get 'reports' => 'dashboard#reports'
 
   resources :clients do
-    resources :credits
+    resources :credits do
+      member do
+        patch :complete
+      end
+    end
   end
   resources :staffs
   resources :task_logs do

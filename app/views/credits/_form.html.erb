@@ -1,0 +1,4 @@
+<%= form_for([@client, @client.credits.build]) do |f| %>
+	<%= f.text_field :credits, placeholder: :credits %>
+	<%= f.submit %>
+<% end %>

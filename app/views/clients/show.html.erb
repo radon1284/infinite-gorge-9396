@@ -70,6 +70,12 @@
          </div>
       </div>
    </div>
+<div id="credits_wrapper">
+   <%= render @client.credits %>
+   <div id="form">
+      <%= render "credits/form" %>
+   </div>
+</div>
    <%= link_to 'Edit', edit_client_path(@client), class: "btn btn-info" %>
    <%= link_to 'Back', dashboard_path, class: "btn btn-primary" %>
 
