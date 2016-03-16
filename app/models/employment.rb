@@ -9,9 +9,9 @@ class Employment < ActiveRecord::Base
 
 	# validates :multiplier, presence: true
 
-	def get_employment_id
-  		emp_id = Employment.where(staff_id: current_user.meta.id)
-  	end
+	# def get_employment_id
+ 	# 	emp_id = Employment.where(staff_id: current_user.meta.id)
+ 	# end
 	
 	def get_client_name		
 		"#{client.full_name}"
