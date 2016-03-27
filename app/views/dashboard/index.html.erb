@@ -446,7 +446,7 @@
               <%= @hrs_by_day %>
               <% if task_log.user == current_user %>
                 <li class="list-group-item">
-                  <%= task_log.task_title %>
+                  <%= task_log.task_title %> - <%= task_log.total_hrs %>
                 </li>
               <% end %>
             <% end %>

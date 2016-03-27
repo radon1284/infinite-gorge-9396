@@ -38,6 +38,7 @@ class TaskLog < ActiveRecord::Base
 		!completed_at.blank?
 	end
 
+
 	def sum_of_hrs
 		sum_value = (self.ending_time - self.starting_time)/3600
 		hrs_value = "%.2f" % ((sum_value*60)/60)

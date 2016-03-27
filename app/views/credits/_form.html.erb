@@ -1,4 +1,11 @@
+<div class="panel form-horizontal">
 <%= form_for([@client, @client.credits.build]) do |f| %>
-	<%= f.text_field :credits, placeholder: :credits %>
-	<%= f.submit %>
+
+<div class="input-group">
+	<%= f.text_field :credits, placeholder: :credits, class: "form-control" %>
+	<span class="input-group-btn">
+		 <%= f.submit "Add Credits", class: "btn btn-default" %>
+	</span>
+</div>
 <% end %>
+</div>

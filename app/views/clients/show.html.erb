@@ -2,20 +2,37 @@
 <% content_for :body_class, 'theme-default main-menu-animated' %>
 <% content_for :main_wrapper, 'main-wrapper' %>
 <div id="content-wrapper">
-   <div class="panel panel-dark panel-light-green">
-      <div class="panel-heading">
-         <span class="panel-title"><i class="panel-title-icon fa fa-smile-o"></i>Client Staff</span>
-         <div class="panel-heading-controls">
-         </div>
-         <!-- / .panel-heading-controls -->
-      </div>
+
+<div class="table-success">
+  <div class="table-header">
+    <div class="table-caption"> Credit Report </div>
+  </div>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Status</th>
+        <th>Credits</th>
+        <th>Date Added</th>
+        <th></th>
+      </tr>
+    </thead>
+    <%= render @client.credits %>
+  </table>
+</div>
+<div id="form"> <%= render "credits/form" %> </div>
+
+   <div class="table-success">
+   <div class="table-header">
+    <div class="table-caption"> Client Staff </div>
+  </div>
       <!-- / .panel-heading -->
-      <table class="table">
+      <table class="table table-bordered">
          <thead>
             <tr>
                <th>#</th>
                <th>Full Name</th>
                <th>Position</th>
+               <th>Credits Remaining</th>
                <th>Role</th>
             </tr>
          </thead>
@@ -25,6 +42,7 @@
                <td><%= staff.id %></td>
                <td> <%= image_tag("http://gravatar.com/avatar/"+ Digest::MD5.hexdigest(staff.user.email.downcase)+"?s=26", class: "rounded") %> <%= staff.full_name %></td>
                <td><%= staff.position %></td>
+               <td></td>
                <td><%= staff.user.role.humanize %></td>
             </tr>
             <% end %>

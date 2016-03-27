@@ -1,25 +1,26 @@
 <tbody>
   <% if credit.completed? %>
     <tr>
-      <td><div class="complete"><%= link_to complete_client_credit_path(@client, credit.id), method: :patch do %><i style="opacity: 0.4;" class="fa fa-check"></i>
+      <td><%= link_to complete_client_credit_path(@client, credit.id), method: :patch do %><i style="opacity: 0.4;" class="fa fa-check"></i>
     <% end %>
-  </div></td>
+  </td>
       <td><p style="opacity: 0.4;"><strike><%= credit.credits %></strike></p></td>
-      <td><div class="trash"> <%= link_to client_credit_path(@client, credit.id), method: :delete, data: { confirm: "Are you sure?" } do %> <i class="fa fa-trash"></i>
+      <td><%= credit.created_at.strftime("%a %B %d %Y") %></td>
+      <td><%= link_to client_credit_path(@client, credit.id), method: :delete, data: { confirm: "Are you sure?" } do %> <i class="fa fa-trash"></i>
     <% end %></td>
 
     </tr>
 <% else %>
     <tr>
-      <td><div class="complete"> <%= link_to complete_client_credit_path(@client, credit.id), method: :patch do %> <i class="fa fa-check"></i>
+      <td><%= link_to complete_client_credit_path(@client, credit.id), method: :patch do %> <i class="fa fa-check"></i>
     <% end %>
-  </div></td>
-      <td><p><%= credit.credits  %></p></td>
-      <td><div class="trash"> <%= link_to client_credit_path(@client, credit.id), method: :delete, data: { confirm: "Are you sure?" } do %> <i class="fa fa-trash"></i>
+  </td>
+      <td><%= credit.credits  %></td>
+      <td><%= credit.created_at.strftime("%a %B %d %Y") %></td>
+      <td><%= link_to client_credit_path(@client, credit.id), method: :delete, data: { confirm: "Are you sure?" } do %> <i class="fa fa-trash"></i>
     <% end %>
-  </div>
-  
-</div></td>
-    </tr>
-    <% end %>
-  </tbody>
+    </td>
+</tr>
+<% end %>
+</tbody>
+

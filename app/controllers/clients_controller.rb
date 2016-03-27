@@ -46,7 +46,7 @@ class ClientsController < ApplicationController
   def update
     respond_to do |format|
       if @client.update(update_client_params)
-        format.html { redirect_to edit_staff_path(@client), notice: 'Client was successfully updated.' }
+        format.html { redirect_to edit_client_path(@client), notice: 'Client was successfully updated.' }
         format.json { render :show, status: :ok, location: @client }
       else
         format.html { render :edit }

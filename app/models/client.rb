@@ -12,7 +12,7 @@ class Client < ActiveRecord::Base
 	 validates :full_name, presence: true
 	 validates :business_name, presence: true
 	 validates :crm_code, presence: true
-	 validates :initial_hrs, presence: true
+	 # validates :initial_hrs, presence: true
 
 
 	def total_time_today

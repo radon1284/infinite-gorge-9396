@@ -139,9 +139,12 @@
                      
                       %></td>
 
-                  <td data-title="Monday"></td>
-               	<td data-title="Tuesday"></td>
-               	<td data-title="Wednsday"></td>
+                  <td data-title="Monday"><%= c = ("%.2f" % staff.monday).to_s.split(".").map { |s| s.to_i }
+                     a = c[0].to_s + ":" + ((c[1]*60)/100).to_s + " Hrs."
+                     
+                      %></td>
+               	<td data-title="Tuesday"><% if 6.day.ago.wday == 1 %><%= staff.today %><% else %> 0 hrs.<% end %></td>
+               	<td data-title="Wednsday"><% if 5.day.ago.wday == 2 %><%= staff.today %><% else %> 0 hrs.<% end %></td>
                	<td data-title="Thursday"></td>
                	<td data-title="Friday"></td>
                	<td data-title="Saturday"></td>
@@ -153,44 +156,4 @@
          </tbody>
       </table>
    </div>
-   <div class="table-success">
-      <div class="table-header"> 
-         <div class="table-caption">
-         Client Credit Remaining
-         </div>
-         <!-- / .panel-heading-controls --> 
-      </div>
-      <!-- / .panel-heading -->
-      <table class="table table-bordered">
-      <thead>
-         <tr>
-         <th>Client Name</th>
-            <th >Staff Name</th>
-            <th >Postion</th>
-            <th >Credits Remaning</th>
-            <th >Time Running for client</th>
-            <th >Time Use By Staff</th>
-         </tr>
-         </thead>
-         <tbody class="valign-middle">
-
-            <% @credits.each do |staff|%>
-               
-               <tr>
-                  <td data-title="Position"><%= staff.client_names %></td>
-                  <td data-title="Name"><%= staff.staff_names %></td>
-                  <td data-title="Position"><%= staff.positions %></td>
-                  <td data-title="Position"></td>
-                  <td data-title="Position"></td>
-                  <td data-title="Time Worked"><%= c = ("%.2f" % staff.today).to_s.split(".").map { |s| s.to_i }
-                     a = c[0].to_s + ":" + ((c[1]*60)/100).to_s + " Hrs."
-                      %></td>
-               </tr>
-            
-            <% end %>
-         </tbody>
-      </table>
-   </div>
-
-
 </div>

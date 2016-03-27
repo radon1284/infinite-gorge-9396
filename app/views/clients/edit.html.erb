@@ -54,21 +54,8 @@
           
         </table>
       </div>
-      <div id="credits_wrapper">
-      <table class="table table-bordered">
-  <thead>
-    <tr>
-      <th>Credits Depleted</th>
-      <th>Remaining</th>
-      <th>Trash</th>
-    </tr>
-  </thead>
-   <%= render @client.credits %>
-</table>
-   <div id="form">
-      <%= render "credits/form" %>
-   </div>
-</div>
+
+
       <%= f.submit 'Edit Client', class: "btn btn-success"  %> <%= link_to 'Show', @client, class: "btn btn-info" %> <%= link_to 'Back', dashboard_path, class: "btn btn-primary"  %>
       <% end %>
     </div>
