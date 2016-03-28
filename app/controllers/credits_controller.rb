@@ -32,6 +32,6 @@ class CreditsController < ApplicationController
 	end
 
 	def credit_params
-		params[:credit].permit(:credits)
+		params[:credit].permit(:credits, :staff_id)
 	end
 end
