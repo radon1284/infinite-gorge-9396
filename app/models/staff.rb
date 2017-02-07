@@ -3,8 +3,8 @@ class Staff < ActiveRecord::Base
 	has_one :user, as: :meta, dependent: :destroy
 	accepts_nested_attributes_for :user, :update_only => true
 
-	has_many :task_logs
-	has_many :credits
+	has_many :task_logs, dependent: :destroy
+	has_many :credits, dependent: :destroy
 
 	has_many :employments
 	has_many :clients, :through => :employments

@@ -6,8 +6,8 @@ class Client < ActiveRecord::Base
 	 has_many :employments
 	 has_many :staffs, :through => :employments
 	 accepts_nested_attributes_for :employments, allow_destroy: true
-	 has_many :task_logs
-	 has_many :credits
+	 has_many :task_logs, dependent: :destroy
+	 has_many :credits, dependent: :destroy
 
 	 validates :full_name, presence: true
 	 validates :business_name, presence: true

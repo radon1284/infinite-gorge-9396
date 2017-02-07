@@ -2,158 +2,148 @@
 <% content_for :body_class, 'theme-default main-menu-animated page-profile' %>
 <% content_for :main_wrapper, 'main-wrapper' %>
 <div id="content-wrapper">
-	<div class="stat-panel">
-      <div class="stat-row">
-         <div class="stat-cell bg-success darker">
-            <!-- Stat panel bg icon -->
-            <i style="font-size:60px;line-height:80px;height:80px;" class="fa fa-lightbulb-o bg-icon"></i>
-            <!-- Big text -->
-            <span class="text-bg">Users</span><br>
-            <!-- Small text -->
-            <span class="text-sm">Number of Users</span>
-         </div>
+  <div class="stat-panel">
+    <div class="stat-row">
+      <div class="stat-cell bg-success darker"> 
+        <!-- Stat panel bg icon --> 
+        <i style="font-size:60px;line-height:80px;height:80px;" class="fa fa-lightbulb-o bg-icon"></i> 
+        <!-- Big text --> 
+        <span class="text-bg">Users</span><br>
+        <!-- Small text --> 
+        <span class="text-sm">Number of Users</span> </div>
+    </div>
+    <!-- /.stat-row -->
+    <div class="stat-row"> 
+      <!-- Bordered, without top border, horizontally centered text -->
+      <div class="stat-counters bordered no-border-t text-center"> 
+        <!-- Small padding, without horizontal padding -->
+        <div class="stat-cell col-xs-4 padding-sm no-padding-hr"> 
+          <!-- Big text --> 
+          <span class="text-bg"><strong><%= @admin_count %></strong></span><br>
+          <!-- Extra small text --> 
+          <span class="text-xs text-muted">Total Number of Admins</span> </div>
+        <div class="stat-cell col-xs-4 padding-sm no-padding-hr"> 
+          <!-- Big text --> 
+          <span class="text-bg"><strong><%= @manager_count %></strong></span><br>
+          <!-- Extra small text --> 
+          <span class="text-xs text-muted">Total Number of Managers</span> </div>
+        <div class="stat-cell col-xs-4 padding-sm no-padding-hr"> 
+          <!-- Big text --> 
+          <span class="text-bg"><strong><%= @teamleads_count %> </strong></span><br>
+          <!-- Extra small text --> 
+          <span class="text-xs text-muted">Total Number of Team Leaders</span> </div>
+        <div class="stat-cell col-xs-4 padding-sm no-padding-hr"> 
+          <!-- Big text --> 
+          <span class="text-bg"><strong><%= @clients_count %></strong></span><br>
+          <!-- Extra small text --> 
+          <span class="text-xs text-muted">Total Number of Clients</span> </div>
+        <!-- Small padding, without horizontal padding -->
+        <div class="stat-cell col-xs-4 padding-sm no-padding-hr"> 
+          <!-- Big text --> 
+          <span class="text-bg"><strong><%= @staffs_count %></strong></span><br>
+          <!-- Extra small text --> 
+          <span class="text-xs text-muted">Total Number of Staffs</span> </div>
       </div>
-      <!-- /.stat-row -->
-      <div class="stat-row">
-         <!-- Bordered, without top border, horizontally centered text -->
-         <div class="stat-counters bordered no-border-t text-center">
-            <!-- Small padding, without horizontal padding -->
-            <div class="stat-cell col-xs-4 padding-sm no-padding-hr">
-               <!-- Big text -->
-               <span class="text-bg"><strong><%= @admin_count %></strong></span><br>
-               <!-- Extra small text -->
-               <span class="text-xs text-muted">Total Number of Admins</span>
-            </div>
-            <div class="stat-cell col-xs-4 padding-sm no-padding-hr">
-               <!-- Big text -->
-               <span class="text-bg"><strong><%= @manager_count %></strong></span><br>
-               <!-- Extra small text -->
-               <span class="text-xs text-muted">Total Number of Managers</span>
-            </div>
-            <div class="stat-cell col-xs-4 padding-sm no-padding-hr">
-               <!-- Big text -->
-               <span class="text-bg"><strong><%= @teamleads_count %> </strong></span><br>
-               <!-- Extra small text -->
-               <span class="text-xs text-muted">Total Number of Team Leaders</span>
-            </div>
-            <div class="stat-cell col-xs-4 padding-sm no-padding-hr">
-               <!-- Big text -->
-               <span class="text-bg"><strong><%= @clients_count %></strong></span><br>
-               <!-- Extra small text -->
-               <span class="text-xs text-muted">Total Number of Clients</span>
-            </div>
-            <!-- Small padding, without horizontal padding -->
-            <div class="stat-cell col-xs-4 padding-sm no-padding-hr">
-               <!-- Big text -->
-               <span class="text-bg"><strong><%= @staffs_count %></strong></span><br>
-               <!-- Extra small text -->
-               <span class="text-xs text-muted">Total Number of Staffs</span>
-            </div>
-         </div>
-         <!-- /.stat-counters -->
+      <!-- /.stat-counters --> 
+    </div>
+    <!-- /.stat-row --> 
+  </div>
+  <div class="stat-panel">
+    <div class="stat-row">
+      <div class="stat-cell bg-success darker"> 
+        <!-- Stat panel bg icon --> 
+        <i style="font-size:60px;line-height:80px;height:80px;" class="fa fa-lightbulb-o bg-icon"></i> 
+        <!-- Big text --> 
+        <span class="text-bg">Approve Time For All Satff</span><br>
+        <!-- Small text --> 
+        <span class="text-sm">Your account statistics</span> </div>
+    </div>
+    <!-- /.stat-row -->
+    <div class="stat-row"> 
+      <!-- Bordered, without top border, horizontally centered text -->
+      <div class="stat-counters bordered no-border-t text-center"> 
+        <!-- Small padding, without horizontal padding -->
+        <div class="stat-cell col-xs-4 padding-sm no-padding-hr"> 
+          <!-- Big text --> 
+          <span class="text-bg"><strong><%= @total_today %></strong></span><br>
+          <!-- Extra small text --> 
+          <span class="text-xs text-muted">Total Hrs Today</span> </div>
+        <!-- Small padding, without horizontal padding -->
+        <div class="stat-cell col-xs-4 padding-sm no-padding-hr"> 
+          <!-- Big text --> 
+          <span class="text-bg"><strong><%= @total_week %></strong></span><br>
+          <!-- Extra small text --> 
+          <span class="text-xs text-muted">Total Hrs This Week</span> </div>
+        <!-- Small padding, without horizontal padding -->
+        <div class="stat-cell col-xs-4 padding-sm no-padding-hr"> 
+          <!-- Big text --> 
+          <span class="text-bg"><strong><%= @total_month %></strong></span><br>
+          <!-- Extra small text --> 
+          <span class="text-xs text-muted">Total Hrs This Month</span> </div>
       </div>
-      <!-- /.stat-row -->
-   </div>
-
-   <div class="stat-panel">
-      <div class="stat-row">
-         <div class="stat-cell bg-success darker">
-            <!-- Stat panel bg icon -->
-            <i style="font-size:60px;line-height:80px;height:80px;" class="fa fa-lightbulb-o bg-icon"></i>
-            <!-- Big text -->
-            <span class="text-bg">Approve Time For All Satff</span><br>
-            <!-- Small text -->
-            <span class="text-sm">Your account statistics</span>
-         </div>
-      </div>
-      <!-- /.stat-row -->
-      <div class="stat-row">
-         <!-- Bordered, without top border, horizontally centered text -->
-         <div class="stat-counters bordered no-border-t text-center">
-            <!-- Small padding, without horizontal padding -->
-            <div class="stat-cell col-xs-4 padding-sm no-padding-hr">
-               <!-- Big text -->
-               <span class="text-bg"><strong><%= @total_today %></strong></span><br>
-               <!-- Extra small text -->
-               <span class="text-xs text-muted">Total Hrs Today</span>
-            </div>
-            <!-- Small padding, without horizontal padding -->
-            <div class="stat-cell col-xs-4 padding-sm no-padding-hr">
-               <!-- Big text -->
-               <span class="text-bg"><strong><%= @total_week %></strong></span><br>
-               <!-- Extra small text -->
-               <span class="text-xs text-muted">Total Hrs This Week</span>
-            </div>
-            <!-- Small padding, without horizontal padding -->
-            <div class="stat-cell col-xs-4 padding-sm no-padding-hr">
-               <!-- Big text -->
-               <span class="text-bg"><strong><%= @total_month %></strong></span><br>
-               <!-- Extra small text -->
-               <span class="text-xs text-muted">Total Hrs This Month</span>
-            </div>
-         </div>
-         <!-- /.stat-counters -->
-      </div>
-      <!-- /.stat-row -->
-   </div>
-
-
-   <div class="table-success">
-      <div class="table-header"> 
-         <div class="table-caption">
-         <i class="panel-title-icon fa fa-smile-o"></i>Staff
-         </div>
-         <!-- / .panel-heading-controls --> 
-      </div>
-      <!-- / .panel-heading -->
-      <table class="table table-bordered">
+      <!-- /.stat-counters --> 
+    </div>
+    <!-- /.stat-row --> 
+  </div>
+  <div class="table-success">
+    <div class="table-header">
+      <div class="table-caption"> <i class="panel-title-icon fa fa-smile-o"></i>Staff </div>
+      <!-- / .panel-heading-controls --> 
+    </div>
+    <!-- / .panel-heading -->
+    <table class="table table-bordered">
       <thead>
-         <tr>
-            <th rowspan="2">Staff Name</th>
-            <th rowspan="2">Postion</th>
-            <th rowspan="2">Client Name</th>
-            <th colspan="8">Time</th>
-         </tr>
-         <tr>
-            <th>Time Worked</th>
-            <th>Monday</th>
-            <th>Tuesday</th>
-            <th>Wednsday</th>
-            <th>Thursday</th>
-            <th>Friday</th>
-            <th>Saturday</th>
-            <th>Sunday</th>
-         </tr>
-         </thead>
-         <tbody class="valign-middle">
-
-            <% @hrs_staff_by_client.each do |staff|%>
-               
-               <tr>
-                  	<td data-title="Name"><%= image_tag("http://gravatar.com/avatar/"+ Digest::MD5.hexdigest(staff.emails.downcase)+"?s=26", class: "rounded") %> <%= staff.staff_names %></td>
-                  	<td data-title="Position"><%= staff.positions %></td>
-                  	<td data-title="Position"><%= staff.client_names %></td>
-                  
-                  	<td data-title="Time Worked"><%= c = ("%.2f" % staff.today).to_s.split(".").map { |s| s.to_i }
+        <tr>
+          <th rowspan="2">Staff Name</th>
+          <th rowspan="2">Postion</th>
+          <th rowspan="2">Client Name</th>
+          <th colspan="8">Time</th>
+        </tr>
+        <tr>
+          <th>Time Worked</th>
+          <th>Monday</th>
+          <th>Tuesday</th>
+          <th>Wednsday</th>
+          <th>Thursday</th>
+          <th>Friday</th>
+          <th>Saturday</th>
+          <th>Sunday</th>
+        </tr>
+      </thead>
+      <tbody class="valign-middle">
+        <% @hrs_staff_by_client.each do |staff|%>
+        <tr>
+          <td data-title="Name"><%= image_tag("http://gravatar.com/avatar/"+ Digest::MD5.hexdigest(staff.emails.downcase)+"?s=26", class: "rounded") %> <%= staff.staff_names %></td>
+          <td data-title="Position"><%= staff.positions %></td>
+          <td data-title="Position"><%= staff.client_names %></td>
+          <td data-title="Time Worked"><%= c = ("%.2f" % staff.today).to_s.split(".").map { |s| s.to_i }
                      a = c[0].to_s + ":" + ((c[1]*60)/100).to_s + " Hrs."
                      
                       %></td>
-
-                  <td data-title="Monday"><%= c = ("%.2f" % staff.monday).to_s.split(".").map { |s| s.to_i }
-                     a = c[0].to_s + ":" + ((c[1]*60)/100).to_s + " Hrs."
-                     
-                      %></td>
-               	<td data-title="Tuesday"><% if 6.day.ago.wday == 1 %><%= staff.today %><% else %> 0 hrs.<% end %></td>
-               	<td data-title="Wednsday"><% if 5.day.ago.wday == 2 %><%= staff.today %><% else %> 0 hrs.<% end %></td>
-               	<td data-title="Thursday"></td>
-               	<td data-title="Friday"></td>
-               	<td data-title="Saturday"></td>
-               	<td data-title="Sunday"></td>
-                  
-               </tr>
-            
-            <% end %>
-         </tbody>
-      </table>
-   </div>
+          <td data-title="Monday"></td>
+          <td data-title="Tuesday"><% if 6.day.ago.wday == 1 %>
+            <%= staff.today %>
+            <% else %>
+            0 hrs.
+            <% end %></td>
+          <td data-title="Wednsday"><% if 5.day.ago.wday == 2 %>
+            <%= staff.today %>
+            <% else %>
+            0 hrs.
+            <% end %></td>
+          <td data-title="Thursday"><%= @total_today %></td>
+          <td data-title="Friday"></td>
+          <td data-title="Saturday"></td>
+          <td data-title="Sunday"></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+ <% @tashs.each do |k, v| %>
+  <ul>
+<li><%= "#{k} " + " : " + "#{v}"%>
+</li>
+</ul>
+<% end %>
 </div>

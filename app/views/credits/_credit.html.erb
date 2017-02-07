@@ -5,7 +5,8 @@
     <% end %>
   </td>
       <td><p style="opacity: 0.4;"><strike><%= credit.credits %></strike></p></td>
-      <td><%= credit.created_at.strftime("%a %B %d %Y") %></td>
+      <td><%= credit.total_use_hrs %></td>
+      <td><%= credit.get_staff_name %></td>
       <td><%= link_to client_credit_path(@client, credit.id), method: :delete, data: { confirm: "Are you sure?" } do %> <i class="fa fa-trash"></i>
     <% end %></td>
 
@@ -15,8 +16,9 @@
       <td><%= link_to complete_client_credit_path(@client, credit.id), method: :patch do %> <i class="fa fa-check"></i>
     <% end %>
   </td>
-      <td><%= credit.credits  %></td>
-      <td><%= credit.created_at.strftime("%a %B %d %Y") %></td>
+      <td><%= credit.credits %></td>
+      <td></td>
+      <td><%= credit.get_staff_name %></td>
       <td><%= link_to client_credit_path(@client, credit.id), method: :delete, data: { confirm: "Are you sure?" } do %> <i class="fa fa-trash"></i>
     <% end %>
     </td>

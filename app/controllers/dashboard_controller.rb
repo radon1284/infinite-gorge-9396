@@ -109,7 +109,7 @@ class DashboardController < ApplicationController
     @by_month = ("%.2f" % @time_month).to_s.split(".").map { |s| s.to_i }
     @total_month = @by_month[0].to_s + ":" + ((@by_month[1]*60)/100).to_s + " Hrs."
 
-    @hrs_staff_by_client = TaskLog.joins(:staff).joins(:client).joins(:user).select("staffs.full_name AS staff_names").select("staffs.position AS positions").select("clients.full_name AS client_names").select("users.email AS emails").select("clients.*, SUM(task_logs.total_hrs) AS today, SUM(task_logs.total_hrs) AS monday" ).where.not(completed_at: nil).group("staffs.id, users.id, clients.id")
+    @hrs_staff_by_client = TaskLog.joins(:staff).joins(:client).joins(:user).select("staffs.full_name AS staff_names").select("staffs.position AS positions").select("clients.full_name AS client_names").select("users.email AS emails").select("clients.*, SUM(task_logs.total_hrs) AS today" ).where.not(completed_at: nil).group("staffs.id, users.id, clients.id")
 
     @week_start = @dates.beginning_of_week(start_day = :monday)
 
@@ -129,8 +129,11 @@ class DashboardController < ApplicationController
     @sts = Staff.joins(:task_logs).group("date(task_logs.created_at)").select("SUM(task_logs.total_hrs) AS sum_total_hrs, staffs.id AS staff_id, (task_logs.created_at) AS day_string")
 
     @daily_sale_totals = TaskLog.where(created_at: Date.today.beginning_of_week(start_day = :monday)).group("DATE(task_logs.created_at)").sum(:total_hrs)
-    
 
+
+    @date = params[:date] ? Date.parse(params[:date]) : Date.today
+
+    @tashs = TaskLog.group(:user_id).sum(:total_hrs)
   end
 
   private

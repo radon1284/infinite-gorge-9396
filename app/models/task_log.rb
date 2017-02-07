@@ -4,6 +4,7 @@ class TaskLog < ActiveRecord::Base
 	belongs_to :staff
 	belongs_to :client
 	belongs_to :employment
+	belongs_to :credit
 	accepts_nested_attributes_for :client, :update_only => true
 	accepts_nested_attributes_for :staff, :update_only => true
 

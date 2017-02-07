@@ -441,6 +441,7 @@
     <%= calendar @date do |date| %>
       <%= date.day %>
         <% if @task_logs_by_date[date] %>
+        
           <ul class="list-group">
             <% @task_logs_by_date[date].each do |task_log| %>
               <%= @hrs_by_day %>
